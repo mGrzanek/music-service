@@ -1,0 +1,11 @@
+.song-wrapper {
+    padding: 2%;
+    
+    .song-attributes {
+        display: flex;
+        position: absolute;
+        font-size: .9rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

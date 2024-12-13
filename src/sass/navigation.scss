@@ -8,5 +8,9 @@
         color: $color-metalic;
         text-decoration: none;
         padding: 3%;
+        
+        &:hover {
+            color: $color-light;
+        }
     }
 }
