@@ -9,10 +9,10 @@
       position: absolute;
       color: $color-metalic;
       justify-content: space-between;
-      font-size: .7rem;
+      font-size: .9rem;
       left: 50%;
       transform: translateX(-50%);
-      width: 16vw;
+      width: 25vw;
     }
   }
 }
@@ -29,10 +29,17 @@
   background-color: $color-danger;
   color: $color-light;
   text-transform: uppercase;
-  padding: 15px;
+  padding: 16px;
   font-size: 1.1rem;
-  letter-spacing: 5px;
+  letter-spacing: 4px;
   font-weight: $font-semibold;
+}
+
+.btn, input {
   border: none;
   border-radius: 10px;
+}
+
+audio {
+  width: 30vw;
 }
