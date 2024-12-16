@@ -1,0 +1,18 @@
+.songs {
+  padding-bottom: 10%;
+
+  .song-wrapper {
+    padding: 2%;
+      
+    .song-attributes {
+      display: flex;
+      position: absolute;
+      color: $color-metalic;
+      justify-content: space-between;
+      font-size: .7rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 16vw;
+    }
+  }
+}

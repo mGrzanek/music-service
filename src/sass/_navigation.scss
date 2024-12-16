@@ -1,0 +1,16 @@
+.links-wrapper {
+  text-transform: uppercase;
+  font-weight: $font-semibold;
+  font-size: 1.4rem;
+  padding: 5%;
+
+  a {
+    color: $color-metalic;
+    text-decoration: none;
+    padding: 3%;
+        
+    &:hover {
+      color: $color-light;
+    }
+  }
+}
