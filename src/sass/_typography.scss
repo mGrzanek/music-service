@@ -12,7 +12,7 @@
       font-size: .9rem;
       left: 50%;
       transform: translateX(-50%);
-      width: 25vw;
+      width: 30vw;
     }
   }
 }
@@ -42,6 +42,10 @@ form, .section-subtitle {
   font-size: 1.1rem;
   letter-spacing: 4px;
   font-weight: $font-semibold;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .btn, input {
@@ -50,5 +54,5 @@ form, .section-subtitle {
 }
 
 audio {
-  width: 30vw;
+  width: 35vw;
 }
