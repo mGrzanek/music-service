@@ -29,15 +29,17 @@
     font-weight: $font-black;
     letter-spacing: 80px;
     margin: 0;
+    position: relative;
   }
   
   .page-subtitle {
-    width: 7vw;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: $font-bold;
     letter-spacing: 7px;
-    text-align: center;
-    margin: 0 40%;
     line-height: 1.5;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-60%, -50%);
   }
 }

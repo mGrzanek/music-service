@@ -1,5 +1,5 @@
 .subscription {
-  background: url('./../../images/subscribe.jpg') 0/cover no-repeat;
+  background: url('./../../images/subscribe.jpg') center/cover no-repeat;
   position: relative;
   height: 100vh;
 
@@ -43,6 +43,7 @@
         z-index: 10;
         font-size: 6rem;
         right: 40%;
+        transform: translateX(-8%);
 
         > span {
           padding-left: 25%;
@@ -71,12 +72,13 @@
       .description, h4 {
         font-size: 1.7rem;
         letter-spacing: 5px;
-        line-height: .3;
+        line-height: 1.1;
+        text-shadow: 1px 1px 2px $color-dark;
       }
 
       .description {
         width: 40vw;
-        text-shadow: 1px 1px 2px $color-dark;
+        
       }
     }
   }    
