@@ -4,11 +4,8 @@
   height: 100vh;
 
   .section-title {
-    font-size: 4rem;
-    font-weight: $font-regular;
     width: 70vw;
-    letter-spacing: 15px;
-    text-transform: uppercase;
+    color: $color-light;
     position: absolute;
     left: 50%;
     top: -8%;
@@ -30,15 +27,8 @@
       padding-top: 15%;
 
       .btn {
-        background-color: $color-danger;
         padding: 30px;
-        color: $color-light;
-        text-transform: uppercase;
         font-size: 2rem;
-        letter-spacing: 5px;
-        font-weight: $font-semibold;
-        border: none;
-        border-radius: 10px;
       }
     }
 

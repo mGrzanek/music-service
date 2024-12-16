@@ -16,3 +16,23 @@
     }
   }
 }
+
+.section-title {
+  font-size: 4rem;
+  color: $color-metalic;
+  text-transform: uppercase;
+  font-weight: $font-regular;
+  letter-spacing: 15px;
+}
+
+.btn {
+  background-color: $color-danger;
+  color: $color-light;
+  text-transform: uppercase;
+  padding: 15px;
+  font-size: 1.1rem;
+  letter-spacing: 5px;
+  font-weight: $font-semibold;
+  border: none;
+  border-radius: 10px;
+}
