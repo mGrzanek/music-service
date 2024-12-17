@@ -1,6 +1,7 @@
 /* eslint-disable indent */
-import { settings } from './settings.js';
+import { select, settings } from './settings.js';
 import Song from './components/Song.js';
+import Home from './components/Home.js';
 
 const app = {
     initData: function(){
@@ -27,11 +28,17 @@ const app = {
             thisApp.songs = new Song(thisApp.data.songs[dataSong]);
         }
     },
+    initHome: function(){
+        const thisApp = this;
+        thisApp.homeWrapper = document.querySelector(select.containerOf.homeWrapper);
+        thisApp.home = new Home(thisApp.homeWrapper);
+    },
     init: function(){
         const thisApp = this;
         console.log('Welocme to music service!');
         console.log(thisApp);
         thisApp.initData();
+        thisApp.initHome();
     },
 };
 
