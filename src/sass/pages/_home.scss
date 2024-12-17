@@ -28,12 +28,10 @@
 
       .btn {
         padding: 30px;
-        font-size: 2rem;
-
-        a {
-          text-decoration: none;
-          color: $color-light;
-        }
+        font-size: 1.5rem;
+        text-decoration: none;
+        color: $color-light;
+        font-weight: $font-regular;
       }
     }
 
