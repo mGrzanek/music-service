@@ -11,3 +11,62 @@ body {
   font-family: $font-family-sans;
   font-weight: $font-regular;
 }
+
+.songs {
+  padding-bottom: 10%;
+
+  .song-wrapper {
+    padding: 5%;
+      
+    .song-attributes {
+      display: flex;
+      position: absolute;
+      color: $color-metalic;
+      justify-content: space-between;
+      font-size: .9rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30vw;
+    }
+  }
+}
+
+.section-title {
+  font-size: 4rem;
+  color: $color-metalic;
+  text-transform: uppercase;
+  font-weight: $font-regular;
+  letter-spacing: 15px;
+}
+
+.section-subtitle {  
+  font-size: 1.4rem;
+}
+
+form, .section-subtitle {
+  letter-spacing: 4px;
+  padding: 2%;
+}
+
+.btn {
+  background-color: $color-danger;
+  color: $color-light;
+  text-transform: uppercase;
+  padding: 16px;
+  font-size: 1.1rem;
+  letter-spacing: 4px;
+  font-weight: $font-semibold;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.btn, input {
+  border: none;
+  border-radius: 10px;
+}
+
+audio {
+  width: 35vw;
+}
