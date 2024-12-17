@@ -150,6 +150,26 @@
     <footer>
         <p>All rights reserved</p>
     </footer>
+    <script id="template-songs-wrapper" type="text/x-handlebars-template">
+        <div class="song-wrapper">
+            <h3 class="song-title"><span>{{ author }}</span> - {{title}}</h3>
+            <audio controls>
+                <source src="./songs/{{ filename }}" type="audio/mp3"/>
+            </audio>
+            <div class="song-attributes">
+                <p class="categories">
+                    <span>Categories: </span>
+                    <span>
+                        {{#each categories}}
+                        {{{ this }}}
+                        {{/each}}
+                    </span>
+                </p>
+                <p class="ranking">#{{ ranking }} in ranking</p>
+            </div>
+        </div>
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
     <script src="js/app.js" type="module"></script>
 </body>
 </html>
