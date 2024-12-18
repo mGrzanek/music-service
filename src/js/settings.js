@@ -6,6 +6,7 @@ export const select = {
   containerOf: {
     songsWrapper: '.songs-wrapper',
     homeWrapper: '.home-wrapper',
+    audioWrapper: '.player',
   }
 };
 

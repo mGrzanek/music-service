@@ -17,6 +17,10 @@ body {
 
   .song-wrapper {
     padding: 5%;
+
+    .player{
+      margin: 0 auto;
+    }
       
     .song-attributes {
       display: flex;
@@ -65,8 +69,4 @@ form, .section-subtitle {
 .btn, input {
   border: none;
   border-radius: 10px;
-}
-
-audio {
-  width: 35vw;
 }

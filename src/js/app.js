@@ -14,7 +14,6 @@ const app = {
                 return rawResponse.json();
             })
             .then(function(parsedResponse){
-                console.log('data songs: ', parsedResponse);
                 thisApp.data.songs = parsedResponse;
                 thisApp.initSong();
             });
@@ -37,8 +36,8 @@ const app = {
         const thisApp = this;
         console.log('Welocme to music service!');
         console.log(thisApp);
-        thisApp.initData();
         thisApp.initHome();
+        thisApp.initData();
     },
 };
 

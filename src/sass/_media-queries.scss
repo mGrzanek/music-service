@@ -31,9 +31,14 @@
     padding-bottom: 20%;
   }
 
-  audio, .songs .song-wrapper .song-attributes {
-    width: 70vw;
+ .songs .song-wrapper {
+    padding: 10%;
+  
+    .song-attributes {
+    width: 60vw;
   }
+
+ }
   
   .subscription {
     .section-title {
@@ -109,6 +114,12 @@
       font-size: .9rem;
       width: 25vw;
     }
+  }
+
+  .green-audio-player {
+    width: 60vw;
+    min-width: 200px;
+    height: 35px;
   }
 }
 
