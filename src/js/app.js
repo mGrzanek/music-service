@@ -2,6 +2,7 @@
 import { select, settings } from './settings.js';
 import Song from './components/Song.js';
 import Home from './components/Home.js';
+import Search from './components/Search.js';
 
 const app = {
     initData: function(){
@@ -32,12 +33,19 @@ const app = {
         thisApp.homeWrapper = document.querySelector(select.containerOf.homeWrapper);
         thisApp.home = new Home(thisApp.homeWrapper);
     },
+    initSearch(){
+        const thisApp = this;
+
+        thisApp.searchWrapper = document.querySelector(select.containerOf.searchWrapper);
+        thisApp.search = new Search(thisApp.searchWrapper);
+    },
     init: function(){
         const thisApp = this;
         console.log('Welocme to music service!');
         console.log(thisApp);
         thisApp.initHome();
         thisApp.initData();
+        thisApp.initSearch();
     },
 };
 
