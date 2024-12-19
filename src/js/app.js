@@ -1,6 +1,5 @@
 /* eslint-disable indent */
 import { select, settings } from './settings.js';
-import Song from './components/Song.js';
 import Home from './components/Home.js';
 import Search from './components/Search.js';
 import Discover from './components/Discover.js';
@@ -22,17 +21,10 @@ const app = {
                 thisApp.initDiscover();
             });
     }, 
-    initSong: function(){
-        const thisApp = this;
-        for(let dataSong in thisApp.data.songs){
-            thisApp.songs = new Song(thisApp.homeWrapper, thisApp.data.songs[dataSong]);
-        }
-    },
     initHome: function(){
         const thisApp = this;
         thisApp.homeWrapper = document.querySelector(select.containerOf.homeWrapper);
-        thisApp.home = new Home(thisApp.homeWrapper);
-        this.initSong();
+        thisApp.home = new Home(thisApp.homeWrapper, thisApp.data.songs);
     },
     initSearch: function(){
         const thisApp = this;

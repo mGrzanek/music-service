@@ -1,9 +1,13 @@
 import { templates } from './../settings.js';
+import Song from './Song.js';
 
 class Home {
-  constructor(element){
+  constructor(element, data){
     const thisHome = this;
+    
+    thisHome.data = data;
     thisHome.render(element);
+    thisHome.initSongs();
   }
   render(element){
     const thisHome = this;
@@ -13,6 +17,14 @@ class Home {
     thisHome.dom.wrapper = element;
     thisHome.dom.wrapper.innerHTML = generatedHtml;
     
+  }
+
+  initSongs(){
+    const thisHome = this;
+
+    for(let dataSong in thisHome.data){
+      thisHome.song = new Song(thisHome.dom.wrapper, thisHome.data[dataSong]);
+    }
   }
 }
 export default Home;
