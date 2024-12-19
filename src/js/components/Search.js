@@ -40,6 +40,7 @@ class Search {
 
     thisSearch.dom.songsWrapper.innerHTML = '';
     thisSearch.inputValue =  thisSearch.dom.input.value;
+    let songsAmount = 0;
     const regex = new RegExp(thisSearch.inputValue, 'i');
 
     for(let songData in thisSearch.data){
@@ -51,8 +52,15 @@ class Search {
 
       if(songFinder){
         thisSearch.song = new Song(thisSearch.dom.wrapper, thisSearch.data[songData]);
+        songsAmount++;
       }
-      console.log('songs', thisSearch.song);
+      console.log('songs', songsAmount);
+    }
+
+    if(songsAmount > 0){
+      thisSearch.dom.subtitle.innerHTML = `We have found ${songsAmount} songs...`;
+    } else {
+      thisSearch.dom.subtitle.innerHTML = 'Sorry, this song is not available.';
     }
   }
 }
