@@ -9,7 +9,13 @@ export const select = {
     homeWrapper: '.home-wrapper',
     searchWrapper: '.search-wrapper',
     audioWrapper: '.player',
-  }
+  },
+  search: {
+    formButton: 'form .btn',
+    formInput: '#song-input',
+    subtitle: '.section-subtitle',
+    songsAmount: '.section-subtitle span'
+  },
 };
 
 export const settings = {

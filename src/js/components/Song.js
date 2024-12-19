@@ -4,19 +4,21 @@ import utils from './../utils.js';
 
 
 class Song {
-  constructor(data){
+  constructor(mainWrapper, data){
     const thisSong = this;
     thisSong.data = data;
-    thisSong.render();
+    thisSong.render(mainWrapper);
     thisSong.initAudioPlayer();
   }
-  render(){
+  render(mainWrapper){
     const thisSong = this;
 
     const generatedHtml = templates.songs(thisSong.data);
     thisSong.element = utils.createDOMFromHTML(generatedHtml);
     thisSong.dom = {};
-    thisSong.dom.wrapper = document.querySelector(select.containerOf.songsWrapper);
+    thisSong.dom.mainWrapper = mainWrapper;
+    console.log('main', thisSong.dom.mainWrapper);
+    thisSong.dom.wrapper = thisSong.dom.mainWrapper.querySelector(select.containerOf.songsWrapper);
     thisSong.dom.wrapper.appendChild(thisSong.element);
     thisSong.dom.audioPlayer = thisSong.element.querySelector(select.containerOf.audioWrapper);
   }

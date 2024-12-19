@@ -1,4 +1,6 @@
-import { templates } from './../settings.js';
+/* eslint-disable no-empty */
+import { select, templates } from './../settings.js';
+import Song from './Song.js';
 
 class Search {
   constructor(element, data){
@@ -6,6 +8,7 @@ class Search {
 
     thisSearch.data = data;
     thisSearch.render(element);
+    thisSearch.initActions();
   }
 
   render(element){
@@ -15,7 +18,42 @@ class Search {
     thisSearch.dom.wrapper = element;
     const generatedHtml = templates.search();
     thisSearch.dom.wrapper.innerHTML = generatedHtml;
-    console.log(thisSearch.dom.wrapper);
+    thisSearch.dom.form = thisSearch.dom.wrapper.querySelector(select.search.formButton);
+    thisSearch.dom.input = thisSearch.dom.wrapper.querySelector(select.search.formInput);
+    thisSearch.dom.subtitle = thisSearch.dom.wrapper.querySelector(select.search.subtitle);
+    thisSearch.dom.songsAmount = thisSearch.dom.wrapper.querySelector(select.search.songsAmount);
+    thisSearch.dom.songsWrapper = thisSearch.dom.wrapper.querySelector(select.containerOf.songsWrapper);
+    console.log(thisSearch.dom.input);
+  }
+
+  initActions(){
+    const thisSearch = this;
+
+    thisSearch.dom.form.addEventListener('click', function(event){
+      event.preventDefault();
+      thisSearch.addSearch();
+    });
+  }
+
+  addSearch(){
+    const thisSearch = this;
+
+    thisSearch.dom.songsWrapper.innerHTML = '';
+    thisSearch.inputValue =  thisSearch.dom.input.value;
+    const regex = new RegExp(thisSearch.inputValue, 'i');
+
+    for(let songData in thisSearch.data){
+      const author = thisSearch.data[songData].author;
+      const title = thisSearch.data[songData].title;
+      const fullName = `${author} - ${title}`;
+
+      const songFinder = regex.test(fullName);
+
+      if(songFinder){
+        thisSearch.song = new Song(thisSearch.dom.wrapper, thisSearch.data[songData]);
+      }
+      console.log('songs', thisSearch.song);
+    }
   }
 }
 
