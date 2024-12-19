@@ -21,12 +21,9 @@ const app = {
                 thisApp.initSearch();
                 thisApp.initDiscover();
             });
-
-
     }, 
     initSong: function(){
         const thisApp = this;
-        console.log('home', thisApp.homeWrapper);
         for(let dataSong in thisApp.data.songs){
             thisApp.songs = new Song(thisApp.homeWrapper, thisApp.data.songs[dataSong]);
         }

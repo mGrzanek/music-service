@@ -18,6 +18,9 @@ export const select = {
     subtitle: '.section-subtitle',
     songsAmount: '.section-subtitle span'
   },
+  discover: {
+    songsWrapper: '.songs-wrapper',
+  }
 };
 
 export const settings = {
