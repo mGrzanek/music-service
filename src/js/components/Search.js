@@ -8,6 +8,7 @@ class Search {
 
     thisSearch.data = data;
     thisSearch.render(element);
+    thisSearch.getElements();
     thisSearch.initActions();
   }
 
@@ -18,12 +19,16 @@ class Search {
     thisSearch.dom.wrapper = element;
     const generatedHtml = templates.search();
     thisSearch.dom.wrapper.innerHTML = generatedHtml;
+  }
+
+  getElements(){
+    const thisSearch = this;
+
     thisSearch.dom.form = thisSearch.dom.wrapper.querySelector(select.search.formButton);
     thisSearch.dom.input = thisSearch.dom.wrapper.querySelector(select.search.formInput);
     thisSearch.dom.subtitle = thisSearch.dom.wrapper.querySelector(select.search.subtitle);
     thisSearch.dom.songsAmount = thisSearch.dom.wrapper.querySelector(select.search.songsAmount);
     thisSearch.dom.songsWrapper = thisSearch.dom.wrapper.querySelector(select.containerOf.songsWrapper);
-    console.log(thisSearch.dom.input);
   }
 
   initActions(){
