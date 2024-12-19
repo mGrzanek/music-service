@@ -59,7 +59,6 @@ class Search {
         thisSearch.song = new Song(thisSearch.dom.wrapper, thisSearch.data[songData]);
         songsAmount++;
       }
-      console.log('songs', songsAmount);
     }
 
     if(songsAmount > 0){

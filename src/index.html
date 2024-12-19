@@ -32,24 +32,7 @@
             <div class="search-wrapper"></div>
         </section>
         <section id="discover">
-            <div class="discover-wrapper">
-                <div class="container">
-                    <h2 class="section-title">Discover</h2>
-                    <p class="section-subtitle">Give it a try!</p>
-                    <div class="songs-wrapper">
-                        <div class="song-wrapper">
-                            <h3 class="song-title"><span>John Doe</span> - Bass trap</h3>
-                            <audio controls>
-                                <source src="./songs/BASS_TRAP_Steve_Oxen.mp3">
-                            </audio>
-                            <div class="song-attributes">
-                                <p class="categories">Categories: Powerful, Mystery</p>
-                                <p class="ranking">#1 in ranking</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="discover-wrapper"></div>
         </section>
     </div>
     <footer>
@@ -108,6 +91,24 @@
             <div class="founded-songs-wrapper">
                 <p class="section-subtitle"></p>
                 <div class="songs-wrapper"></div>
+            </div>
+        </div>
+    </script>
+    <script id="template-discover-wrapper" type="text/x-handlebars-template">
+        <div class="container">
+            <h2 class="section-title">Discover</h2>
+            <p class="section-subtitle">Give it a try!</p>
+            <div class="songs-wrapper">
+                <div class="song-wrapper">
+                    <h3 class="song-title"><span>John Doe</span> - Bass trap</h3>
+                    <audio controls>
+                        <source src="./songs/BASS_TRAP_Steve_Oxen.mp3">
+                    </audio>
+                    <div class="song-attributes">
+                        <p class="categories">Categories: Powerful, Mystery</p>
+                        <p class="ranking">#1 in ranking</p>
+                    </div>
+                </div>
             </div>
         </div>
     </script>

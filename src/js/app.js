@@ -3,6 +3,7 @@ import { select, settings } from './settings.js';
 import Song from './components/Song.js';
 import Home from './components/Home.js';
 import Search from './components/Search.js';
+import Discover from './components/Discover.js';
 
 const app = {
     initData: function(){
@@ -18,6 +19,7 @@ const app = {
                 thisApp.data.songs = parsedResponse;
                 thisApp.initHome();
                 thisApp.initSearch();
+                thisApp.initDiscover();
             });
 
 
@@ -35,17 +37,20 @@ const app = {
         thisApp.home = new Home(thisApp.homeWrapper);
         this.initSong();
     },
-    initSearch(){
+    initSearch: function(){
         const thisApp = this;
 
         thisApp.searchWrapper = document.querySelector(select.containerOf.searchWrapper);
         thisApp.search = new Search(thisApp.searchWrapper, thisApp.data.songs);
     },
+    initDiscover: function(){
+        const thisApp = this;
+
+        thisApp.discoverWrapper = document.querySelector(select.containerOf.discoverWrapper);
+        thisApp.discover = new Discover(thisApp.discoverWrapper, thisApp.data.songs);
+    },
     init: function(){
         const thisApp = this;
-        console.log('Welocme to music service!');
-        console.log(thisApp);
-        //thisApp.initHome();
         thisApp.initData();
     },
 };
