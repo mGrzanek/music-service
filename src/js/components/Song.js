@@ -19,8 +19,6 @@ class Song {
     thisSong.dom.wrapper = document.querySelector(select.containerOf.songsWrapper);
     thisSong.dom.wrapper.appendChild(thisSong.element);
     thisSong.dom.audioPlayer = thisSong.element.querySelector(select.containerOf.audioWrapper);
-
-    console.log(thisSong.dom.audioPlayer); 
   }
 
   initAudioPlayer(){
