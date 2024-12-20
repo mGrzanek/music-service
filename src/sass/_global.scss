@@ -22,22 +22,26 @@ body {
   }
 }
 
-.song-wrapper {
-  padding: 5%;
+.songs-wrapper {
+  padding-bottom: 20%;
 
-  .player{
-    margin: 0 auto;
-  }
-    
-  .song-attributes {
-    display: flex;
-    position: absolute;
-    color: $color-metalic;
-    justify-content: space-between;
-    font-size: .9rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30vw;
+  .song-wrapper {
+    padding: 5%;
+  
+    .player{
+      margin: 0 auto;
+    }
+      
+    .song-attributes {
+      display: flex;
+      position: absolute;
+      color: $color-metalic;
+      justify-content: space-between;
+      font-size: .9rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30vw;
+    }
   }
 }
 

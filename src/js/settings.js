@@ -15,6 +15,7 @@ export const select = {
   },
   nav: {
     links: '.links-wrapper',
+    discoverLink: '.links-wrapper a[href="#discover"]',
   },
   search: {
     formButton: 'form .btn',

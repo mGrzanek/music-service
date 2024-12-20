@@ -69,12 +69,10 @@
             </div>
             <div class="song-attributes">
                 <p class="categories">
-                    <span>Categories: </span>
-                    <span>
-                        {{#each categories}}
-                        {{{ this }}}
-                        {{/each}}
-                    </span>
+                    Categories:        
+                    {{#each categories}}
+                    {{{ this }}}
+                    {{/each}}
                 </p>
                 <p class="ranking">#{{ ranking }} in ranking</p>
             </div>
