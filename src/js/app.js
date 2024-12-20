@@ -10,6 +10,7 @@ const app = {
 
         thisApp.pages = document.querySelector(select.containerOf.pagesWrapper).children;
         thisApp.navLinks = document.querySelector(select.nav.links);
+        thisApp.discoverLink = thisApp.navLinks.querySelector(select.nav.discoverLink);
         const idFromHash =  window.location.hash.replace('#/','');
         let pageMatchingHash = thisApp.pages[0].id;
 
@@ -28,6 +29,10 @@ const app = {
             const id = clickedElement.getAttribute('href').replace('#', '');
             thisApp.activatePage(id);
             window.location.hash = `#/${id}`;
+        });
+
+        thisApp.discoverLink.addEventListener('click', function(){
+            thisApp.discover.songRandom();
         });
 
     },
