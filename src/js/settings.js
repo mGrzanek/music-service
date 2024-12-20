@@ -11,23 +11,32 @@ export const select = {
     searchWrapper: '.search-wrapper',
     audioWrapper: '.player',
     discoverWrapper: '.discover-wrapper',
+    pagesWrapper: '#pages',
+  },
+  nav: {
+    links: '.links-wrapper',
   },
   search: {
     formButton: 'form .btn',
     formInput: '#song-input',
     subtitle: '.section-subtitle',
-    songsAmount: '.section-subtitle span'
   },
   discover: {
     songsWrapper: '.songs-wrapper',
-  }
+  },
 };
 
 export const settings = {
   db: {
     url: '//localhost:3131',
     songs: 'songs',
-  }
+  },
+};
+
+export const classNames = {
+  pages: {
+    active:'active',
+  },
 };
 
 export const templates = {

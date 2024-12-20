@@ -12,6 +12,16 @@ body {
   font-weight: $font-regular;
 }
 
+#pages {
+  > * {
+    display: none;
+  }
+
+  > .active {
+    display: block;
+  }
+}
+
 .song-wrapper {
   padding: 5%;
 

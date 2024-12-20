@@ -1,10 +1,46 @@
 /* eslint-disable indent */
-import { select, settings } from './settings.js';
+import { classNames, select, settings } from './settings.js';
 import Home from './components/Home.js';
 import Search from './components/Search.js';
 import Discover from './components/Discover.js';
 
 const app = {
+    initPages: function(){
+        const thisApp = this;
+
+        thisApp.pages = document.querySelector(select.containerOf.pagesWrapper).children;
+        thisApp.navLinks = document.querySelector(select.nav.links);
+        const idFromHash =  window.location.hash.replace('#/','');
+        let pageMatchingHash = thisApp.pages[0].id;
+
+        for(let page of thisApp.pages){
+            if(page.id == idFromHash){
+                pageMatchingHash = page.id;
+                break;
+            }
+        }
+
+        thisApp.activatePage(pageMatchingHash);
+
+        thisApp.navLinks.addEventListener('click', function(event){
+            const clickedElement = event.target;
+            event.preventDefault();
+            const id = clickedElement.getAttribute('href').replace('#', '');
+            thisApp.activatePage(id);
+            window.location.hash = `#/${id}`;
+        });
+
+    },
+    activatePage: function(pageId){
+        const thisApp = this;
+
+        for(let page of thisApp.pages){
+            page.classList.toggle(
+                classNames.pages.active,
+                page.id == pageId
+            );
+        }
+    },
     initData: function(){
         const thisApp = this;
         thisApp.data = {};
@@ -41,6 +77,7 @@ const app = {
     init: function(){
         const thisApp = this;
         thisApp.initData();
+        thisApp.initPages();
     },
 };
 

@@ -24,17 +24,16 @@ class Search {
   getElements(){
     const thisSearch = this;
 
-    thisSearch.dom.form = thisSearch.dom.wrapper.querySelector(select.search.formButton);
+    thisSearch.dom.formButton = thisSearch.dom.wrapper.querySelector(select.search.formButton);
     thisSearch.dom.input = thisSearch.dom.wrapper.querySelector(select.search.formInput);
     thisSearch.dom.subtitle = thisSearch.dom.wrapper.querySelector(select.search.subtitle);
-    thisSearch.dom.songsAmount = thisSearch.dom.wrapper.querySelector(select.search.songsAmount);
     thisSearch.dom.songsWrapper = thisSearch.dom.wrapper.querySelector(select.containerOf.songsWrapper);
   }
 
   initActions(){
     const thisSearch = this;
 
-    thisSearch.dom.form.addEventListener('click', function(event){
+    thisSearch.dom.formButton.addEventListener('click', function(event){
       event.preventDefault();
       thisSearch.addSearch();
     });
