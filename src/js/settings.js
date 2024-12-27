@@ -36,13 +36,14 @@ export const select = {
     surname: '[name="surname"]',
     email: '[name="email"]',
     password: '[name="password"]',
-  }
+  },
 };
 
 export const settings = {
   db: {
     url: '//localhost:3131',
     songs: 'songs',
+    users: 'users',
   },
 };
 
