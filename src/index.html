@@ -24,20 +24,6 @@
             </div>
         </div>
     </nav>
-    <section id="registration">
-        <div class="registration-wrapper">
-            <div class="container">
-                <h2 class="section-title">Join us</h2>
-                <form>
-                    <input type="text" name="name" placeholder="Your name">
-                    <input type="text" name="surname" placeholder="Your surname">
-                    <input type="email" name="email" placeholder="E-mail">
-                    <input type="password" name="password" placeholder="Password">
-                    <button class="btn" type="submit">Join</button>
-                </form>
-            </div>
-        </div>
-    </section>
     <div id="pages">
         <section id="home">
             <div class="home-wrapper"></div>
@@ -48,6 +34,9 @@
         <section id="discover">
             <div class="discover-wrapper"></div>
         </section>
+        <section id="registration">
+        <div class="registration-wrapper"></div>
+    </section>
     </div>
     <footer>
         <p>All rights reserved</p>
@@ -111,6 +100,18 @@
             <h2 class="section-title">Discover</h2>
             <p class="section-subtitle">Give it a try!</p>
             <div class="songs-wrapper"></div>
+        </div>
+    </script>
+    <script id="template-registration-wrapper" type="text/x-handlebars-template">
+        <div class="container">
+            <h2 class="section-title">Join us</h2>
+            <form>
+                <input type="text" name="name" placeholder="Your name">
+                <input type="text" name="surname" placeholder="Your surname">
+                <input type="email" name="email" placeholder="E-mail">
+                <input type="password" name="password" placeholder="Password">
+                <button class="btn" type="submit">Join</button>
+            </form>
         </div>
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>

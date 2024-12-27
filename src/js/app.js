@@ -3,6 +3,7 @@ import { classNames, select, settings } from './settings.js';
 import Home from './components/Home.js';
 import Search from './components/Search.js';
 import Discover from './components/Discover.js';
+import Registration from './components/Registration.js';
 
 const app = {
     initPages: function(){
@@ -30,7 +31,6 @@ const app = {
         thisApp.discoverLink.addEventListener('click', function(){
             thisApp.discover.songRandom();
         });
-
     },
     getPageId: function(event){
         const thisApp = this;
@@ -71,6 +71,12 @@ const app = {
         const thisApp = this;
         thisApp.homeWrapper = document.querySelector(select.containerOf.homeWrapper);
         thisApp.home = new Home(thisApp.homeWrapper, thisApp.data.songs);
+
+        thisApp.joinButton = thisApp.homeWrapper.querySelector(select.home.joinButton);
+
+        thisApp.joinButton.addEventListener('click', function(event){
+            thisApp.getPageId(event);
+        });
     },
     initSearch: function(){
         const thisApp = this;
@@ -84,10 +90,17 @@ const app = {
         thisApp.discoverWrapper = document.querySelector(select.containerOf.discoverWrapper);
         thisApp.discover = new Discover(thisApp.discoverWrapper, thisApp.data.songs);
     },
+    initRegistration: function(){
+        const thisApp = this;
+
+        thisApp.registrationWrapper = document.querySelector(select.containerOf.registrationWrapper);
+        thisApp.registration = new Registration(thisApp.registrationWrapper);
+    },
     init: function(){
         const thisApp = this;
         thisApp.initData();
         thisApp.initPages();
+        thisApp.initRegistration();
     },
 };
 

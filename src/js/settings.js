@@ -4,6 +4,7 @@ export const select = {
     home: '#template-home-wrapper',
     search: '#template-search-wrapper',
     discover: '#template-discover-wrapper',
+    registration: '#template-registration-wrapper',
   },
   containerOf: {
     songsWrapper: '.songs-wrapper',
@@ -12,10 +13,14 @@ export const select = {
     audioWrapper: '.player',
     discoverWrapper: '.discover-wrapper',
     pagesWrapper: '#pages',
+    registrationWrapper: '.registration-wrapper',
   },
   nav: {
     links: '.links-wrapper',
     discoverLink: '.links-wrapper a[href="#discover"]',
+  },
+  home: {
+    joinButton: '[href="#registration"]',
   },
   search: {
     formButton: 'form .btn',
@@ -45,4 +50,5 @@ export const templates = {
   home: Handlebars.compile(document.querySelector(select.templateOf.home).innerHTML),
   search: Handlebars.compile(document.querySelector(select.templateOf.search).innerHTML),
   discover: Handlebars.compile(document.querySelector(select.templateOf.discover).innerHTML),
+  registration: Handlebars.compile(document.querySelector(select.templateOf.registration).innerHTML),
 };
