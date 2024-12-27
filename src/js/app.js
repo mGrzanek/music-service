@@ -98,6 +98,7 @@ const app = {
     },
     init: function(){
         const thisApp = this;
+        
         thisApp.initData();
         thisApp.initPages();
         thisApp.initRegistration();

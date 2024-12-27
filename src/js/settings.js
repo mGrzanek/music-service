@@ -30,6 +30,13 @@ export const select = {
   discover: {
     songsWrapper: '.songs-wrapper',
   },
+  registration: {
+    form: '.registration-form',
+    name: '[name="name"]',
+    surname: '[name="surname"]',
+    email: '[name="email"]',
+    password: '[name="password"]',
+  }
 };
 
 export const settings = {
