@@ -24,17 +24,22 @@ const app = {
         thisApp.activatePage(pageMatchingHash);
 
         thisApp.navLinks.addEventListener('click', function(event){
-            const clickedElement = event.target;
-            event.preventDefault();
-            const id = clickedElement.getAttribute('href').replace('#', '');
-            thisApp.activatePage(id);
-            window.location.hash = `#/${id}`;
+            thisApp.getPageId(event);
         });
 
         thisApp.discoverLink.addEventListener('click', function(){
             thisApp.discover.songRandom();
         });
 
+    },
+    getPageId: function(event){
+        const thisApp = this;
+
+        const clickedElement = event.target;
+        event.preventDefault();
+        const id = clickedElement.getAttribute('href').replace('#', '');
+        thisApp.activatePage(id);
+        window.location.hash = `#/${id}`;
     },
     activatePage: function(pageId){
         const thisApp = this;
