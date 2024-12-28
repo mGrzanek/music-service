@@ -3,7 +3,7 @@ import { classNames, select, settings } from './settings.js';
 import Home from './components/Home.js';
 import Search from './components/Search.js';
 import Discover from './components/Discover.js';
-import Registration from './components/Registration.js';
+import Join from './components/Join.js';
 
 const app = {
     initPages: function(){
@@ -11,6 +11,7 @@ const app = {
 
         thisApp.pages = document.querySelector(select.containerOf.pagesWrapper).children;
         thisApp.navLinks = document.querySelector(select.nav.links);
+        thisApp.loginLinks = document.querySelector(select.nav.loginLinks);
         thisApp.discoverLink = thisApp.navLinks.querySelector(select.nav.discoverLink);
         const idFromHash =  window.location.hash.replace('#/','');
         let pageMatchingHash = thisApp.pages[0].id;
@@ -25,6 +26,10 @@ const app = {
         thisApp.activatePage(pageMatchingHash);
 
         thisApp.navLinks.addEventListener('click', function(event){
+            thisApp.getPageId(event);
+        });
+
+        thisApp.loginLinks.addEventListener('click', function(event){
             thisApp.getPageId(event);
         });
 
@@ -93,8 +98,8 @@ const app = {
     initRegistration: function(){
         const thisApp = this;
 
-        thisApp.registrationWrapper = document.querySelector(select.containerOf.registrationWrapper);
-        thisApp.registration = new Registration(thisApp.registrationWrapper);
+        thisApp.joinWrapper = document.querySelector(select.containerOf.joinWrapper);
+        thisApp.Join = new Join(thisApp.joinWrapper);
     },
     init: function(){
         const thisApp = this;

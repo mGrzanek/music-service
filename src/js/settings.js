@@ -4,7 +4,7 @@ export const select = {
     home: '#template-home-wrapper',
     search: '#template-search-wrapper',
     discover: '#template-discover-wrapper',
-    registration: '#template-registration-wrapper',
+    join: '#template-join-wrapper',
   },
   containerOf: {
     songsWrapper: '.songs-wrapper',
@@ -13,14 +13,15 @@ export const select = {
     audioWrapper: '.player',
     discoverWrapper: '.discover-wrapper',
     pagesWrapper: '#pages',
-    registrationWrapper: '.registration-wrapper',
+    joinWrapper: '.join-wrapper',
   },
   nav: {
     links: '.links-wrapper',
+    loginLinks: '.login-wrapper',
     discoverLink: '.links-wrapper a[href="#discover"]',
   },
   home: {
-    joinButton: '[href="#registration"]',
+    joinButton: '[href="#join"]',
   },
   search: {
     formButton: 'form .btn',
@@ -30,8 +31,8 @@ export const select = {
   discover: {
     songsWrapper: '.songs-wrapper',
   },
-  registration: {
-    form: '.registration-form',
+  join: {
+    form: '.join-form',
     name: '[name="name"]',
     surname: '[name="surname"]',
     email: '[name="email"]',
@@ -63,5 +64,5 @@ export const templates = {
   home: Handlebars.compile(document.querySelector(select.templateOf.home).innerHTML),
   search: Handlebars.compile(document.querySelector(select.templateOf.search).innerHTML),
   discover: Handlebars.compile(document.querySelector(select.templateOf.discover).innerHTML),
-  registration: Handlebars.compile(document.querySelector(select.templateOf.registration).innerHTML),
+  join: Handlebars.compile(document.querySelector(select.templateOf.join).innerHTML),
 };
