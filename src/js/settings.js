@@ -51,6 +51,10 @@ export const classNames = {
   pages: {
     active:'active',
   },
+  form: {
+    success: 'success',
+    error: 'error',
+  },
 };
 
 export const templates = {

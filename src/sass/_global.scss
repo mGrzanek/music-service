@@ -68,6 +68,14 @@ input {
   width: 25vw;
 }
 
+.success {
+  border: 4px solid $color-tree;
+}
+
+.error {
+  border: 4px solid $color-danger;
+}
+
 .btn {
   background-color: $color-danger;
   color: $color-light;
@@ -79,6 +87,7 @@ input {
 
   &:hover {
     cursor: pointer;
+    opacity: .8;
   }
 }
 
