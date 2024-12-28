@@ -99,5 +99,4 @@ class Join {
   }
 }
 
-
 export default Join;

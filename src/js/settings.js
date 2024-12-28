@@ -17,7 +17,7 @@ export const select = {
   },
   nav: {
     links: '.links-wrapper',
-    loginLinks: '.login-wrapper',
+    loginLinks: '.login-links-wrapper',
     discoverLink: '.links-wrapper a[href="#discover"]',
   },
   home: {

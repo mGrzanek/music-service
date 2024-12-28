@@ -22,7 +22,7 @@
                 <a href="#search">Search</a>
                 <a href="#discover">Discover</a>
             </div>
-            <div class="login-wrapper">
+            <div class="login-links-wrapper">
                 <a href="#login">Log in</a>
                 <a href="#join">Join</a>
             </div>
@@ -39,8 +39,11 @@
             <div class="discover-wrapper"></div>
         </section>
         <section id="join">
-        <div class="join-wrapper"></div>
-    </section>
+            <div class="join-wrapper"></div>
+        </section>
+        <section id="login">
+            <div class="login-wrapper"></div>
+        </section>
     </div>
     <footer>
         <p>All rights reserved</p>
@@ -112,11 +115,21 @@
             <form class="join-form">
                 <input type="text" name="name" placeholder="Your name">
                 <input type="text" name="surname" placeholder="Your surname">
-                <input type="email" name="email" placeholder="E-mail">
+                <input type="email" name="email" placeholder="Your e-mail">
                 <input type="password" name="password" placeholder="Password">
                 <button type="submit" class="btn">Join</button>
             </form>
             <p class="new-account"></p>
+        </div>
+    </script>
+    <script id="template-login-wrapper" type="text/x-handlebars-template">
+        <div class="container">
+            <h2 class="section-title">Log in</h2>
+            <form class="login-form">
+                <input type="email" name="email" placeholder="Your e-mail">
+                <input type="password" name="password" placeholder="Password">
+                <button type="submit" class="btn">Log in</button>
+            </form>
         </div>
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
