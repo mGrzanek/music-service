@@ -1,6 +1,20 @@
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .links-wrapper {
   text-transform: uppercase;
   font-weight: $font-semibold;
+  flex: 60%;
+}
+
+.login-wrapper {
+  flex: 40%;
+}
+
+.login-wrapper, .links-wrapper {
   font-size: 1.4rem;
   padding: 5%;
 
