@@ -4,6 +4,7 @@ import Home from './components/Home.js';
 import Search from './components/Search.js';
 import Discover from './components/Discover.js';
 import Join from './components/Join.js';
+import Login from './components/Login.js';
 
 const app = {
     initPages: function(){
@@ -59,9 +60,10 @@ const app = {
     initData: function(){
         const thisApp = this;
         thisApp.data = {};
-        const url = settings.db.url + '/' + settings.db.songs;
+        const urlSongs = settings.db.url + '/' + settings.db.songs;
+        const urlUsers = settings.db.url + '/' + settings.db.users;
 
-        fetch(url)
+        fetch(urlSongs)
             .then(function(rawResponse){
                 return rawResponse.json();
             })
@@ -70,6 +72,15 @@ const app = {
                 thisApp.initHome();
                 thisApp.initSearch();
                 thisApp.initDiscover();
+            });
+
+        fetch(urlUsers)
+            .then(function(rawResponse){
+                return rawResponse.json();
+            })
+            .then(function(parsedResponse){
+                thisApp.data.users = parsedResponse;
+                thisApp.initLogin();
             });
     }, 
     initHome: function(){
@@ -95,18 +106,24 @@ const app = {
         thisApp.discoverWrapper = document.querySelector(select.containerOf.discoverWrapper);
         thisApp.discover = new Discover(thisApp.discoverWrapper, thisApp.data.songs);
     },
-    initRegistration: function(){
+    initJoin: function(){
         const thisApp = this;
 
         thisApp.joinWrapper = document.querySelector(select.containerOf.joinWrapper);
-        thisApp.Join = new Join(thisApp.joinWrapper);
+        thisApp.join = new Join(thisApp.joinWrapper);
+    },
+    initLogin: function(){
+        const thisApp = this;
+
+        thisApp.loginWrapper = document.querySelector(select.containerOf.loginWrapper);
+        thisApp.login = new Login(thisApp.loginWrapper, thisApp.data.users);
     },
     init: function(){
         const thisApp = this;
         
         thisApp.initData();
         thisApp.initPages();
-        thisApp.initRegistration();
+        thisApp.initJoin();
     },
 };
 

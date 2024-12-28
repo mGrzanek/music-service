@@ -33,5 +33,13 @@
             "ranking": 3
         }
     ],
-    "users": []
+    "users": [
+        {
+            "id": 1,
+            "name": "Emilly",
+            "surname": "Smith",
+            "email": "emilly@example.com",
+            "password": "abcd1234"
+        }
+    ]
 } 

@@ -62,6 +62,19 @@ form, .section-subtitle {
   padding: 2%;
 }
 
+#join, #login {
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    input {
+      margin: 3%;
+    }
+  }
+}
+
 input {
   padding: 25px;
   height: 30px;

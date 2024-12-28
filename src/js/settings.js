@@ -5,6 +5,7 @@ export const select = {
     search: '#template-search-wrapper',
     discover: '#template-discover-wrapper',
     join: '#template-join-wrapper',
+    login: '#template-login-wrapper',
   },
   containerOf: {
     songsWrapper: '.songs-wrapper',
@@ -14,6 +15,7 @@ export const select = {
     discoverWrapper: '.discover-wrapper',
     pagesWrapper: '#pages',
     joinWrapper: '.join-wrapper',
+    loginWrapper: '.login-wrapper',
   },
   nav: {
     links: '.links-wrapper',
@@ -51,7 +53,7 @@ export const settings = {
 
 export const classNames = {
   pages: {
-    active:'active',
+    active: 'active',
   },
   form: {
     success: 'success',
@@ -65,4 +67,5 @@ export const templates = {
   search: Handlebars.compile(document.querySelector(select.templateOf.search).innerHTML),
   discover: Handlebars.compile(document.querySelector(select.templateOf.discover).innerHTML),
   join: Handlebars.compile(document.querySelector(select.templateOf.join).innerHTML),
+  login: Handlebars.compile(document.querySelector(select.templateOf.login).innerHTML),
 };
