@@ -36,6 +36,7 @@ export const select = {
     surname: '[name="surname"]',
     email: '[name="email"]',
     password: '[name="password"]',
+    newAccount: '.new-account',
   },
 };
 

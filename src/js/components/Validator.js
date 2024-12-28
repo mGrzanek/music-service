@@ -33,7 +33,7 @@ class Validator {
   emailToggleClassValidate(email){
     const thisValidator = this;
 
-    const regex = /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   
     thisValidator.dom.wrapper.classList.toggle(
       classNames.form.success,

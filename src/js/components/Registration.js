@@ -28,6 +28,7 @@ class Registration {
     thisRegistration.dom.inputSurname = thisRegistration.dom.form.querySelector(select.registration.surname);
     thisRegistration.dom.inputEmail = thisRegistration.dom.form.querySelector(select.registration.email);
     thisRegistration.dom.inputPassword = thisRegistration.dom.form.querySelector(select.registration.password);
+    thisRegistration.dom.newAccount = thisRegistration.dom.wrapper.querySelector(select.registration.newAccount);
   }
 
   initActions(){
@@ -84,7 +85,17 @@ class Registration {
       body: JSON.stringify(payload)
     };
 
-    fetch(url, options);
+    if(thisRegistration.nameValidation.validateName(payload.name)
+      && thisRegistration.surnameValidation.validateName(payload.surname)
+      && thisRegistration.emailValidation.validateEmail(payload.email)
+      && thisRegistration.passwordValidation.validatePassword(payload.password)){
+      fetch(url, options);
+      thisRegistration.dom.inputName.value = '';
+      thisRegistration.dom.inputSurname.value = '';
+      thisRegistration.dom.inputEmail.value = '';
+      thisRegistration.dom.inputPassword.value = '';
+      thisRegistration.dom.newAccount.innerHTML = 'Thanks for joining us! You can now log in to your account.';
+    }
   }
 }
 
