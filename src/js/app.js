@@ -133,7 +133,6 @@ const app = {
     initAddSong: function(){
         const thisApp = this;
 
-        console.log('initAddSong');
         thisApp.addSongWrapper = document.querySelector(select.containerOf.addSongWrapper);
         thisApp.addSong = new AddSong(thisApp.addSongWrapper, thisApp.data.songsCategories);
     },
@@ -170,6 +169,8 @@ const app = {
     },
     initUserUnlogged: function(){
         const thisApp = this;
+        
+        thisApp.setHidden();
         thisApp.userLogged = false;
     },
     init: function(){
