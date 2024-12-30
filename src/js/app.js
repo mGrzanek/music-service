@@ -34,6 +34,12 @@ const app = {
             thisApp.getPageId(event);
         });
 
+        document.addEventListener('logged', function(event){
+            thisApp.activatePage(thisApp.pages[0].id);
+            console.log('logged user!');
+            thisApp.initUserLogged(event.detail.user);
+        });
+
         thisApp.discoverLink.addEventListener('click', function(){
             thisApp.discover.songRandom();
         });
@@ -117,6 +123,20 @@ const app = {
 
         thisApp.loginWrapper = document.querySelector(select.containerOf.loginWrapper);
         thisApp.login = new Login(thisApp.loginWrapper, thisApp.data.users);
+    },
+    initUserLogged: function(userName){
+        const thisApp = this;
+        thisApp.userWelcome = thisApp.loginLinks.querySelector(select.nav.userWelcome);
+
+        for(let link of thisApp.loginLinks.children){
+            if(link.classList.contains(classNames.links.hidden)){
+                link.classList.remove(classNames.links.hidden);
+            } else {
+                link.classList.add(classNames.links.hidden);
+            }
+        }
+
+        thisApp.userWelcome.innerHTML = `Hello, ${userName}!`;
     },
     init: function(){
         const thisApp = this;

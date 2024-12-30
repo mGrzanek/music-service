@@ -21,6 +21,8 @@ export const select = {
     links: '.links-wrapper',
     loginLinks: '.login-links-wrapper',
     discoverLink: '.links-wrapper a[href="#discover"]',
+    logoutLink: 'a[href="#logout"]',
+    userWelcome: '.user',
   },
   home: {
     joinButton: '[href="#join"]',
@@ -41,6 +43,11 @@ export const select = {
     password: '[name="password"]',
     newAccount: '.new-account',
   },
+  login: {
+    form: '.login-form',
+    email: '[name="email"]',
+    password: '[name="password"]',
+  },
 };
 
 export const settings = {
@@ -58,6 +65,9 @@ export const classNames = {
   form: {
     success: 'success',
     error: 'error',
+  },
+  links: {
+    hidden:'hidden',
   },
 };
 
