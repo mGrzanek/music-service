@@ -38,7 +38,7 @@ const app = {
 
         thisApp.logoutLink.addEventListener('click', function(event){
             event.preventDefault();
-            thisApp.initUserLogged();
+            thisApp.initUserUnlogged();
         });
 
         document.addEventListener('logged', function(event){
