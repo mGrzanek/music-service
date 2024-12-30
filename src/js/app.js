@@ -13,7 +13,9 @@ const app = {
         thisApp.pages = document.querySelector(select.containerOf.pagesWrapper).children;
         thisApp.navLinks = document.querySelector(select.nav.links);
         thisApp.loginLinks = document.querySelector(select.nav.loginLinks);
+        thisApp.logoutLink = thisApp.loginLinks.querySelector(select.nav.logoutLink);
         thisApp.discoverLink = thisApp.navLinks.querySelector(select.nav.discoverLink);
+        thisApp.userLogged = false;
         const idFromHash =  window.location.hash.replace('#/','');
         let pageMatchingHash = thisApp.pages[0].id;
 
@@ -32,6 +34,11 @@ const app = {
 
         thisApp.loginLinks.addEventListener('click', function(event){
             thisApp.getPageId(event);
+        });
+
+        thisApp.logoutLink.addEventListener('click', function(event){
+            event.preventDefault();
+            thisApp.initUserLogged();
         });
 
         document.addEventListener('logged', function(event){
@@ -124,9 +131,8 @@ const app = {
         thisApp.loginWrapper = document.querySelector(select.containerOf.loginWrapper);
         thisApp.login = new Login(thisApp.loginWrapper, thisApp.data.users);
     },
-    initUserLogged: function(userName){
+    setHidden: function(){
         const thisApp = this;
-        thisApp.userWelcome = thisApp.loginLinks.querySelector(select.nav.userWelcome);
 
         for(let link of thisApp.loginLinks.children){
             if(link.classList.contains(classNames.links.hidden)){
@@ -135,8 +141,18 @@ const app = {
                 link.classList.add(classNames.links.hidden);
             }
         }
+    },
+    initUserLogged: function(userName){
+        const thisApp = this;
 
+        thisApp.userLogged = true;
+        thisApp.setHidden();
+        thisApp.userWelcome = thisApp.loginLinks.querySelector(select.nav.userWelcome);
         thisApp.userWelcome.innerHTML = `Hello, ${userName}!`;
+    },
+    initUserUnlogged: function(){
+        const thisApp = this;
+        thisApp.userLogged = false;
     },
     init: function(){
         const thisApp = this;

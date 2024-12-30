@@ -37,8 +37,8 @@ class Login {
 
   loginUser(){
     const thisLogin = this;
-    const userEmail = thisLogin.dom.email.value;
-    const userPassword = thisLogin.dom.password.value;
+    let userEmail = thisLogin.dom.email.value;
+    let userPassword = thisLogin.dom.password.value;
 
     for(let dataUser in thisLogin.data){
       if(userEmail === thisLogin.data[dataUser].email
@@ -52,6 +52,8 @@ class Login {
         console.log('Invalid user!');
       }
     }
+    thisLogin.dom.email.value = '';
+    thisLogin.dom.password.value = '';
   }
 }
 
