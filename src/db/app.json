@@ -41,5 +41,47 @@
             "email": "emilly@example.com",
             "password": "abcd1234"
         }
+    ],
+    "song-categories": [
+        {
+            "id": 1,
+            "label": "Powerful"
+        },
+        {
+            "id": 2,
+            "label": "Relax"
+        },
+        {
+            "id": 3,
+            "label": "Mystery"
+        },
+        {
+            "id": 4,
+            "label": "Fun"
+        },
+        {
+            "id": 5,
+            "label": "Western"
+        },
+        {
+            "id": 6,
+            "label": "Rock"
+        },
+        {
+            "id": 7,
+            "label": "Alternative"
+        },
+        {
+            "id": 8,
+            "label": "Disco"
+        },
+        {
+            "id": 9,
+            "label": "Instrumental"
+        },
+        {
+            "id": 10,
+            "label": "Other"
+        }
     ]
 } 

@@ -6,6 +6,8 @@ export const select = {
     discover: '#template-discover-wrapper',
     join: '#template-join-wrapper',
     login: '#template-login-wrapper',
+    addSong: '#template-add-song-wrapper',
+    songCategories: '#template-checkboxes-song-categories',
   },
   containerOf: {
     songsWrapper: '.songs-wrapper',
@@ -16,6 +18,8 @@ export const select = {
     pagesWrapper: '#pages',
     joinWrapper: '.join-wrapper',
     loginWrapper: '.login-wrapper',
+    addSongWrapper: '.add-song-wrapper',
+    checkboxesWrapper: '.checkboxes',
   },
   nav: {
     links: '.links-wrapper',
@@ -55,6 +59,7 @@ export const settings = {
     url: '//localhost:3131',
     songs: 'songs',
     users: 'users',
+    songCategories: 'song-categories',
   },
 };
 
@@ -78,4 +83,6 @@ export const templates = {
   discover: Handlebars.compile(document.querySelector(select.templateOf.discover).innerHTML),
   join: Handlebars.compile(document.querySelector(select.templateOf.join).innerHTML),
   login: Handlebars.compile(document.querySelector(select.templateOf.login).innerHTML),
+  addSong: Handlebars.compile(document.querySelector(select.templateOf.addSong).innerHTML),
+  songCategories: Handlebars.compile(document.querySelector(select.templateOf.songCategories).innerHTML),
 };

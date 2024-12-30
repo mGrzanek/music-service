@@ -5,6 +5,7 @@ import Search from './components/Search.js';
 import Discover from './components/Discover.js';
 import Join from './components/Join.js';
 import Login from './components/Login.js';
+import AddSong from './components/AddSong.js';
 
 const app = {
     initPages: function(){
@@ -75,6 +76,7 @@ const app = {
         thisApp.data = {};
         const urlSongs = settings.db.url + '/' + settings.db.songs;
         const urlUsers = settings.db.url + '/' + settings.db.users;
+        const urlSongsCategories = settings.db.url +'/' + settings.db.songCategories;
 
         fetch(urlSongs)
             .then(function(rawResponse){
@@ -94,6 +96,15 @@ const app = {
             .then(function(parsedResponse){
                 thisApp.data.users = parsedResponse;
                 thisApp.initLogin();
+            });
+
+        fetch(urlSongsCategories)
+            .then(function(rawResponse){
+                return rawResponse.json();
+            })
+            .then(function(parsedResponse){
+                thisApp.data.songsCategories = parsedResponse;
+                thisApp.initAddSong();
             });
     }, 
     initHome: function(){
@@ -118,6 +129,13 @@ const app = {
 
         thisApp.discoverWrapper = document.querySelector(select.containerOf.discoverWrapper);
         thisApp.discover = new Discover(thisApp.discoverWrapper, thisApp.data.songs);
+    },
+    initAddSong: function(){
+        const thisApp = this;
+
+        console.log('initAddSong');
+        thisApp.addSongWrapper = document.querySelector(select.containerOf.addSongWrapper);
+        thisApp.addSong = new AddSong(thisApp.addSongWrapper, thisApp.data.songsCategories);
     },
     initJoin: function(){
         const thisApp = this;
