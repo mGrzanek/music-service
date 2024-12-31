@@ -37,14 +37,12 @@ const app = {
             thisApp.getPageId(event);
         });
 
-        thisApp.logoutLink.addEventListener('click', function(event){
-            event.preventDefault();
+        thisApp.logoutLink.addEventListener('click', function(){
             thisApp.initUserUnlogged();
         });
 
         document.addEventListener('logged', function(event){
             thisApp.activatePage(thisApp.pages[0].id);
-            console.log('logged user!');
             thisApp.initUserLogged(event.detail.user);
         });
 
