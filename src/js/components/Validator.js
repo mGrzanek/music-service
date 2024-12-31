@@ -62,6 +62,51 @@ class Validator {
     );
   }
 
+  songNameToggleClassValidate(name){
+    const thisValidator = this;
+    const regex = /^[^\s].*$/;
+
+    thisValidator.dom.wrapper.classList.toggle(
+      classNames.form.success,
+      name && regex.test(name)
+    );
+
+    thisValidator.dom.wrapper.classList.toggle(
+      classNames.form.error,
+      !name || !regex.test(name)
+    );
+  }
+
+  validateSong(name){
+    const regex = /^[^\s].*$/;
+
+    if(name && regex.test(name)){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validateSongFilename(filename){
+    const regex = /^.+(\.mp3|\.wav|\.flac|\.aac|\.ogg|\.wma)$/;
+
+    if(filename && regex.test(filename)){
+      return true;
+    } else {
+      alert('Invalid filename! Must contain extension .mp3, .wav, .flac, .aac, .ogg or .wma');
+    }
+  }
+
+  validateSongRanking(ranking){
+    const regex = /^([1-9]|[1-9][0-9]|100)$/;
+
+    if(ranking && regex.test(ranking)){
+      return true;
+    } else {
+      alert('Invalid number!');
+    }
+  }
+
   validateName(name){
     const regex = /^[A-ZŻŹĆĄŚĘŁÓŃa-zżźćńółęąś]{3,}$/;
 

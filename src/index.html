@@ -124,10 +124,10 @@
         <div class="container">
             <h2 class="section-title">Join us</h2>
             <form class="join-form">
-                <input type="text" name="name" placeholder="Your name">
-                <input type="text" name="surname" placeholder="Your surname">
-                <input type="email" name="email" placeholder="E-mail">
-                <input type="password" name="password" placeholder="Password">
+                <input type="text" name="name" placeholder="Your name" required>
+                <input type="text" name="surname" placeholder="Your surname" required>
+                <input type="email" name="email" placeholder="E-mail" required>
+                <input type="password" name="password" placeholder="Password" required>
                 <button type="submit" class="btn">Join</button>
             </form>
             <p class="new-account"></p>
@@ -137,8 +137,8 @@
         <div class="container">
             <h2 class="section-title">Log in</h2>
             <form class="login-form">
-                <input type="email" name="email" placeholder="E-mail">
-                <input type="password" name="password" placeholder="Password">
+                <input type="email" name="email" placeholder="E-mail" required>
+                <input type="password" name="password" placeholder="Password" required>
                 <button type="submit" class="btn">Log in</button>
             </form>
         </div>
@@ -147,9 +147,9 @@
         <div class="container">
             <h2 class="section-title">Add song</h2>
             <form class="song-form">
-                <input type="text" name="title" placeholder="Title">
-                <input type="text" name="author" placeholder="Author">
-                <input type="text" name="filename" placeholder="Filename">
+                <input type="text" name="title" placeholder="Title" required>
+                <input type="text" name="author" placeholder="Author" required>
+                <input type="text" name="filename" placeholder="Filename" required>
                 <input type="number" name="ranking" placeholder="Ranking">
                 <h4>Categories:</h4>
                 <div class="checkboxes"></div>
