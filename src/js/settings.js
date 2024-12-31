@@ -19,7 +19,6 @@ export const select = {
     joinWrapper: '.join-wrapper',
     loginWrapper: '.login-wrapper',
     addSongWrapper: '.add-song-wrapper',
-    checkboxesWrapper: '.checkboxes',
   },
   nav: {
     links: '.links-wrapper',
@@ -38,6 +37,15 @@ export const select = {
   },
   discover: {
     songsWrapper: '.songs-wrapper',
+  },
+  addSong: {
+    form: '.song-form',
+    title: '[name="title"]',
+    author: '[name="author"]',
+    filename: '[name="filename"]',
+    ranking: '[name="ranking"]',
+    category: 'input[name="categories"]',
+    checkboxes: '.checkboxes',
   },
   join: {
     form: '.join-form',
