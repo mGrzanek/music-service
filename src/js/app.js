@@ -148,12 +148,23 @@ const app = {
     },
     setHidden: function(){
         const thisApp = this;
+        thisApp.linksForLogged = document.querySelectorAll(select.nav.forLogged);
 
-        for(let link of thisApp.loginLinks.children){
-            if(link.classList.contains(classNames.links.hidden)){
-                link.classList.remove(classNames.links.hidden);
+        for(let link of thisApp.linksForLogged){
+            if(thisApp.userLogged){
+                link.classList.add(classNames.links.active);
+                for(let logLink of thisApp.loginLinks.children){
+                    if(logLink.tagName === 'A'){
+                        logLink.classList.add(classNames.links.hidden);
+                    }
+                }
             } else {
-                link.classList.add(classNames.links.hidden);
+                link.classList.remove(classNames.links.active);
+                for(let logLink of thisApp.loginLinks.children){
+                    if(logLink.tagName === 'A'){
+                        logLink.classList.remove(classNames.links.hidden);
+                    }
+                }
             }
         }
     },
@@ -168,8 +179,8 @@ const app = {
     initUserUnlogged: function(){
         const thisApp = this;
         
-        thisApp.setHidden();
         thisApp.userLogged = false;
+        thisApp.setHidden();
     },
     init: function(){
         const thisApp = this;

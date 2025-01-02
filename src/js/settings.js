@@ -26,6 +26,7 @@ export const select = {
     discoverLink: '.links-wrapper a[href="#discover"]',
     logoutLink: 'a[href="#logout"]',
     userWelcome: '.user',
+    forLogged: '.for-logged',
   },
   home: {
     joinButton: '[href="#join"]',
@@ -81,6 +82,7 @@ export const classNames = {
   },
   links: {
     hidden:'hidden',
+    active: 'active'
   },
 };
 

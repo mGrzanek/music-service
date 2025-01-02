@@ -2,6 +2,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  .for-logged {
+    display: none;
+
+    &.active {
+      display: inline-block;
+    }
+  }
 }
 
 .links-wrapper {
