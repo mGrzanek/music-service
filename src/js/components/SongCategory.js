@@ -1,7 +1,6 @@
 import { templates } from './../settings.js';
 import utils from './../utils.js';
 
-
 class SongCategory {
   constructor(wrapper, data){
     const thisSongCategory = this;

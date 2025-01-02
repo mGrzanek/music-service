@@ -77,6 +77,63 @@ class Validator {
     );
   }
 
+  songFilenameToggleClassValidate(filename){
+    const thisValidator = this;
+    const regex = /^.+(\.mp3|\.wav|\.flac|\.aac|\.ogg|\.wma)$/;
+    
+    thisValidator.dom.wrapper.classList.toggle(
+      classNames.form.success,
+      filename && regex.test(filename)
+    );
+
+    thisValidator.dom.wrapper.classList.toggle(
+      classNames.form.error,
+      !filename || !regex.test(filename)
+    );
+  }
+
+  songRankingToggleClassValidate(ranking){
+    const thisValidator = this;
+    const regex =  /^([1-9]|[1-9][0-9]|100)$/;
+
+    thisValidator.dom.wrapper.classList.toggle(
+      classNames.form.success,
+      ranking && regex.test(ranking)
+    );
+
+    thisValidator.dom.wrapper.classList.toggle(
+      classNames.form.error,
+      !ranking || !regex.test(ranking)
+    );
+  }
+
+  songCategoriesToggleClassValidate(element, categoriesArr){
+    const thisValidator = this;
+
+    if(element 
+      && element.type === 'checkbox' 
+      && element.checked){
+      categoriesArr.push(element);
+    } 
+
+    if(element
+      && element.type === 'checkbox'
+      && !element.checked){
+      const elementToRemove = categoriesArr.indexOf(element);
+      categoriesArr.splice(elementToRemove, 1);
+    }
+
+    thisValidator.dom.wrapper.classList.toggle(
+      classNames.form.success,
+      categoriesArr.length > 0
+    );
+
+    thisValidator.dom.wrapper.classList.toggle(
+      classNames.form.error,
+      categoriesArr.length === 0
+    );
+  }
+
   validateSong(name){
     const regex = /^[^\s].*$/;
 
@@ -103,7 +160,15 @@ class Validator {
     if(ranking && regex.test(ranking)){
       return true;
     } else {
-      alert('Invalid number!');
+      alert('Invalid ranking number!');
+    }
+  }
+
+  validateSongCategories(categoriesArr){
+    if(categoriesArr.length > 0){
+      return true;
+    } else {
+      alert('At least one song category must be selected!');
     }
   }
 

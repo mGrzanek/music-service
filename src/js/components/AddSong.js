@@ -1,5 +1,6 @@
 import { select, settings, templates } from './../settings.js';
 import SongCategory from './SongCategory.js';
+import Validator from './Validator.js';
 
 class AddSong {
   constructor(element, data){
@@ -9,6 +10,8 @@ class AddSong {
     thisAddSong.render(element);
     thisAddSong.getElements();
     thisAddSong.initCategories();
+    thisAddSong.initValidator();
+    thisAddSong.checkedCategories = [];
     thisAddSong.initActions();
   }
 
@@ -40,12 +43,43 @@ class AddSong {
     }
   }
 
+  initValidator(){
+    const thisAddSong = this;
+
+    thisAddSong.titleValidation = new Validator(thisAddSong.dom.titleInput);
+    thisAddSong.authorValidation = new Validator(thisAddSong.dom.authorInput);
+    thisAddSong.filenameValidation = new Validator(thisAddSong.dom.filePathInput);
+    thisAddSong.rankingValidtion = new Validator(thisAddSong.dom.rankingInput);
+    thisAddSong.categoriesValidation = new Validator(thisAddSong.dom.checkboxes);
+  }
+
   initActions(){
     const thisAddSong = this;
 
     thisAddSong.dom.form.addEventListener('submit', function(event){
       event.preventDefault();
       thisAddSong.addNewSong();
+    });
+
+    thisAddSong.dom.titleInput.addEventListener('input', function(){
+      thisAddSong.titleValidation.songNameToggleClassValidate(thisAddSong.dom.titleInput.value);
+    });
+  
+    thisAddSong.dom.authorInput.addEventListener('input', function(){
+      thisAddSong.authorValidation.songNameToggleClassValidate(thisAddSong.dom.authorInput.value);
+    });
+
+    thisAddSong.dom.filePathInput.addEventListener('input', function(){
+      thisAddSong.filenameValidation.songFilenameToggleClassValidate(thisAddSong.dom.filePathInput.value);
+    });
+
+    thisAddSong.dom.rankingInput.addEventListener('input', function(){
+      thisAddSong.rankingValidtion.songRankingToggleClassValidate(thisAddSong.dom.rankingInput.value);
+    });
+    
+    thisAddSong.dom.checkboxes.addEventListener('change', function(event){
+      const clickedElement = event.target;
+      thisAddSong.categoriesValidation.songCategoriesToggleClassValidate(clickedElement, thisAddSong.checkedCategories);
     });
   }
 
@@ -77,8 +111,14 @@ class AddSong {
       },
       body: JSON.stringify(payload)
     };
-
-    fetch(url, options);
+   
+    if(thisAddSong.titleValidation.validateSong(payload.title)
+        && thisAddSong.authorValidation.validateSong(payload.author)
+        && thisAddSong.filenameValidation.validateSongFilename(payload.filename)
+        && thisAddSong.rankingValidtion.validateSongRanking(payload.ranking)
+        && thisAddSong.categoriesValidation.validateSongCategories(payload.categories)){
+      fetch(url, options);
+    }
   }
 }
 
