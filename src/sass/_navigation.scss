@@ -3,6 +3,12 @@
   justify-content: space-between;
   align-items: center;
 
+  .links-wrapper, .login-links-wrapper {
+    a {
+      padding-right: 8px;
+    }
+  }
+
   .for-logged {
     display: none;
 
@@ -24,16 +30,11 @@
 
 .login-links-wrapper, .links-wrapper {
   font-size: 1.4rem;
-  padding: 5%;
-
-  p {
-    margin: 0;
-  }
+  padding: 5% 0;
   
   a {
     color: $color-metalic;
     text-decoration: none;
-    padding: 3%;
         
     &:hover {
       color: $color-light;

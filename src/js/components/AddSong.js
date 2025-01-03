@@ -1,9 +1,9 @@
-import { select, settings, templates } from './../settings.js';
+import { classNames, select, settings, templates } from './../settings.js';
 import SongCategory from './SongCategory.js';
 import Validator from './Validator.js';
 
 class AddSong {
-  constructor(element, data){
+  constructor(element, data, callback){
     const thisAddSong = this;
 
     thisAddSong.data = data;
@@ -12,7 +12,7 @@ class AddSong {
     thisAddSong.initCategories();
     thisAddSong.initValidator();
     thisAddSong.checkedCategories = [];
-    thisAddSong.initActions();
+    thisAddSong.initActions(callback);
   }
 
   render(element){
@@ -33,6 +33,7 @@ class AddSong {
     thisAddSong.dom.filePathInput = thisAddSong.dom.form.querySelector(select.addSong.filename);
     thisAddSong.dom.rankingInput = thisAddSong.dom.form.querySelector(select.addSong.ranking);
     thisAddSong.dom.checkboxes = thisAddSong.dom.form.querySelector(select.addSong.checkboxes);
+    thisAddSong.dom.newSong = thisAddSong.dom.wrapper.querySelector(select.addSong.songAdded);
   }
 
   initCategories(){
@@ -53,12 +54,12 @@ class AddSong {
     thisAddSong.categoriesValidation = new Validator(thisAddSong.dom.checkboxes);
   }
 
-  initActions(){
+  initActions(callback){
     const thisAddSong = this;
 
     thisAddSong.dom.form.addEventListener('submit', function(event){
       event.preventDefault();
-      thisAddSong.addNewSong();
+      thisAddSong.addNewSong(callback);
     });
 
     thisAddSong.dom.titleInput.addEventListener('input', function(){
@@ -83,7 +84,7 @@ class AddSong {
     });
   }
 
-  addNewSong(){
+  addNewSong(callback){
     const thisAddSong = this;
 
     thisAddSong.dom.categoryInput = thisAddSong.dom.checkboxes.querySelectorAll(select.addSong.category);
@@ -91,8 +92,8 @@ class AddSong {
     const url = `${settings.db.url}/${settings.db.songs}`;
 
     const payload = {
-      title: thisAddSong.dom.titleInput.value,
-      author: thisAddSong.dom.authorInput.value,
+      title: callback(thisAddSong.dom.titleInput.value),
+      author: callback(thisAddSong.dom.authorInput.value),
       filename: thisAddSong.dom.filePathInput.value,
       ranking: thisAddSong.dom.rankingInput.value,
       categories: []
@@ -118,6 +119,28 @@ class AddSong {
         && thisAddSong.rankingValidtion.validateSongRanking(payload.ranking)
         && thisAddSong.categoriesValidation.validateSongCategories(payload.categories)){
       fetch(url, options);
+
+      thisAddSong.dom.newSong.innerHTML = 'New song added!';
+      setTimeout(() => {
+        thisAddSong.dom.newSong.innerHTML = '';
+      }, '5000');
+
+      for(let inputField of thisAddSong.dom.form.children){
+        if(inputField.tagName === 'INPUT'){
+          inputField.value = '';
+          inputField.classList.remove(classNames.form.success);
+        }
+      }
+      thisAddSong.dom.checkboxes.classList.remove(classNames.form.success);
+
+      thisAddSong.dom.categoryInput.forEach(function(checkbox) {
+        if(checkbox.checked) {
+          checkbox.checked = false;
+        }
+      });
+
+      const event = new Event('song-added', {bubbles: true});
+      document.dispatchEvent(event);
     }
   }
 }

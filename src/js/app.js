@@ -16,7 +16,6 @@ const app = {
         thisApp.loginLinks = document.querySelector(select.nav.loginLinks);
         thisApp.logoutLink = thisApp.loginLinks.querySelector(select.nav.logoutLink);
         thisApp.discoverLink = thisApp.navLinks.querySelector(select.nav.discoverLink);
-        thisApp.userLogged = false;
         const idFromHash =  window.location.hash.replace('#/','');
         let pageMatchingHash = thisApp.pages[0].id;
 
@@ -41,9 +40,17 @@ const app = {
             thisApp.initUserUnlogged();
         });
 
+        document.addEventListener('user-added', function(){
+            thisApp.fetchUsers();
+        });
+
         document.addEventListener('logged', function(event){
             thisApp.activatePage(thisApp.pages[0].id);
             thisApp.initUserLogged(event.detail.user);
+        });
+
+        document.addEventListener('song-added', function(){
+            thisApp.fetchSongs();
         });
 
         thisApp.discoverLink.addEventListener('click', function(){
@@ -72,11 +79,15 @@ const app = {
     initData: function(){
         const thisApp = this;
         thisApp.data = {};
-        const urlSongs = settings.db.url + '/' + settings.db.songs;
-        const urlUsers = settings.db.url + '/' + settings.db.users;
-        const urlSongsCategories = settings.db.url +'/' + settings.db.songCategories;
+        thisApp.fetchSongs();
+        thisApp.fetchUsers();
+        thisApp.fetchSongsCategories();   
+    }, 
+    fetchSongs: function(){
+        const thisApp = this;
+        const url = settings.db.url + '/' + settings.db.songs;
 
-        fetch(urlSongs)
+        fetch(url)
             .then(function(rawResponse){
                 return rawResponse.json();
             })
@@ -87,7 +98,12 @@ const app = {
                 thisApp.initDiscover();
             });
 
-        fetch(urlUsers)
+    },
+    fetchUsers: function(){
+        const thisApp = this;
+        const url = settings.db.url + '/' + settings.db.users;
+
+        fetch(url)
             .then(function(rawResponse){
                 return rawResponse.json();
             })
@@ -96,7 +112,12 @@ const app = {
                 thisApp.initLogin();
             });
 
-        fetch(urlSongsCategories)
+    },
+    fetchSongsCategories: function(){
+        const thisApp = this;
+        const url = settings.db.url +'/' + settings.db.songCategories;
+
+        fetch(url)
             .then(function(rawResponse){
                 return rawResponse.json();
             })
@@ -104,7 +125,7 @@ const app = {
                 thisApp.data.songsCategories = parsedResponse;
                 thisApp.initAddSong();
             });
-    }, 
+    },
     initHome: function(){
         const thisApp = this;
         thisApp.homeWrapper = document.querySelector(select.containerOf.homeWrapper);
@@ -132,13 +153,13 @@ const app = {
         const thisApp = this;
 
         thisApp.addSongWrapper = document.querySelector(select.containerOf.addSongWrapper);
-        thisApp.addSong = new AddSong(thisApp.addSongWrapper, thisApp.data.songsCategories);
+        thisApp.addSong = new AddSong(thisApp.addSongWrapper, thisApp.data.songsCategories, thisApp.convertText);
     },
     initJoin: function(){
         const thisApp = this;
 
         thisApp.joinWrapper = document.querySelector(select.containerOf.joinWrapper);
-        thisApp.join = new Join(thisApp.joinWrapper);
+        thisApp.join = new Join(thisApp.joinWrapper, thisApp.convertText);
     },
     initLogin: function(){
         const thisApp = this;
@@ -168,8 +189,14 @@ const app = {
             }
         }
     },
+    convertText: function(text){
+        let newText = text.charAt(0).toUpperCase() + text.substr(1).toLowerCase();
+
+        return newText;
+    },
     initUserLogged: function(userName){
         const thisApp = this;
+        userName = thisApp.convertText(userName);
 
         thisApp.userLogged = true;
         thisApp.setHidden();

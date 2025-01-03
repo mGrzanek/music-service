@@ -45,8 +45,9 @@ export const select = {
     author: '[name="author"]',
     filename: '[name="filename"]',
     ranking: '[name="ranking"]',
-    category: 'input[name="categories"]',
+    category: '[name="categories"]',
     checkboxes: '.checkboxes',
+    songAdded: '.section-subtitle',
   },
   join: {
     form: '.join-form',
@@ -54,7 +55,7 @@ export const select = {
     surname: '[name="surname"]',
     email: '[name="email"]',
     password: '[name="password"]',
-    newAccount: '.new-account',
+    newAccount: '.section-subtitle',
   },
   login: {
     form: '.login-form',

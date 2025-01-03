@@ -43,7 +43,6 @@ class Login {
     for(let dataUser in thisLogin.data){
       if(userEmail === thisLogin.data[dataUser].email
         && userPassword === thisLogin.data[dataUser].password){
-        console.log('Hello!');
         const event = new CustomEvent('logged', {
           detail: {user: thisLogin.data[dataUser].name}
         });

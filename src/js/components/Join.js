@@ -1,10 +1,11 @@
-import { select, settings, templates } from '../settings.js';
+import { classNames, select, settings, templates } from '../settings.js';
 import Validator from './Validator.js';
 
 class Join {
-  constructor(element){
+  constructor(element, callback){
     const thisJoin = this;
     
+    thisJoin.convertText = callback;
     thisJoin.render(element);
     thisJoin.getElements();
     thisJoin.initValidator();
@@ -29,6 +30,7 @@ class Join {
     thisJoin.dom.inputEmail = thisJoin.dom.form.querySelector(select.join.email);
     thisJoin.dom.inputPassword = thisJoin.dom.form.querySelector(select.join.password);
     thisJoin.dom.newAccount = thisJoin.dom.wrapper.querySelector(select.join.newAccount);
+    thisJoin.loginWrapper = document.querySelector(select.containerOf.loginWrapper);
   }
 
   initActions(){
@@ -71,8 +73,8 @@ class Join {
     const url = settings.db.url + '/' + settings.db.users;
 
     const payload = {
-      name: thisJoin.dom.inputName.value,
-      surname: thisJoin.dom.inputSurname.value,
+      name: thisJoin.convertText(thisJoin.dom.inputName.value),
+      surname: thisJoin.convertText(thisJoin.dom.inputSurname.value),
       email: thisJoin.dom.inputEmail.value,
       password: thisJoin.dom.inputPassword.value   
     };
@@ -90,11 +92,21 @@ class Join {
       && thisJoin.emailValidation.validateEmail(payload.email)
       && thisJoin.passwordValidation.validatePassword(payload.password)){
       fetch(url, options);
-      thisJoin.dom.inputName.value = '';
-      thisJoin.dom.inputSurname.value = '';
-      thisJoin.dom.inputEmail.value = '';
-      thisJoin.dom.inputPassword.value = '';
-      thisJoin.dom.newAccount.innerHTML = 'Thanks for joining us! You can now log in to your account.';
+
+      for(let inputField of thisJoin.dom.form.children){
+        if(inputField.tagName === 'INPUT'){
+          inputField.value = '';
+          inputField.classList.remove(classNames.form.success);
+        }
+      }
+
+      const event = new Event('user-added', {bubbles: true});
+      document.dispatchEvent(event);
+
+      thisJoin.dom.newAccount.innerHTML = 'Thanks for joining us! Now you can log in to your account.';
+      setTimeout(() => {
+        thisJoin.dom.newAccount.innerHTML = '';
+      }, '5000');
     }
   }
 }
