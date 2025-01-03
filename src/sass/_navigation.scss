@@ -12,6 +12,11 @@
   .for-logged {
     display: none;
 
+    .user {
+      font-size: 1.1rem;
+      padding-right: 5px;
+    }
+
     &.active {
       display: inline-block;
     }
