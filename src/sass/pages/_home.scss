@@ -1,5 +1,27 @@
 .songs {
   padding-bottom: 10%;
+
+  .songs-categories {
+    padding: 0;
+    li {
+      display: inline-block;
+      padding: 0 5px;
+  
+      a {
+        text-decoration: none;
+        color: $color-metalic;
+  
+        &:hover {
+          color: $color-light;
+        }
+  
+        &.active {
+          color: $color-danger;
+          font-weight: $font-bold;
+        }
+      }
+    }
+  }
 }
 
 .subscription {

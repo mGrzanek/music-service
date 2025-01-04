@@ -61,6 +61,13 @@ body {
   font-size: 1.4rem;
 }
 
+#join, #add-song, #logout {
+  .section-subtitle {
+    font-size: 1.1rem;
+    margin: 0 20%;
+  }
+}
+
 form, .section-subtitle {
   letter-spacing: 4px;
   padding: 2%;

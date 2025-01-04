@@ -8,6 +8,7 @@ export const select = {
     login: '#template-login-wrapper',
     addSong: '#template-add-song-wrapper',
     songCategories: '#template-checkboxes-song-categories',
+    songCategoryLink: '#template-song-category-link',
   },
   containerOf: {
     songsWrapper: '.songs-wrapper',
@@ -19,6 +20,7 @@ export const select = {
     joinWrapper: '.join-wrapper',
     loginWrapper: '.login-wrapper',
     addSongWrapper: '.add-song-wrapper',
+    songsCategoriesLinks: '.songs-categories',
   },
   nav: {
     links: '.links-wrapper',
@@ -30,6 +32,10 @@ export const select = {
   },
   home: {
     joinButton: '[href="#join"]',
+    songCategoryLink: '.songs-categories a',
+  },
+  song: {
+    categoryId: 'span[data-id',
   },
   search: {
     formButton: 'form .btn',
@@ -82,8 +88,11 @@ export const classNames = {
     error: 'error',
   },
   links: {
-    hidden:'hidden',
-    active: 'active'
+    hidden: 'hidden',
+    active: 'active',
+  },
+  songs: {
+    hidden: 'hidden',
   },
 };
 
@@ -96,4 +105,5 @@ export const templates = {
   login: Handlebars.compile(document.querySelector(select.templateOf.login).innerHTML),
   addSong: Handlebars.compile(document.querySelector(select.templateOf.addSong).innerHTML),
   songCategories: Handlebars.compile(document.querySelector(select.templateOf.songCategories).innerHTML),
+  songCategoryLink: Handlebars.compile(document.querySelector(select.templateOf.songCategoryLink).innerHTML),
 };

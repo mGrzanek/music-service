@@ -6,6 +6,7 @@ import utils from './../utils.js';
 class Song {
   constructor(mainWrapper, data){
     const thisSong = this;
+    
     thisSong.data = data;
     thisSong.render(mainWrapper);
     thisSong.initAudioPlayer();

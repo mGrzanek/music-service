@@ -6,6 +6,7 @@ import Discover from './components/Discover.js';
 import Join from './components/Join.js';
 import Login from './components/Login.js';
 import AddSong from './components/AddSong.js';
+//import Song from './components/Song.js';
 
 const app = {
     initPages: function(){
@@ -79,6 +80,8 @@ const app = {
     initData: function(){
         const thisApp = this;
         thisApp.data = {};
+        thisApp.categories = [];
+        thisApp.allSongs = [];
         thisApp.fetchSongs();
         thisApp.fetchUsers();
         thisApp.fetchSongsCategories();   
@@ -93,6 +96,14 @@ const app = {
             })
             .then(function(parsedResponse){
                 thisApp.data.songs = parsedResponse;
+                for(let dataSong in thisApp.data.songs){
+                    //thisApp.song = new Song(thisApp.homeWrapper, thisApp.data.songs[dataSong]);
+                    for(let category of thisApp.data.songs[dataSong].categories){
+                        if(!thisApp.categories.includes(category)){
+                        thisApp.categories.push(category);
+                      }
+                    }
+                }
                 thisApp.initHome();
                 thisApp.initSearch();
                 thisApp.initDiscover();
@@ -129,7 +140,7 @@ const app = {
     initHome: function(){
         const thisApp = this;
         thisApp.homeWrapper = document.querySelector(select.containerOf.homeWrapper);
-        thisApp.home = new Home(thisApp.homeWrapper, thisApp.data.songs);
+        thisApp.home = new Home(thisApp.homeWrapper, thisApp.data.songs, thisApp.categories);
 
         thisApp.joinButton = thisApp.homeWrapper.querySelector(select.home.joinButton);
 

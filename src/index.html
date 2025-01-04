@@ -66,6 +66,10 @@
     <script id="template-home-wrapper" type="text/x-handlebars-template">
         <article class="songs">
             <div class="container">
+                <div class="categories-wrapper">
+                    <h4>Categories: </h4>
+                    <ul class="songs-categories"></ul>
+                </div>
                 <div class="songs-wrapper"></div>
             </div>
         </article>
@@ -96,7 +100,7 @@
                 <p class="categories">
                     Categories:        
                     {{#each categories}}
-                    {{{ this }}}
+                    <span data-id="{{{ this }}}">{{{ this }}}</span>
                     {{/each}}
                 </p>
                 <p class="ranking">#{{ ranking }} in ranking</p>
@@ -167,6 +171,11 @@
             <input type="checkbox" name="categories" value="{{ label }}">
             <span> {{ label }} </span>
         </label>
+    </script>
+    <script id="template-song-category-link" type="text/x-handlebars-template">
+        <li>
+            <a href="#{{ this }}">{{ this }}</a>
+        </li>
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
     <script src="./vendor/green-audio-player.js"></script>
