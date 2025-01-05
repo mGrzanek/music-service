@@ -69,14 +69,11 @@ class Home {
       let categoryCurrent = song.querySelector(`${select.song.categoryId}="${thisHome.activeCategoryLink}"]`);
       if(thisHome.activeCategoryLink){
         if(!categoryCurrent){
-          song.classList.add(classNames.songs.hidden);
-        } else {
-          song.classList.remove(classNames.songs.hidden);
-        }
+          song.classList.toggle(classNames.songs.hidden);
+        } 
       } else {
         song.classList.remove(classNames.songs.hidden);
-      }
-      
+      } 
     }
   }
 

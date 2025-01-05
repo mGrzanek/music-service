@@ -111,8 +111,14 @@
         <div class="container">
             <h2 class="section-title">Search</h2>
             <form>
-                <label for="song-input">Name </label>
+                <label for="song-input">Name</label>
                 <input id="song-input" type="text">
+                <label for="category-input">Category</label>
+                <select id="category-input">
+                    {{#each this}}
+                    <option value="{{this}}" {{#if @first}}selected{{/if}}>{{this}}</option>
+                    {{/each}}
+                </select>
                 <button type="button" class="btn btn-two">Search</button>
             </form>
             <div class="founded-songs-wrapper">

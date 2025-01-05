@@ -73,23 +73,18 @@ form, .section-subtitle {
   padding: 2%;
 }
 
-#join, #login, #add-song {
-  form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-    input {
-      margin: 3%;
-    }
+  input, select {
+    margin: 3%;
+    padding: 0 25px;
+    height: 50px;
+    width: 25vw;
   }
-}
-
-input {
-  padding: 25px;
-  height: 30px;
-  width: 25vw;
 }
 
 .success {
@@ -115,7 +110,7 @@ input {
   }
 }
 
-.btn, input {
+.btn, input, select {
   border: none;
   border-radius: 10px;
 }
