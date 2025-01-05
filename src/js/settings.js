@@ -9,7 +9,6 @@ export const select = {
     addSong: '#template-add-song-wrapper',
     songCategories: '#template-checkboxes-song-categories',
     songCategoryLink: '#template-song-category-link',
-    selectCategory: '#template-select-category',
   },
   containerOf: {
     songsWrapper: '.songs-wrapper',
@@ -108,5 +107,4 @@ export const templates = {
   addSong: Handlebars.compile(document.querySelector(select.templateOf.addSong).innerHTML),
   songCategories: Handlebars.compile(document.querySelector(select.templateOf.songCategories).innerHTML),
   songCategoryLink: Handlebars.compile(document.querySelector(select.templateOf.songCategoryLink).innerHTML),
-  selectCategory: Handlebars.compile(document.querySelector(select.templateOf.selectCategory).innerHTML),
 };
