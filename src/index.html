@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taste Music Service</title>
+    <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
@@ -91,6 +92,7 @@
     <script id="template-songs-wrapper" type="text/x-handlebars-template">
         <div class="song-wrapper">
             <h3 class="song-title"><span>{{ author }}</span> - {{title}}</h3>
+            <i class="fas fa-heart"></i>
             <div class="player">
                 <audio>
                     <source src="./songs/{{ filename }}" type="audio/mpeg"/>

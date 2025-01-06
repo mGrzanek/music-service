@@ -28,9 +28,29 @@ body {
 
 .songs-wrapper {
   padding-bottom: 20%;
+  
 
   .song-wrapper {
     padding: 5%;
+    position: relative;
+
+    .fa-heart {
+      position: absolute;
+      left: 18%;
+      font-size: 1.5rem;
+      top: 60%;
+      transition: all $transition-ease;
+
+      &:hover {
+        cursor: pointer;
+        color: $color-danger;
+      }
+
+      &.favorite {
+        color: $color-danger;
+        animation: enlarge $transition-ease;
+      }
+    }
   
     .player{
       margin: 0 auto;
@@ -51,6 +71,7 @@ body {
 
 .section-title {
   font-size: 4rem;
+  margin: 20px;
   color: $color-metalic;
   text-transform: uppercase;
   font-weight: $font-regular;

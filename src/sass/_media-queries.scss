@@ -20,8 +20,16 @@
   }
 
   .links-wrapper, .login-links-wrapper {
-    font-size: .9rem;
+    font-size: .8rem;
     padding: 5% 3%;
+  }
+
+  .links-wrapper {
+    flex: 65%;
+  }
+  
+  .login-links-wrapper {
+    flex: 35%;
   }
 
   .section-title {
@@ -41,6 +49,11 @@
   .songs-wrapper {
     .song-wrapper {
       padding: 10%;
+
+      .fa-heart {
+        left: 7.5%;
+        font-size: 1.3rem;
+      }
   
       .song-title{
         font-size: 1rem;
@@ -161,9 +174,15 @@
     width: 45vw;
   }
 
-  .songs-wrapper .song-wrapper .song-attributes {
-    width: 50vw;
-  }
+  .songs-wrapper .song-wrapper {
+    .fa-heart {
+      left: 8%;
+    }
+    
+    .song-attributes {
+      width: 50vw;
+    }
+  } 
 
   .section-title {
     font-size: 2.5rem;
