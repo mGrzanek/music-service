@@ -25,7 +25,7 @@ export const select = {
   nav: {
     links: '.links-wrapper',
     loginLinks: '.login-links-wrapper',
-    discoverLink: '.links-wrapper a[href="#discover"]',
+    discoverLink: 'a[href="#discover"]',
     logoutLink: 'a[href="#logout"]',
     userWelcome: '.user',
     forLogged: '.for-logged',
@@ -36,6 +36,7 @@ export const select = {
   },
   song: {
     categoryId: 'span[data-id',
+    playBtn: '.play-pause-btn',
   },
   search: {
     formButton: 'form .btn',
@@ -68,6 +69,7 @@ export const select = {
     form: '.login-form',
     email: '[name="email"]',
     password: '[name="password"]',
+    message: '.section-subtitle',
   },
 };
 

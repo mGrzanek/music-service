@@ -39,7 +39,18 @@
             "name": "Emilly",
             "surname": "Smith",
             "email": "emilly@example.com",
-            "password": "abcd1234"
+            "password": "abcd1234",
+            "playedSongs": {
+                "Powerful": {
+                    "amount": 20
+                }, 
+                "Fun": {
+                    "amount": 10
+                },
+                "Relax": {
+                    "amount": 2
+                }
+            }
         }
     ],
     "song-categories": [

@@ -10,6 +10,7 @@ class Song {
     thisSong.data = data;
     thisSong.render(mainWrapper);
     thisSong.initAudioPlayer();
+    thisSong.initActions();
   }
   render(mainWrapper){
     const thisSong = this;
@@ -31,6 +32,19 @@ class Song {
       showDownloadButton: false, 
       enableKeystrokes: true, 
       stopOthersOnPlay: true 
+    });
+  }
+
+  initActions(){
+    const thisSong = this;
+    thisSong.dom.playBtn = thisSong.dom.audioPlayer.querySelector(select.song.playBtn);
+
+    thisSong.dom.playBtn.addEventListener('click', function(){
+      const event = new CustomEvent('played-song', {
+        bubbles: true,
+        detail: {songCategories: thisSong.data.categories}
+      });
+      thisSong.element.dispatchEvent(event);
     });
   }
 }

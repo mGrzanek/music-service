@@ -27,35 +27,6 @@ const app = {
         }
 
         thisApp.activatePage(pageMatchingHash);
-
-        thisApp.navLinks.addEventListener('click', function(event){
-            thisApp.getPageId(event);
-        });
-
-        thisApp.loginLinks.addEventListener('click', function(event){
-            thisApp.getPageId(event);
-        });
-
-        thisApp.logoutLink.addEventListener('click', function(){
-            thisApp.initUserUnlogged();
-        });
-
-        document.addEventListener('user-added', function(){
-            thisApp.fetchUsers();
-        });
-
-        document.addEventListener('logged', function(event){
-            thisApp.activatePage(thisApp.pages[0].id);
-            thisApp.initUserLogged(event.detail.user);
-        });
-
-        document.addEventListener('song-added', function(){
-            thisApp.fetchSongs();
-        });
-
-        thisApp.discoverLink.addEventListener('click', function(){
-            thisApp.discover.songRandom();
-        });
     },
     getPageId: function(event){
         const thisApp = this;
@@ -75,6 +46,46 @@ const app = {
                 page.id == pageId
             );
         }
+    },
+    initActions(){
+        const thisApp = this;
+
+        thisApp.navLinks.addEventListener('click', function(event){
+            thisApp.getPageId(event);
+        });
+
+        thisApp.loginLinks.addEventListener('click', function(event){
+            thisApp.getPageId(event);
+        });
+
+        thisApp.logoutLink.addEventListener('click', function(){
+            thisApp.initUserUnlogged();
+        });
+
+        document.addEventListener('user-added', function(){
+            thisApp.fetchUsers();
+        });
+
+        document.addEventListener('logged', function(event){
+            thisApp.activatePage(thisApp.pages[0].id);
+            thisApp.initUserLogged(event.detail.userName);
+            thisApp.userId = event.detail.userId;
+            thisApp.playedSongsCategories = event.detail.userPlayedSongs;
+        });
+
+        document.addEventListener('song-added', function(){
+            thisApp.fetchSongs();
+        });
+
+        document.addEventListener('played-song', function(event){
+            if(thisApp.userLogged){
+                thisApp.songsCategoryCounter(event.detail.songCategories);
+            }
+        });
+
+        thisApp.discoverLink.addEventListener('click', function(){
+            thisApp.discover.songRandom(thisApp.userLogged, thisApp.playedSongsCategories);
+        });
     },
     initData: function(){
         const thisApp = this;
@@ -97,15 +108,14 @@ const app = {
                 for(let dataSong in thisApp.data.songs){
                     for(let category of thisApp.data.songs[dataSong].categories){
                         if(!thisApp.categories.includes(category)){
-                        thisApp.categories.push(category);
-                      }
+                            thisApp.categories.push(category);
+                        }
                     }
                 }
                 thisApp.initHome();
                 thisApp.initSearch();
                 thisApp.initDiscover();
             });
-
     },
     fetchUsers: function(){
         const thisApp = this;
@@ -119,7 +129,6 @@ const app = {
                 thisApp.data.users = parsedResponse;
                 thisApp.initLogin();
             });
-
     },
     fetchSongsCategories: function(){
         const thisApp = this;
@@ -155,7 +164,7 @@ const app = {
         const thisApp = this;
 
         thisApp.discoverWrapper = document.querySelector(select.containerOf.discoverWrapper);
-        thisApp.discover = new Discover(thisApp.discoverWrapper, thisApp.data.songs);
+        thisApp.discover = new Discover(thisApp.discoverWrapper, thisApp.data.songs, thisApp.userLogged);
     },
     initAddSong: function(){
         const thisApp = this;
@@ -199,7 +208,6 @@ const app = {
     },
     convertText: function(text){
         let newText = text.charAt(0).toUpperCase() + text.substr(1).toLowerCase();
-
         return newText;
     },
     initUserLogged: function(userName){
@@ -214,14 +222,43 @@ const app = {
     initUserUnlogged: function(){
         const thisApp = this;
         
+        const url = `${settings.db.url}/${settings.db.users}/${thisApp.userId}`; 
+        const options = {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                playedSongs: thisApp.playedSongsCategories
+            })
+        };
+
+        fetch(url, options);
+
+        thisApp.userId = null;
+        thisApp.playedSongsCategories = null;
         thisApp.userLogged = false;
         thisApp.setHidden();
+
+    },
+    songsCategoryCounter: function(categoriesArr){
+        const thisApp = this;
+
+        for(let category of categoriesArr){
+            if(typeof thisApp.playedSongsCategories[category] === 'undefined'){
+                thisApp.playedSongsCategories[category] = {};          
+                thisApp.playedSongsCategories[category].amount = 1;
+            } else {
+                thisApp.playedSongsCategories[category].amount++;
+            }
+        }
     },
     init: function(){
         const thisApp = this;
         
         thisApp.initData();
         thisApp.initPages();
+        thisApp.initActions();
         thisApp.initJoin();
     },
 };

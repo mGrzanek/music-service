@@ -21,6 +21,7 @@ class Login {
   getElements(){
     const thisLogin = this;
 
+    thisLogin.dom.message = thisLogin.dom.wrapper.querySelector(select.login.message);
     thisLogin.dom.form = thisLogin.dom.wrapper.querySelector(select.login.form);
     thisLogin.dom.email = thisLogin.dom.form.querySelector(select.login.email);
     thisLogin.dom.password = thisLogin.dom.form.querySelector(select.login.password);
@@ -44,11 +45,19 @@ class Login {
       if(userEmail === thisLogin.data[dataUser].email
         && userPassword === thisLogin.data[dataUser].password){
         const event = new CustomEvent('logged', {
-          detail: {user: thisLogin.data[dataUser].name}
+          bubbles: true,
+          detail: {
+            userId: thisLogin.data[dataUser].id,
+            userName: thisLogin.data[dataUser].name, 
+            userPlayedSongs: thisLogin.data[dataUser].playedSongs,
+          }
         });
         document.dispatchEvent(event);
       } else {
-        console.log('Invalid user!');
+        thisLogin.dom.message.innerHTML = 'This user does not exist.';
+        setTimeout(() => {
+          thisLogin.dom.message.innerHTML = '';
+        }, '5000');
       }
     }
     thisLogin.dom.email.value = '';

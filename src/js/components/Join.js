@@ -76,7 +76,8 @@ class Join {
       name: thisJoin.convertText(thisJoin.dom.inputName.value),
       surname: thisJoin.convertText(thisJoin.dom.inputSurname.value),
       email: thisJoin.dom.inputEmail.value,
-      password: thisJoin.dom.inputPassword.value   
+      password: thisJoin.dom.inputPassword.value,
+      playedSongs: {}  
     };
 
     const options = {
