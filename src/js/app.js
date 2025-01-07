@@ -6,6 +6,7 @@ import Discover from './components/Discover.js';
 import Join from './components/Join.js';
 import Login from './components/Login.js';
 import AddSong from './components/AddSong.js';
+import Favorite from './components/Favorite.js';
 
 const app = {
     initPages: function(){
@@ -128,6 +129,10 @@ const app = {
             .then(function(parsedResponse){
                 thisApp.data.users = parsedResponse;
                 thisApp.initLogin();
+                console.log('data users', thisApp.data.users);
+                for(let user in thisApp.data.users){
+                    thisApp.favoriteSongs = thisApp.data.users[user].favoriteSongs;
+                }
             });
     },
     fetchSongsCategories: function(){
@@ -171,6 +176,12 @@ const app = {
 
         thisApp.addSongWrapper = document.querySelector(select.containerOf.addSongWrapper);
         thisApp.addSong = new AddSong(thisApp.addSongWrapper, thisApp.data.songsCategories, thisApp.convertText);
+    },
+    initFavorite: function(){
+        const thisApp = this;
+
+        thisApp.favoriteWrapper = document.querySelector(select.containerOf.favoriteWrapper);
+        thisApp.favorite = new Favorite(thisApp.favoriteWrapper, thisApp.data.songs, thisApp.favoriteSongs, thisApp.userLogged);
     },
     initJoin: function(){
         const thisApp = this;
@@ -218,6 +229,7 @@ const app = {
         thisApp.setHidden();
         thisApp.userWelcome = thisApp.loginLinks.querySelector(select.nav.userWelcome);
         thisApp.userWelcome.innerHTML = `Hello, ${userName}!`;
+        thisApp.initFavorite();
     },
     initUserUnlogged: function(){
         const thisApp = this;

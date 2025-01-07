@@ -7,6 +7,7 @@ export const select = {
     join: '#template-join-wrapper',
     login: '#template-login-wrapper',
     addSong: '#template-add-song-wrapper',
+    favorite: '#template-favorite-wrapper',
     songCategories: '#template-checkboxes-song-categories',
     songCategoryLink: '#template-song-category-link',
   },
@@ -20,6 +21,7 @@ export const select = {
     joinWrapper: '.join-wrapper',
     loginWrapper: '.login-wrapper',
     addSongWrapper: '.add-song-wrapper',
+    favoriteWrapper: '.favorite-wrapper',
     songsCategoriesLinks: '.songs-categories',
   },
   nav: {
@@ -96,6 +98,7 @@ export const classNames = {
   },
   songs: {
     hidden: 'hidden',
+    favorite: 'favorite',
   },
 };
 
@@ -109,4 +112,5 @@ export const templates = {
   addSong: Handlebars.compile(document.querySelector(select.templateOf.addSong).innerHTML),
   songCategories: Handlebars.compile(document.querySelector(select.templateOf.songCategories).innerHTML),
   songCategoryLink: Handlebars.compile(document.querySelector(select.templateOf.songCategoryLink).innerHTML),
+  favorite: Handlebars.compile(document.querySelector(select.templateOf.favorite).innerHTML),
 };
