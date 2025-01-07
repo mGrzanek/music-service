@@ -2,12 +2,12 @@ import { select, templates } from './../settings.js';
 import Song from './Song.js';
 
 class Discover {
-  constructor(element, data, userLogged){
+  constructor(element, data, playedSongsCategories, favoriteSongs, userLogged){
     const thisDiscover = this;
 
     thisDiscover.data = data;
     thisDiscover.render(element);
-    thisDiscover.songRandom(userLogged);
+    thisDiscover.songRandom(userLogged, playedSongsCategories, favoriteSongs);
   }
 
   render(element){
@@ -20,15 +20,15 @@ class Discover {
     thisDiscover.dom.songsWrapper = thisDiscover.dom.wrapper.querySelector(select.discover.songsWrapper);
   }
 
-  songRandom(userLogged, playedSongsCategories) {
+  songRandom(userLogged, playedSongsCategories, favoriteSongs) {
     const thisDiscover = this;
 
     thisDiscover.dom.songsWrapper.innerHTML = '';
-    if(!userLogged){
+    if(!userLogged || userLogged === undefined ){
       const randomNumber = Math.floor(Math.random() * thisDiscover.data.length);
 
-      thisDiscover.song = new Song(thisDiscover.dom.wrapper, thisDiscover.data[randomNumber]);
-    } else {
+      thisDiscover.song = new Song(thisDiscover.dom.wrapper, thisDiscover.data[randomNumber], favoriteSongs, userLogged);
+    } else if(userLogged){
       const currentValues = thisDiscover.calculateMaxParam(playedSongsCategories);
       let currentSongs = [];
       for(let songData in thisDiscover.data){
@@ -39,7 +39,7 @@ class Discover {
         }
       }
       const randomNumber = Math.floor(Math.random() * currentSongs.length);
-      thisDiscover.song = new Song(thisDiscover.dom.wrapper, currentSongs[randomNumber]);
+      thisDiscover.song = new Song(thisDiscover.dom.wrapper, currentSongs[randomNumber], favoriteSongs, userLogged);
     }
   }
 

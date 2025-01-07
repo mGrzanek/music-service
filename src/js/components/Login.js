@@ -50,6 +50,7 @@ class Login {
             userId: thisLogin.data[dataUser].id,
             userName: thisLogin.data[dataUser].name, 
             userPlayedSongs: thisLogin.data[dataUser].playedSongs,
+            favoriteSongs: thisLogin.data[dataUser].favoriteSongs
           }
         });
         document.dispatchEvent(event);

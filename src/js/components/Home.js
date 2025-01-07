@@ -2,7 +2,7 @@ import { classNames, select, templates } from './../settings.js';
 import Song from './Song.js';
 
 class Home {
-  constructor(element, data, categories){
+  constructor(element, data, categories, favoriteSongs, userStatus){
     const thisHome = this;
     
     thisHome.data = data;
@@ -10,7 +10,7 @@ class Home {
     thisHome.activeCategoryLink = null;
     thisHome.render(element);
     thisHome.initCategories();
-    thisHome.initSongs();
+    thisHome.initSongs(favoriteSongs, userStatus);
     thisHome.initActions();
   }
   render(element){
@@ -21,6 +21,7 @@ class Home {
     thisHome.dom.wrapper = element;
     thisHome.dom.wrapper.innerHTML = generatedHtml;
     thisHome.dom.categoriesLinks = thisHome.dom.wrapper.querySelector(select.containerOf.songsCategoriesLinks); 
+    thisHome.dom.songsWrapper = thisHome.dom.wrapper.querySelector(select.home.songsWrapper);
     
   }
 
@@ -33,11 +34,13 @@ class Home {
     }
   }
 
-  initSongs(){
+  initSongs(favoriteSongs, userStatus){
     const thisHome = this;
 
+    thisHome.dom.songsWrapper.innerHTML = '';
+
     for(let dataSong in thisHome.data){
-      thisHome.song = new Song(thisHome.dom.wrapper, thisHome.data[dataSong]);
+      thisHome.song = new Song(thisHome.dom.wrapper, thisHome.data[dataSong], favoriteSongs, userStatus);
     }
   }
 

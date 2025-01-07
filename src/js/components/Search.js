@@ -3,14 +3,14 @@ import { select, templates } from './../settings.js';
 import Song from './Song.js';
 
 class Search {
-  constructor(element, data, categories){
+  constructor(element, data, categories, favoriteSongs, userStatus){
     const thisSearch = this;
 
     thisSearch.data = data;
     thisSearch.categories = categories;
     thisSearch.render(element);
     thisSearch.getElements();
-    thisSearch.initActions();
+    thisSearch.initActions(favoriteSongs, userStatus);
   }
 
   render(element){
@@ -31,17 +31,30 @@ class Search {
     thisSearch.dom.subtitle = thisSearch.dom.wrapper.querySelector(select.search.subtitle);
     thisSearch.dom.songsWrapper = thisSearch.dom.wrapper.querySelector(select.containerOf.songsWrapper);
     thisSearch.dom.categoriesWrapper = thisSearch.dom.wrapper.querySelector(select.search.categoryInput);
+    thisSearch.dom.form = thisSearch.dom.wrapper.querySelector(select.search.form);
   }
 
-  initActions(){
+  initActions(favoriteSongs, userStatus){
     const thisSearch = this;
 
     thisSearch.dom.formButton.addEventListener('click', function(){
-      thisSearch.addSearch();
+      thisSearch.addSearch(favoriteSongs, userStatus);
     });
   }
 
-  addSearch(){
+  clearSongs(){
+    const thisSearch = this;
+
+    thisSearch.dom.subtitle.innerHTML = '';
+    thisSearch.dom.songsWrapper.innerHTML = '';
+    for(let formField of thisSearch.dom.form.children){
+      if(formField.tagName === 'INPUT' || formField.tagName === 'SELECT'){
+        formField.value = '';
+      }
+    }
+  }
+
+  addSearch(favoriteSongs, userStatus){
     const thisSearch = this;
 
     thisSearch.dom.songsWrapper.innerHTML = '';
@@ -58,13 +71,13 @@ class Search {
       const songFinder = regex.test(fullName);
 
       if(categoryInput === '' && songFinder){
-        thisSearch.song = new Song(thisSearch.dom.wrapper, thisSearch.data[songData]);
+        thisSearch.song = new Song(thisSearch.dom.wrapper, thisSearch.data[songData], favoriteSongs, userStatus);
         songsAmount++;
         thisSearch.dom.subtitle.innerHTML = `We have found ${songsAmount} songs...`;
       } else {
         for(let category of songCategories){
           if(category === categoryInput && songFinder){
-            thisSearch.song = new Song(thisSearch.dom.wrapper, thisSearch.data[songData]);
+            thisSearch.song = new Song(thisSearch.dom.wrapper, thisSearch.data[songData], favoriteSongs, userStatus);
             songsAmount++;
             thisSearch.dom.subtitle.innerHTML = `We have found ${songsAmount} songs...`;
           } 

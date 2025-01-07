@@ -1,4 +1,4 @@
-import { templates } from './../settings.js';
+import { select, templates } from './../settings.js';
 import Song from './Song.js';
 
 class Favorite {
@@ -6,7 +6,7 @@ class Favorite {
     const thisFavorite = this;
 
     thisFavorite.data = data;
-    console.log('data favorite', thisFavorite.data);
+    thisFavorite.favoriteSongs = favoriteSongs;
     thisFavorite.render(element);
     thisFavorite.showFavorites(favoriteSongs, userStatus);
   }
@@ -17,20 +17,19 @@ class Favorite {
     thisFavorite.dom = {};
     thisFavorite.dom.wrapper  = element;
     thisFavorite.dom.wrapper.innerHTML = generatedHtml;
+    thisFavorite.dom.songsWrapper = thisFavorite.dom.wrapper.querySelector(select.favorite.songsWrapper);
   }
 
   showFavorites(favoriteSongs, userStatus){
     const thisFavorite = this;
-    console.log('favoriteSongs', favoriteSongs);
-    console.log('userStatus', userStatus);
+
+    thisFavorite.dom.songsWrapper.innerHTML = '';
   
     if(userStatus){
       for(let favoriteSongId of favoriteSongs){
-        console.log('favorite songid', favoriteSongId);
         for(let songData in thisFavorite.data){
-          console.log('song Data Id', thisFavorite.data[songData].id);
           if(favoriteSongId === thisFavorite.data[songData].id){
-            thisFavorite.song = new Song(thisFavorite.dom.wrapper, thisFavorite.data[songData]);
+            thisFavorite.song = new Song(thisFavorite.dom.wrapper, thisFavorite.data[songData], favoriteSongs, userStatus);
           }
         }
       }

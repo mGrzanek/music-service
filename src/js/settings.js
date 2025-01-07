@@ -27,6 +27,7 @@ export const select = {
   nav: {
     links: '.links-wrapper',
     loginLinks: '.login-links-wrapper',
+    searchLink: 'a[href="#search"]',
     discoverLink: 'a[href="#discover"]',
     logoutLink: 'a[href="#logout"]',
     userWelcome: '.user',
@@ -34,14 +35,17 @@ export const select = {
   },
   home: {
     joinButton: '[href="#join"]',
+    songsWrapper: '.songs-wrapper',
     songCategoryLink: '.songs-categories a',
   },
   song: {
     categoryId: 'span[data-id',
     playBtn: '.play-pause-btn',
+    favoriteIcon: '.fa-heart',
   },
   search: {
     formButton: 'form .btn',
+    form: 'form',
     formInput: '#song-input',
     subtitle: '.section-subtitle',
     categoryInput: '#category-input',
@@ -58,6 +62,9 @@ export const select = {
     category: '[name="categories"]',
     checkboxes: '.checkboxes',
     songAdded: '.section-subtitle',
+  },
+  favorite: {
+    songsWrapper: '.songs-wrapper',
   },
   join: {
     form: '.join-form',
