@@ -14,5 +14,7 @@ There are also subpages available for logged in users:
 - Favorite to create a list of favorite songs
 - Add to add new songs
 
+To submit a new song, you must place the file in the /song folder in src directory and then complete the form on the Add subpage.
+
 
 To run the application, install the necessary packages using commend 'npm install'. Then run the program by 'npm run watch'.

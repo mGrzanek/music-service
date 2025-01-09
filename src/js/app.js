@@ -18,7 +18,6 @@ const app = {
         thisApp.logoutLink = thisApp.loginLinks.querySelector(select.nav.logoutLink);
         thisApp.searchLink = thisApp.navLinks.querySelector(select.nav.searchLink);
         thisApp.discoverLink = thisApp.navLinks.querySelector(select.nav.discoverLink);
-        thisApp.userStatus = false;
     },
     initPages: function(){
         const thisApp = this;
@@ -121,6 +120,7 @@ const app = {
     initData: function(){
         const thisApp = this;
         thisApp.data = {};
+        thisApp.userStatus = false;
         thisApp.categories = [];
         thisApp.publicSongs = [];
         thisApp.userEmails = [];
