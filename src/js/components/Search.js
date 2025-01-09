@@ -69,20 +69,31 @@ class Search {
       const songCategories = thisSearch.data[songData].categories;
       const fullName = `${author} - ${title}`;
       const songFinder = regex.test(fullName);
+      let toRender = false;
 
-      if(categoryInput === '' && songFinder){
-        thisSearch.song = new Song(thisSearch.dom.wrapper, thisSearch.data[songData], favoriteSongs, userStatus);
-        songsAmount++;
-        thisSearch.dom.subtitle.innerHTML = `We have found ${songsAmount} songs...`;
+      if(!userStatus || userStatus === undefined){
+        if(!thisSearch.data[songData].onlyLogged){
+          toRender = true;
+        }
       } else {
-        for(let category of songCategories){
-          if(category === categoryInput && songFinder){
-            thisSearch.song = new Song(thisSearch.dom.wrapper, thisSearch.data[songData], favoriteSongs, userStatus);
-            songsAmount++;
-            thisSearch.dom.subtitle.innerHTML = `We have found ${songsAmount} songs...`;
-          } 
-        }         
-      }   
+        toRender = true;
+      }
+      
+      if(toRender){
+        if(categoryInput === '' && songFinder){
+          thisSearch.song = new Song(thisSearch.dom.wrapper, thisSearch.data[songData], favoriteSongs, userStatus);
+          songsAmount++;
+          thisSearch.dom.subtitle.innerHTML = `We have found ${songsAmount} songs...`;
+        } else {
+          for(let category of songCategories){
+            if(category === categoryInput && songFinder){
+              thisSearch.song = new Song(thisSearch.dom.wrapper, thisSearch.data[songData], favoriteSongs, userStatus);
+              songsAmount++;
+              thisSearch.dom.subtitle.innerHTML = `We have found ${songsAmount} songs...`;
+            } 
+          }         
+        }   
+      } 
     }
 
     if(songsAmount > 0){

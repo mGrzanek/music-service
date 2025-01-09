@@ -2,9 +2,10 @@ import { classNames, select, settings, templates } from '../settings.js';
 import Validator from './Validator.js';
 
 class Join {
-  constructor(element, callback){
+  constructor(element, callback, userEmails){
     const thisJoin = this;
     
+    thisJoin.userEmails = userEmails;
     thisJoin.convertText = callback;
     thisJoin.render(element);
     thisJoin.getElements();
@@ -77,7 +78,8 @@ class Join {
       surname: thisJoin.convertText(thisJoin.dom.inputSurname.value),
       email: thisJoin.dom.inputEmail.value,
       password: thisJoin.dom.inputPassword.value,
-      playedSongs: {}  
+      playedSongs: {},
+      favoriteSongs: []
     };
 
     const options = {
@@ -88,26 +90,35 @@ class Join {
       body: JSON.stringify(payload)
     };
 
-    if(thisJoin.nameValidation.validateName(payload.name)
-      && thisJoin.surnameValidation.validateName(payload.surname)
-      && thisJoin.emailValidation.validateEmail(payload.email)
-      && thisJoin.passwordValidation.validatePassword(payload.password)){
-      fetch(url, options);
-
-      for(let inputField of thisJoin.dom.form.children){
-        if(inputField.tagName === 'INPUT'){
-          inputField.value = '';
-          inputField.classList.remove(classNames.form.success);
+    for(let email of thisJoin.userEmails){
+      if(email !== payload.email){
+        if(thisJoin.nameValidation.validateName(payload.name)
+          && thisJoin.surnameValidation.validateName(payload.surname)
+          && thisJoin.emailValidation.validateEmail(payload.email)
+          && thisJoin.passwordValidation.validatePassword(payload.password)){
+          fetch(url, options);    
+          thisJoin.dom.newAccount.innerHTML = 'Thanks for joining us! Now you can log in to your account.';
+          setTimeout(() => {
+            thisJoin.dom.newAccount.innerHTML = '';
+            thisJoin.unsignFields(classNames.form.success);
+          }, '5000');
+          const event = new Event('user-added', {bubbles: true});
+          document.dispatchEvent(event);
         }
+      } else {
+        alert('This user already exists!');
+        thisJoin.unsignFields(classNames.form.success);
       }
+    }  
+  }
+  unsignFields(color){
+    const thisJoin = this;
 
-      const event = new Event('user-added', {bubbles: true});
-      document.dispatchEvent(event);
-
-      thisJoin.dom.newAccount.innerHTML = 'Thanks for joining us! Now you can log in to your account.';
-      setTimeout(() => {
-        thisJoin.dom.newAccount.innerHTML = '';
-      }, '5000');
+    for(let inputField of thisJoin.dom.form.children){
+      if(inputField.tagName === 'INPUT'){
+        inputField.value = '';
+        inputField.classList.remove(color);
+      }
     }
   }
 }

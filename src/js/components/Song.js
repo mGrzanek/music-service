@@ -2,17 +2,15 @@
 import { classNames, select, templates } from './../settings.js';
 import utils from './../utils.js';
 
-
 class Song {
   constructor(mainWrapper, data, favoriteSongs, userStatus){
     const thisSong = this;
     
     thisSong.data = data;
-    thisSong.userStatus = userStatus;
     thisSong.render(mainWrapper);
     thisSong.initAudioPlayer();
     thisSong.updateFavorite(userStatus, favoriteSongs);
-    thisSong.initActions();
+    thisSong.initActions(userStatus);
   }
   render(mainWrapper){
     const thisSong = this;
@@ -38,7 +36,7 @@ class Song {
     });
   }
 
-  initActions(){
+  initActions(userStatus){
     const thisSong = this;
     thisSong.dom.playBtn = thisSong.dom.audioPlayer.querySelector(select.song.playBtn);
 
@@ -51,10 +49,10 @@ class Song {
     });
 
     thisSong.dom.favoriteIcon.addEventListener('click', function(){
-      if(!thisSong.userStatus || thisSong.userStatus === undefined){
-        alert('Available to subscribers only.');
+      if(!userStatus || userStatus === undefined){
+        alert('Available for subscribers only.');
 
-      } else if(thisSong.userStatus){
+      } else if(userStatus){
         thisSong.dom.favoriteIcon.classList.toggle(
           classNames.songs.favorite,
           !thisSong.dom.favoriteIcon.classList.contains(classNames.songs.favorite)

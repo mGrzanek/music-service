@@ -112,16 +112,14 @@ class Validator {
 
     if(element 
       && element.type === 'checkbox' 
-      && element.checked){
-      categoriesArr.push(element);
+      || element.type === 'radio'){
+      if(element.checked){
+        categoriesArr.push(element);
+      } else {
+        const elementToRemove = categoriesArr.indexOf(element);
+        categoriesArr.splice(elementToRemove, 1);
+      }
     } 
-
-    if(element
-      && element.type === 'checkbox'
-      && !element.checked){
-      const elementToRemove = categoriesArr.indexOf(element);
-      categoriesArr.splice(elementToRemove, 1);
-    }
 
     thisValidator.dom.wrapper.classList.toggle(
       classNames.form.success,
@@ -165,10 +163,13 @@ class Validator {
   }
 
   validateSongCategories(categoriesArr){
+    const thisValidator = this;
+
+    thisValidator.songCategoriesToggleClassValidate(thisValidator.dom.wrapper, categoriesArr);
     if(categoriesArr.length > 0){
       return true;
     } else {
-      alert('At least one song category must be selected!');
+      alert('At least one field must be selected!');
     }
   }
 

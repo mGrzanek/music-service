@@ -9,6 +9,7 @@ export const select = {
     addSong: '#template-add-song-wrapper',
     favorite: '#template-favorite-wrapper',
     songCategories: '#template-checkboxes-song-categories',
+    privacyCategories: '#template-radio-song-categories',
     songCategoryLink: '#template-song-category-link',
   },
   containerOf: {
@@ -60,7 +61,10 @@ export const select = {
     filename: '[name="filename"]',
     ranking: '[name="ranking"]',
     category: '[name="categories"]',
+    privacy: '[name="privacy"]',
     checkboxes: '.checkboxes',
+    songCategories: '.categories-checkbox',
+    privacyCategories: '.privacy-checkbox',
     songAdded: '.section-subtitle',
   },
   favorite: {
@@ -88,6 +92,9 @@ export const settings = {
     songs: 'songs',
     users: 'users',
     songCategories: 'song-categories',
+  },
+  privacyCategory: {
+    private: 'Private',
   },
 };
 
@@ -118,6 +125,7 @@ export const templates = {
   login: Handlebars.compile(document.querySelector(select.templateOf.login).innerHTML),
   addSong: Handlebars.compile(document.querySelector(select.templateOf.addSong).innerHTML),
   songCategories: Handlebars.compile(document.querySelector(select.templateOf.songCategories).innerHTML),
+  privacyCategories: Handlebars.compile(document.querySelector(select.templateOf.privacyCategories).innerHTML),
   songCategoryLink: Handlebars.compile(document.querySelector(select.templateOf.songCategoryLink).innerHTML),
   favorite: Handlebars.compile(document.querySelector(select.templateOf.favorite).innerHTML),
 };

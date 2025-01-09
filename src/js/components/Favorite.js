@@ -7,8 +7,10 @@ class Favorite {
 
     thisFavorite.data = data;
     thisFavorite.favoriteSongs = favoriteSongs;
-    thisFavorite.render(element);
-    thisFavorite.showFavorites(favoriteSongs, userStatus);
+    if(userStatus){
+      thisFavorite.render(element);
+      thisFavorite.showFavorites(favoriteSongs, userStatus);
+    }
   }
   render(element){
     const thisFavorite = this;
@@ -26,10 +28,14 @@ class Favorite {
     thisFavorite.dom.songsWrapper.innerHTML = '';
   
     if(userStatus){
-      for(let favoriteSongId of favoriteSongs){
-        for(let songData in thisFavorite.data){
-          if(favoriteSongId === thisFavorite.data[songData].id){
-            thisFavorite.song = new Song(thisFavorite.dom.wrapper, thisFavorite.data[songData], favoriteSongs, userStatus);
+      if(favoriteSongs === undefined){
+        favoriteSongs = [];
+      } else {
+        for(let favoriteSongId of favoriteSongs){
+          for(let songData in thisFavorite.data){
+            if(favoriteSongId === thisFavorite.data[songData].id){
+              thisFavorite.song = new Song(thisFavorite.dom.wrapper, thisFavorite.data[songData], favoriteSongs, userStatus);
+            }
           }
         }
       }

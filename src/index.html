@@ -28,7 +28,7 @@
                 </span>
             </div>
             <div class="login-links-wrapper">
-                <a href="#login">Log in</a>
+                <a href="#login">Login</a>
                 <a href="#join">Join</a>
                 <span class="for-logged">
                     <span class="user"></span>
@@ -170,20 +170,34 @@
             <p class="section-subtitle"></p>
             <h2 class="section-title">Add song</h2>
             <form class="song-form">
-                <input type="text" name="title" placeholder="Title" >
-                <input type="text" name="author" placeholder="Author" >
-                <input type="text" name="filename" placeholder="Filename" >
-                <input type="number" name="ranking" placeholder="Ranking">
-                <h4>Categories:</h4>
-                <div class="checkboxes"></div>
+                <input type="text" name="title" placeholder="Title" required>
+                <input type="text" name="author" placeholder="Author" required>
+                <input type="text" name="filename" placeholder="Filename" required>
+                <input type="number" name="ranking" placeholder="Ranking" required>
+                <div class="checkboxes">
+                    <div class="songs-categories">
+                        <h4>Categories:</h4>
+                        <div class="categories-checkbox"></div>
+                    </div>
+                    <div class="songs-privacy">
+                        <h4>Privacy:</h4>
+                        <div class="privacy-checkbox"></div>
+                    </div>
+                </div>
                 <button type="submit" class="btn">Add</button>
             </form>
         </div>
     </script>
-    <script id="template-checkboxes-song-categories" type="text/x-handlebars-template">
+    <script id="template-checkboxes-song-categories" type="text/x-handlebars-template">      
         <label>
             <input type="checkbox" name="categories" value="{{ label }}">
             <span> {{ label }} </span>
+        </label>
+    </script>
+    <script id="template-radio-song-categories" type="text/x-handlebars-template">
+        <label>
+            <input type="radio" name="privacy" value="{{ label }}" {{#if @first}}checked{{/if}}>
+            <span>{{ label }}</span>
         </label>
     </script>
     <script id="template-song-category-link" type="text/x-handlebars-template">

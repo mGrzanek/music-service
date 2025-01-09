@@ -6,7 +6,8 @@
             "author": "David Renda",
             "filename": "At_The_Top_David_Renda.mp3",
             "categories": ["Powerful", "Mystery"],
-            "ranking": 1
+            "ranking": 1,
+            "onlyLogged": false
         },
         {
             "id": 2,
@@ -14,7 +15,8 @@
             "author": "David Renda",
             "filename": "Silly_Feet_David_Renda.mp3",
             "categories": ["Relax", "Fun"],
-            "ranking": 2
+            "ranking": 2,
+            "onlyLogged": false
         },
         {
             "id": 3,
@@ -22,7 +24,8 @@
             "author": "David Fesliyan",
             "filename": "Western_Adventures_-_David_Fesliyan.mp3",
             "categories": ["Fun", "Western"],
-            "ranking": 4
+            "ranking": 4,
+            "onlyLogged": false
         },
         {
             "id": 4,
@@ -30,7 +33,17 @@
             "author": "Steve Oxen",
             "filename": "BASS_TRAP_Steve_Oxen.mp3",
             "categories": ["Powerful", "Insomnia"],
-            "ranking": 3
+            "ranking": 3,
+            "onlyLogged": false
+        },
+        {
+            "id": 5,
+            "title": "Lights",
+            "author": "Embrz",
+            "filename": "embrz-lights-feat-pennybirdrabbit.mp3",
+            "categories": ["Powerful", "Modern"],
+            "ranking": 5,
+            "onlyLogged": true
         }
     ],
     "users": [
@@ -56,52 +69,69 @@
     ],
     "song-categories": [
         {
-            "id": 1,
-            "label": "Powerful"
+            "categories": [
+                {
+                    "id": 1,
+                    "label": "Powerful"
+                },
+                {
+                    "id": 2,
+                    "label": "Relax"
+                },
+                {
+                    "id": 3,
+                    "label": "Mystery"
+                },
+                {
+                    "id": 4,
+                    "label": "Fun"
+                },
+                {
+                    "id": 5,
+                    "label": "Western"
+                },
+                {
+                    "id": 6,
+                    "label": "Rock"
+                },
+                {
+                    "id": 7,
+                    "label": "Modern"
+                },
+                {
+                    "id": 8,
+                    "label": "Disco"
+                },
+                {
+                    "id": 9,
+                    "label": "Acustic"
+                },
+                {
+                    "id": 10,
+                    "label": "Classic"
+                },
+                {
+                    "id": 11,
+                    "label": "Soul"
+                },
+                {
+                    "id": 12,
+                    "label": "Other"
+                }
+            ]
         },
         {
-            "id": 2,
-            "label": "Relax"
-        },
-        {
-            "id": 3,
-            "label": "Mystery"
-        },
-        {
-            "id": 4,
-            "label": "Fun"
-        },
-        {
-            "id": 5,
-            "label": "Western"
-        },
-        {
-            "id": 6,
-            "label": "Rock"
-        },
-        {
-            "id": 7,
-            "label": "Modern"
-        },
-        {
-            "id": 8,
-            "label": "Disco"
-        },
-        {
-            "id": 9,
-            "label": "Acustic"
-        },
-        {
-            "id": 10,
-            "label": "Classic"
-        },
-        {
-            "id": 11,
-            "label": "Soul"
-        },
-        {
-            "id": 12,
-            "label": "Other"
+            "privacy": [
+                {
+                    "id": 1,
+                    "label": "Public"
+                },
+                {
+                    "id": 2,
+                    "label": "Private"
+                }
+            ]
         }
+        
     ]
 } 

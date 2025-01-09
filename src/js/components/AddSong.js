@@ -1,18 +1,19 @@
 import { classNames, select, settings, templates } from './../settings.js';
-import SongCategory from './SongCategory.js';
 import Validator from './Validator.js';
 
 class AddSong {
-  constructor(element, data, callback){
+  constructor(element, data, callback, userStatus){
     const thisAddSong = this;
 
-    thisAddSong.data = data;
-    thisAddSong.render(element);
-    thisAddSong.getElements();
-    thisAddSong.initCategories();
-    thisAddSong.initValidator();
-    thisAddSong.checkedCategories = [];
-    thisAddSong.initActions(callback);
+    if(userStatus){
+      thisAddSong.data = data;
+      thisAddSong.render(element);
+      thisAddSong.getElements();
+      thisAddSong.initCategories();
+      thisAddSong.initValidator();
+      thisAddSong.checkedField = [];
+      thisAddSong.initActions(callback);
+    } 
   }
 
   render(element){
@@ -33,14 +34,26 @@ class AddSong {
     thisAddSong.dom.filePathInput = thisAddSong.dom.form.querySelector(select.addSong.filename);
     thisAddSong.dom.rankingInput = thisAddSong.dom.form.querySelector(select.addSong.ranking);
     thisAddSong.dom.checkboxes = thisAddSong.dom.form.querySelector(select.addSong.checkboxes);
+    thisAddSong.dom.songCategories = thisAddSong.dom.checkboxes.querySelector(select.addSong.songCategories);
+    thisAddSong.dom.privacyCategories = thisAddSong.dom.checkboxes.querySelector(select.addSong.privacyCategories);
     thisAddSong.dom.newSong = thisAddSong.dom.wrapper.querySelector(select.addSong.songAdded);
   }
 
   initCategories(){
     const thisAddSong = this;
 
-    for(let songCategory in thisAddSong.data){
-      thisAddSong.songCategory = new SongCategory(thisAddSong.dom.checkboxes, thisAddSong.data[songCategory]);
+    for(let songCategories of thisAddSong.data){
+      if(songCategories.categories){
+        for(let songCategory of songCategories.categories) {
+          const songCategoryHTML = templates.songCategories(songCategory);
+          thisAddSong.dom.songCategories.insertAdjacentHTML('beforeend', songCategoryHTML);
+        }
+      } else if(songCategories.privacy){
+        for(let privacyCategory of songCategories.privacy){
+          const privacyCategoryHTML = templates.privacyCategories(privacyCategory);
+          thisAddSong.dom.privacyCategories.insertAdjacentHTML('beforeend', privacyCategoryHTML);
+        }
+      }
     }
   }
 
@@ -51,7 +64,8 @@ class AddSong {
     thisAddSong.authorValidation = new Validator(thisAddSong.dom.authorInput);
     thisAddSong.filenameValidation = new Validator(thisAddSong.dom.filePathInput);
     thisAddSong.rankingValidtion = new Validator(thisAddSong.dom.rankingInput);
-    thisAddSong.categoriesValidation = new Validator(thisAddSong.dom.checkboxes);
+    thisAddSong.songCategoriesValidation = new Validator(thisAddSong.dom.songCategories);
+    thisAddSong.privacyCategoriesValidation = new Validator(thisAddSong.dom.privacyCategories);
   }
 
   initActions(callback){
@@ -80,26 +94,48 @@ class AddSong {
     
     thisAddSong.dom.checkboxes.addEventListener('change', function(event){
       const clickedElement = event.target;
-      thisAddSong.categoriesValidation.songCategoriesToggleClassValidate(clickedElement, thisAddSong.checkedCategories);
+      clickedElement.nameAttribute = event.target.attributes.name.value;
+      if(clickedElement && clickedElement.tagName === 'INPUT'){
+        if(clickedElement.nameAttribute === 'categories'){
+          thisAddSong.songCategoriesValidation.songCategoriesToggleClassValidate(clickedElement, thisAddSong.checkedField);
+        } else if(clickedElement.nameAttribute === 'privacy'){
+          thisAddSong.privacyCategoriesValidation.songCategoriesToggleClassValidate(clickedElement, thisAddSong.checkedField);
+        }
+      }
     });
   }
 
   addNewSong(callback){
     const thisAddSong = this;
 
-    thisAddSong.dom.categoryInput = thisAddSong.dom.checkboxes.querySelectorAll(select.addSong.category);
-    
+    thisAddSong.dom.songCategoryInput = thisAddSong.dom.songCategories.querySelectorAll(select.addSong.category);
+    thisAddSong.dom.songPrivacyInput = thisAddSong.dom.privacyCategories.querySelectorAll(select.addSong.privacy);
+
     const url = `${settings.db.url}/${settings.db.songs}`;
+    const privacyCategory = [];
+    let privacyValue;
+
+    for(let privacy of thisAddSong.dom.songPrivacyInput){
+      if(privacy.checked){
+        privacyCategory.push(privacy.value);
+        if(privacy.value === settings.privacyCategory.private){
+          privacyValue = true;
+        } else {
+          privacyValue = false;
+        }
+      }
+    }
 
     const payload = {
       title: callback(thisAddSong.dom.titleInput.value),
       author: callback(thisAddSong.dom.authorInput.value),
       filename: thisAddSong.dom.filePathInput.value,
       ranking: thisAddSong.dom.rankingInput.value,
-      categories: []
+      categories: [],
+      onlyLogged: privacyValue
     };
 
-    for(let category of thisAddSong.dom.categoryInput){
+    for(let category of thisAddSong.dom.songCategoryInput){
       if(category.checked){
         payload.categories.push(category.value);
       }
@@ -112,12 +148,13 @@ class AddSong {
       },
       body: JSON.stringify(payload)
     };
-   
+    
     if(thisAddSong.titleValidation.validateSong(payload.title)
         && thisAddSong.authorValidation.validateSong(payload.author)
         && thisAddSong.filenameValidation.validateSongFilename(payload.filename)
         && thisAddSong.rankingValidtion.validateSongRanking(payload.ranking)
-        && thisAddSong.categoriesValidation.validateSongCategories(payload.categories)){
+        && thisAddSong.songCategoriesValidation.validateSongCategories(payload.categories)
+        && thisAddSong.privacyCategoriesValidation.validateSongCategories(privacyCategory)){
       fetch(url, options);
 
       thisAddSong.dom.newSong.innerHTML = 'New song added!';
@@ -131,16 +168,28 @@ class AddSong {
           inputField.classList.remove(classNames.form.success);
         }
       }
-      thisAddSong.dom.checkboxes.classList.remove(classNames.form.success);
 
-      thisAddSong.dom.categoryInput.forEach(function(checkbox) {
-        if(checkbox.checked) {
-          checkbox.checked = false;
-        }
+      thisAddSong.dom.songCategories.classList.remove(classNames.form.success);
+      thisAddSong.dom.privacyCategories.classList.remove(classNames.form.success);
+
+      thisAddSong.dom.songCategoryInput.forEach(function(checkbox) {
+        thisAddSong.uncheckInput(checkbox);
+      });
+
+      thisAddSong.dom.songPrivacyInput.forEach(function(radio) {
+        thisAddSong.uncheckInput(radio);
       });
 
       const event = new Event('song-added', {bubbles: true});
       document.dispatchEvent(event);
+    } else {
+      alert('Please complete the form correctly!');
+    }
+  }
+
+  uncheckInput(inputFile){
+    if(inputFile.checked){
+      inputFile.checked = false;
     }
   }
 }
