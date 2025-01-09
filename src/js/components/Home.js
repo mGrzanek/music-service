@@ -40,13 +40,13 @@ class Home {
     thisHome.dom.songsWrapper.innerHTML = '';
 
     for(let dataSong in thisHome.data){
-      if(!userStatus || userStatus === undefined){
+      if(userStatus){
+        thisHome.song = new Song(thisHome.dom.wrapper, thisHome.data[dataSong], favoriteSongs, userStatus);
+      } else {
         if(!thisHome.data[dataSong].onlyLogged){
           thisHome.song = new Song(thisHome.dom.wrapper, thisHome.data[dataSong], favoriteSongs, userStatus);
         }
-      } else {
-        thisHome.song = new Song(thisHome.dom.wrapper, thisHome.data[dataSong], favoriteSongs, userStatus);
-      }
+      } 
     }
   }
 

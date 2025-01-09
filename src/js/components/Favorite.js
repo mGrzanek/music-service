@@ -10,6 +10,8 @@ class Favorite {
     if(userStatus){
       thisFavorite.render(element);
       thisFavorite.showFavorites(favoriteSongs, userStatus);
+    } else {
+      element.innerHTML = 'Only for subscribers!';
     }
   }
   render(element){

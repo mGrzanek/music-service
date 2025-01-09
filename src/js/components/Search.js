@@ -71,12 +71,12 @@ class Search {
       const songFinder = regex.test(fullName);
       let toRender = false;
 
-      if(!userStatus || userStatus === undefined){
+      if(userStatus){
+        toRender = true;
+      } else {
         if(!thisSearch.data[songData].onlyLogged){
           toRender = true;
         }
-      } else {
-        toRender = true;
       }
       
       if(toRender){

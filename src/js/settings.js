@@ -96,6 +96,10 @@ export const settings = {
   privacyCategory: {
     private: 'Private',
   },
+  actions: {
+    remove: 'remove',
+    add: 'add',
+  }
 };
 
 export const classNames = {

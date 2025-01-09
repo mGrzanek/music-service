@@ -49,10 +49,7 @@ class Song {
     });
 
     thisSong.dom.favoriteIcon.addEventListener('click', function(){
-      if(!userStatus || userStatus === undefined){
-        alert('Available for subscribers only.');
-
-      } else if(userStatus){
+      if(userStatus){
         thisSong.dom.favoriteIcon.classList.toggle(
           classNames.songs.favorite,
           !thisSong.dom.favoriteIcon.classList.contains(classNames.songs.favorite)
@@ -62,8 +59,9 @@ class Song {
           detail: {songId: thisSong.data.id}
         });
         thisSong.element.dispatchEvent(event);
+      } else {
+        alert('Available for subscribers only.');
       }
-      
     });
   }
 

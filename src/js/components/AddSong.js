@@ -13,7 +13,9 @@ class AddSong {
       thisAddSong.initValidator();
       thisAddSong.checkedField = [];
       thisAddSong.initActions(callback);
-    } 
+    } else {
+      element.innerHTML = 'Only for subscribers!';
+    }
   }
 
   render(element){

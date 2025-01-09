@@ -24,11 +24,7 @@ class Discover {
     const thisDiscover = this;
 
     thisDiscover.dom.songsWrapper.innerHTML = '';
-    if(!userLogged || userLogged === undefined ){
-      const randomNumber = Math.floor(Math.random() * publicSongs.length);
-
-      thisDiscover.song = new Song(thisDiscover.dom.wrapper, publicSongs[randomNumber], favoriteSongs, userLogged);
-    } else if(userLogged){
+    if(userLogged){
       const currentValues = thisDiscover.calculateMaxParam(playedSongsCategories);
       if(currentValues.valueMax === 0){
         const randomNumber = Math.floor(Math.random() * thisDiscover.data.length);
@@ -45,6 +41,11 @@ class Discover {
         const randomNumber = Math.floor(Math.random() * currentSongs.length);
         thisDiscover.song = new Song(thisDiscover.dom.wrapper, currentSongs[randomNumber], favoriteSongs, userLogged);
       }
+    }
+    if(!userLogged || userLogged === undefined ){
+      const randomNumber = Math.floor(Math.random() * publicSongs.length);
+
+      thisDiscover.song = new Song(thisDiscover.dom.wrapper, publicSongs[randomNumber], favoriteSongs, userLogged);
     }
   }
 
