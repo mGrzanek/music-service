@@ -1,12 +1,13 @@
 import { classNames, select, settings, templates } from './../settings.js';
+import BaseSubpage from './BaseSubpage.js';
 import Validator from './Validator.js';
 
-class AddSong {
+class AddSong extends BaseSubpage{
   constructor(element, data, callback, userStatus){
+    super(data, templates.addSong());
     const thisAddSong = this;
 
     if(userStatus){
-      thisAddSong.data = data;
       thisAddSong.render(element);
       thisAddSong.getElements();
       thisAddSong.initCategories();
@@ -16,15 +17,6 @@ class AddSong {
     } else {
       element.innerHTML = 'Only for subscribers!';
     }
-  }
-
-  render(element){
-    const thisAddSong = this;
-
-    const generatedHtml = templates.addSong();
-    thisAddSong.dom = {};
-    thisAddSong.dom.wrapper = element;
-    thisAddSong.dom.wrapper.innerHTML = generatedHtml;
   }
 
   getElements(){

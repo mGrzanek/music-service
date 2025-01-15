@@ -1,26 +1,16 @@
 /* eslint-disable no-empty */
-import { select, templates } from './../settings.js';
+import { select , templates} from './../settings.js';
+import BaseSubpage from './BaseSubpage.js';
 import Song from './Song.js';
 
-class Search {
-  constructor(element, data, categories, favoriteSongs, userStatus){
+class Search extends BaseSubpage {
+  constructor(element, data, favoriteSongs, userStatus, categories){
+    super(data, templates.search(categories));
     const thisSearch = this;
 
-    thisSearch.data = data;
-    thisSearch.categories = categories;
     thisSearch.render(element);
     thisSearch.getElements();
     thisSearch.initActions(favoriteSongs, userStatus);
-  }
-
-  render(element){
-    const thisSearch = this;
-    
-    thisSearch.dom = {};
-    thisSearch.dom.wrapper = element;
-    thisSearch.categories.unshift('');
-    const generatedHtml = templates.search(thisSearch.categories);
-    thisSearch.dom.wrapper.innerHTML = generatedHtml;
   }
 
   getElements(){

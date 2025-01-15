@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import { classNames, select, settings } from './settings.js';
+import { classNames, select, settings} from './settings.js';
 import Home from './components/Home.js';
 import Search from './components/Search.js';
 import Discover from './components/Discover.js';
@@ -188,10 +188,10 @@ const app = {
     },
     initHome: function(){
         const thisApp = this;
+
         thisApp.homeWrapper = document.querySelector(select.containerOf.homeWrapper);
         thisApp.home = new Home(thisApp.homeWrapper, thisApp.data.songs, thisApp.categories, thisApp.favoriteSongs, thisApp.userLogged);
         thisApp.joinButton = thisApp.homeWrapper.querySelector(select.home.joinButton);
-
         thisApp.joinButton.addEventListener('click', function(event){
             thisApp.getPageId(event);
         });
@@ -199,8 +199,9 @@ const app = {
     initSearch: function(){
         const thisApp = this;
 
+        thisApp.categories.unshift('');
         thisApp.searchWrapper = document.querySelector(select.containerOf.searchWrapper);
-        thisApp.search = new Search(thisApp.searchWrapper, thisApp.data.songs, thisApp.categories, thisApp.favoriteSongs, thisApp.userLogged);
+        thisApp.search = new Search(thisApp.searchWrapper, thisApp.data.songs, thisApp.favoriteSongs, thisApp.userLogged, thisApp.categories);
     },
     initDiscover: function(){
         const thisApp = this;

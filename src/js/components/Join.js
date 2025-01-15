@@ -1,8 +1,10 @@
 import { classNames, select, settings, templates } from '../settings.js';
+import BaseSubpage from './BaseSubpage.js';
 import Validator from './Validator.js';
 
-class Join {
+class Join extends BaseSubpage{
   constructor(element, callback, userEmails){
+    super(userEmails, templates.join());
     const thisJoin = this;
     
     thisJoin.userEmails = userEmails;
@@ -11,15 +13,6 @@ class Join {
     thisJoin.getElements();
     thisJoin.initValidator();
     thisJoin.initActions();
-  }
-
-  render(element){
-    const thisJoin = this;
-
-    const generatedHtml = templates.join();
-    thisJoin.dom = {};
-    thisJoin.dom.wrapper = element;
-    thisJoin.dom.wrapper.innerHTML = generatedHtml;
   }
 
   getElements(){

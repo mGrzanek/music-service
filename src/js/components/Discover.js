@@ -1,28 +1,20 @@
 import { select, templates } from './../settings.js';
+import BaseSubpage from './BaseSubpage.js';
 import Song from './Song.js';
 
-class Discover {
+class Discover extends BaseSubpage {
   constructor(element, data, playedSongsCategories, favoriteSongs, userLogged, publicSongs){
+    super(data, templates.discover());
     const thisDiscover = this;
 
-    thisDiscover.data = data;
     thisDiscover.render(element);
-    thisDiscover.songRandom(userLogged, playedSongsCategories, favoriteSongs, publicSongs);
-  }
-
-  render(element){
-    const thisDiscover = this;
-
-    const generatedHtml = templates.discover();
-    thisDiscover.dom = {};
-    thisDiscover.dom.wrapper = element;
-    thisDiscover.dom.wrapper.innerHTML = generatedHtml;
     thisDiscover.dom.songsWrapper = thisDiscover.dom.wrapper.querySelector(select.discover.songsWrapper);
+    thisDiscover.songRandom(userLogged, playedSongsCategories, favoriteSongs, publicSongs);
   }
 
   songRandom(userLogged, playedSongsCategories, favoriteSongs, publicSongs) {
     const thisDiscover = this;
-
+    
     thisDiscover.dom.songsWrapper.innerHTML = '';
     if(userLogged){
       const currentValues = thisDiscover.calculateMaxParam(playedSongsCategories);

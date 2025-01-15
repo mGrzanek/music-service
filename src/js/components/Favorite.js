@@ -1,27 +1,20 @@
 import { select, templates } from './../settings.js';
+import BaseSubpage from './BaseSubpage.js';
 import Song from './Song.js';
 
-class Favorite {
+class Favorite extends BaseSubpage {
   constructor(element, data, favoriteSongs, userStatus){
+    super(data, templates.favorite());
     const thisFavorite = this;
 
-    thisFavorite.data = data;
-    thisFavorite.favoriteSongs = favoriteSongs;
     if(userStatus){
+      thisFavorite.favoriteSongs = favoriteSongs;
       thisFavorite.render(element);
+      thisFavorite.dom.songsWrapper = thisFavorite.dom.wrapper.querySelector(select.favorite.songsWrapper);
       thisFavorite.showFavorites(favoriteSongs, userStatus);
     } else {
       element.innerHTML = 'Only for subscribers!';
     }
-  }
-  render(element){
-    const thisFavorite = this;
-
-    const generatedHtml = templates.favorite();
-    thisFavorite.dom = {};
-    thisFavorite.dom.wrapper  = element;
-    thisFavorite.dom.wrapper.innerHTML = generatedHtml;
-    thisFavorite.dom.songsWrapper = thisFavorite.dom.wrapper.querySelector(select.favorite.songsWrapper);
   }
 
   showFavorites(favoriteSongs, userStatus){

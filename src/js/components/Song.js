@@ -1,12 +1,13 @@
 /* eslint-disable no-undef */
 import { classNames, select, templates } from './../settings.js';
 import utils from './../utils.js';
+import BaseSubpage from './BaseSubpage.js';
 
-class Song {
+class Song extends BaseSubpage {
   constructor(mainWrapper, data, favoriteSongs, userStatus){
+    super(data, templates.songs(data));
     const thisSong = this;
     
-    thisSong.data = data;
     thisSong.render(mainWrapper);
     thisSong.initAudioPlayer();
     thisSong.updateFavorite(userStatus, favoriteSongs);
@@ -15,9 +16,7 @@ class Song {
   render(mainWrapper){
     const thisSong = this;
 
-    const generatedHtml = templates.songs(thisSong.data);
-    thisSong.element = utils.createDOMFromHTML(generatedHtml);
-    thisSong.dom = {};
+    thisSong.element = utils.createDOMFromHTML(thisSong.generatedHtml);
     thisSong.dom.mainWrapper = mainWrapper;
     thisSong.dom.wrapper = thisSong.dom.mainWrapper.querySelector(select.containerOf.songsWrapper);
     thisSong.dom.wrapper.appendChild(thisSong.element);
