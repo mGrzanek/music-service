@@ -245,7 +245,7 @@ const app = {
         const thisApp = this;
 
         thisApp.loginWrapper = document.querySelector(select.containerOf.loginWrapper);
-        thisApp.login = new Login(thisApp.loginWrapper, thisApp.data.users);
+        thisApp.login = new Login(thisApp.loginWrapper, thisApp.data.users, thisApp.data.templates.login);
     },
     setHidden: function(){
         const thisApp = this;

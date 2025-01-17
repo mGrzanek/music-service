@@ -1,9 +1,9 @@
-import { select, templates } from './../settings.js';
+import { select } from './../settings.js';
 import BaseSubpage from './BaseSubpage.js';
 
 class Login extends BaseSubpage{
-  constructor(element, data){
-    super(data, templates.login());
+  constructor(element, data, template){
+    super(data, template);
     const thisLogin = this;
 
     thisLogin.render(element);
