@@ -239,7 +239,7 @@ const app = {
         const thisApp = this;
 
         thisApp.joinWrapper = document.querySelector(select.containerOf.joinWrapper);
-        thisApp.join = new Join(thisApp.joinWrapper, thisApp.convertText, thisApp.userEmails);
+        thisApp.join = new Join(thisApp.joinWrapper, thisApp.convertText, thisApp.userEmails, thisApp.data.templates.join);
     },
     initLogin: function(){
         const thisApp = this;

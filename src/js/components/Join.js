@@ -1,10 +1,10 @@
-import { classNames, select, settings, templates } from '../settings.js';
+import { classNames, select, settings } from '../settings.js';
 import BaseSubpage from './BaseSubpage.js';
 import Validator from './Validator.js';
 
 class Join extends BaseSubpage{
-  constructor(element, callback, userEmails){
-    super(userEmails, templates.join());
+  constructor(element, callback, userEmails, template){
+    super(userEmails, template);
     const thisJoin = this;
     
     thisJoin.userEmails = userEmails;
