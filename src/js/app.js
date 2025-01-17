@@ -138,8 +138,7 @@ const app = {
             thisApp.data.templates = parsedResponse;
             thisApp.fetchSongs();
             thisApp.fetchUsers();
-            thisApp.fetchSongsCategories(); 
-            console.log(thisApp.data);
+            thisApp.fetchSongsCategories();
         });
     },
     fetchSongs: function(){
@@ -227,7 +226,7 @@ const app = {
         const thisApp = this;
 
         thisApp.addSongWrapper = document.querySelector(select.containerOf.addSongWrapper);
-        thisApp.addSong = new AddSong(thisApp.addSongWrapper, thisApp.data.songsCategories, thisApp.convertText, thisApp.userLogged);
+        thisApp.addSong = new AddSong(thisApp.addSongWrapper, thisApp.data.songsCategories, thisApp.convertText, thisApp.userLogged, thisApp.data.templates.addSong);
     },
     initFavorite: function(){
         const thisApp = this;

@@ -120,29 +120,6 @@
             </form>
         </div>
     </script>
-    <script id="template-add-song-wrapper" type="text/x-handlebars-template">
-        <div class="container">
-            <p class="section-subtitle"></p>
-            <h2 class="section-title">Add song</h2>
-            <form class="song-form">
-                <input type="text" name="title" placeholder="Title" required>
-                <input type="text" name="author" placeholder="Author" required>
-                <input type="text" name="filename" placeholder="Filename" required>
-                <input type="number" name="ranking" placeholder="Ranking" required>
-                <div class="checkboxes">
-                    <div class="songs-categories">
-                        <h4>Categories:</h4>
-                        <div class="categories-checkbox"></div>
-                    </div>
-                    <div class="songs-privacy">
-                        <h4>Privacy:</h4>
-                        <div class="privacy-checkbox"></div>
-                    </div>
-                </div>
-                <button type="submit" class="btn">Add</button>
-            </form>
-        </div>
-    </script>
     <script id="template-checkboxes-song-categories" type="text/x-handlebars-template">      
         <label>
             <input type="checkbox" name="categories" value="{{ label }}">

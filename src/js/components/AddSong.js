@@ -3,8 +3,8 @@ import BaseSubpage from './BaseSubpage.js';
 import Validator from './Validator.js';
 
 class AddSong extends BaseSubpage{
-  constructor(element, data, callback, userStatus){
-    super(data, templates.addSong());
+  constructor(element, data, callback, userStatus, template){
+    super(data, template);
     const thisAddSong = this;
 
     if(userStatus){
