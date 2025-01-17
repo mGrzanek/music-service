@@ -1,10 +1,10 @@
-import { select, templates } from './../settings.js';
+import { select } from './../settings.js';
 import BaseSubpage from './BaseSubpage.js';
 import Song from './Song.js';
 
 class Discover extends BaseSubpage {
-  constructor(element, data, playedSongsCategories, favoriteSongs, userLogged, publicSongs){
-    super(data, templates.discover());
+  constructor(element, data, playedSongsCategories, favoriteSongs, userLogged, publicSongs, template){
+    super(data, template);
     const thisDiscover = this;
 
     thisDiscover.render(element);

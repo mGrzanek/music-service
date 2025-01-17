@@ -6,7 +6,7 @@ class Home extends BaseSubpage {
   constructor(element, data, categories, favoriteSongs, userStatus, template){
     super(data, template);
     const thisHome = this;
-    
+    console.log(template);
     thisHome.categories = categories;
     thisHome.activeCategoryLink = null;
     thisHome.render(element);

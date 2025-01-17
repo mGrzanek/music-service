@@ -2,7 +2,6 @@ export const select = {
   templateOf: {
     songs: '#template-songs-wrapper',
     search: '#template-search-wrapper',
-    discover: '#template-discover-wrapper',
     join: '#template-join-wrapper',
     login: '#template-login-wrapper',
     addSong: '#template-add-song-wrapper',
@@ -123,7 +122,6 @@ export const classNames = {
 export const templates = {
   songs: Handlebars.compile(document.querySelector(select.templateOf.songs).innerHTML),
   search: Handlebars.compile(document.querySelector(select.templateOf.search).innerHTML),
-  discover: Handlebars.compile(document.querySelector(select.templateOf.discover).innerHTML),
   join: Handlebars.compile(document.querySelector(select.templateOf.join).innerHTML),
   login: Handlebars.compile(document.querySelector(select.templateOf.login).innerHTML),
   addSong: Handlebars.compile(document.querySelector(select.templateOf.addSong).innerHTML),
