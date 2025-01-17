@@ -1,10 +1,10 @@
-import { select, templates } from './../settings.js';
+import { select } from './../settings.js';
 import BaseSubpage from './BaseSubpage.js';
 import Song from './Song.js';
 
 class Favorite extends BaseSubpage {
-  constructor(element, data, favoriteSongs, userStatus){
-    super(data, templates.favorite());
+  constructor(element, data, favoriteSongs, userStatus, template){
+    super(data, template);
     const thisFavorite = this;
 
     if(userStatus){

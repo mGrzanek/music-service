@@ -232,7 +232,7 @@ const app = {
         const thisApp = this;
 
         thisApp.favoriteWrapper = document.querySelector(select.containerOf.favoriteWrapper);
-        thisApp.favorite = new Favorite(thisApp.favoriteWrapper, thisApp.data.songs, thisApp.favoriteSongs, thisApp.userLogged);
+        thisApp.favorite = new Favorite(thisApp.favoriteWrapper, thisApp.data.songs, thisApp.favoriteSongs, thisApp.userLogged, thisApp.data.templates.favorite);
     },
     initJoin: function(){
         const thisApp = this;
