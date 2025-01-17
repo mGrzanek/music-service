@@ -3,8 +3,8 @@ import Song from './Song.js';
 import BaseSubpage from './BaseSubpage.js';
 
 class Home extends BaseSubpage {
-  constructor(element, data, categories, favoriteSongs, userStatus){
-    super(data, templates.home());
+  constructor(element, data, categories, favoriteSongs, userStatus, template){
+    super(data, template);
     const thisHome = this;
     
     thisHome.categories = categories;

@@ -1,7 +1,6 @@
 export const select = {
   templateOf: {
     songs: '#template-songs-wrapper',
-    home: '#template-home-wrapper',
     search: '#template-search-wrapper',
     discover: '#template-discover-wrapper',
     join: '#template-join-wrapper',
@@ -92,6 +91,7 @@ export const settings = {
     songs: 'songs',
     users: 'users',
     songCategories: 'song-categories',
+    templates: 'templates',
   },
   privacyCategory: {
     private: 'Private',
@@ -122,7 +122,6 @@ export const classNames = {
 
 export const templates = {
   songs: Handlebars.compile(document.querySelector(select.templateOf.songs).innerHTML),
-  home: Handlebars.compile(document.querySelector(select.templateOf.home).innerHTML),
   search: Handlebars.compile(document.querySelector(select.templateOf.search).innerHTML),
   discover: Handlebars.compile(document.querySelector(select.templateOf.discover).innerHTML),
   join: Handlebars.compile(document.querySelector(select.templateOf.join).innerHTML),

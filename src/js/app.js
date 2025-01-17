@@ -124,13 +124,27 @@ const app = {
         thisApp.categories = [];
         thisApp.publicSongs = [];
         thisApp.userEmails = [];
-        thisApp.fetchSongs();
-        thisApp.fetchUsers();
-        thisApp.fetchSongsCategories(); 
-    }, 
+        thisApp.fetchTemplates();
+    },
+    fetchTemplates: function(){
+        const thisApp = this;
+        const url = `${settings.db.url}/${settings.db.templates}`;
+
+        fetch(url)
+        .then(function(rawResponse){
+            return rawResponse.json();
+        })
+        .then(function(parsedResponse){
+            thisApp.data.templates = parsedResponse;
+            thisApp.fetchSongs();
+            thisApp.fetchUsers();
+            thisApp.fetchSongsCategories(); 
+            console.log(thisApp.data);
+        });
+    },
     fetchSongs: function(){
         const thisApp = this;
-        const url = settings.db.url + '/' + settings.db.songs;
+        const url = `${settings.db.url}/${settings.db.songs}`;
 
         fetch(url)
             .then(function(rawResponse){
@@ -158,7 +172,7 @@ const app = {
     },
     fetchUsers: function(){
         const thisApp = this;
-        const url = settings.db.url + '/' + settings.db.users;
+        const url = `${settings.db.url}/${settings.db.users}`;
 
         fetch(url)
             .then(function(rawResponse){
@@ -176,7 +190,7 @@ const app = {
     },
     fetchSongsCategories: function(){
         const thisApp = this;
-        const url = settings.db.url +'/' + settings.db.songCategories;
+        const url = `${settings.db.url}/${settings.db.songCategories}`;
 
         fetch(url)
             .then(function(rawResponse){
@@ -190,7 +204,7 @@ const app = {
         const thisApp = this;
 
         thisApp.homeWrapper = document.querySelector(select.containerOf.homeWrapper);
-        thisApp.home = new Home(thisApp.homeWrapper, thisApp.data.songs, thisApp.categories, thisApp.favoriteSongs, thisApp.userLogged);
+        thisApp.home = new Home(thisApp.homeWrapper, thisApp.data.songs, thisApp.categories, thisApp.favoriteSongs, thisApp.userLogged, thisApp.data.templates.home);
         thisApp.joinButton = thisApp.homeWrapper.querySelector(select.home.joinButton);
         thisApp.joinButton.addEventListener('click', function(event){
             thisApp.getPageId(event);
