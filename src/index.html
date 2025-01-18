@@ -89,37 +89,6 @@
             </div>
         </div>
     </script>
-    <script id="template-search-wrapper" type="text/x-handlebars-template">
-        <div class="container">
-            <h2 class="section-title">Search</h2>
-            <form>
-                <label for="song-input">Name</label>
-                <input id="song-input" type="text">
-                <label for="category-input">Category</label>
-                <select id="category-input">
-                    {{#each this}}
-                    <option value="{{this}}" {{#if @first}}selected{{/if}}>{{this}}</option>
-                    {{/each}}
-                </select>
-                <button type="button" class="btn btn-two">Search</button>
-            </form>
-            <div class="founded-songs-wrapper">
-                <p class="section-subtitle"></p>
-                <div class="songs-wrapper"></div>
-            </div>
-        </div>
-    </script>
-    <script id="template-login-wrapper" type="text/x-handlebars-template">
-        <div class="container">
-            <h2 class="section-title">Log in</h2>
-            <p class="section-subtitle"></p>
-            <form class="login-form">
-                <input type="email" name="email" placeholder="E-mail" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit" class="btn">Log in</button>
-            </form>
-        </div>
-    </script>
     <script id="template-checkboxes-song-categories" type="text/x-handlebars-template">      
         <label>
             <input type="checkbox" name="categories" value="{{ label }}">
@@ -136,13 +105,6 @@
         <li>
             <a href="#{{ this }}">{{ this }}</a>
         </li>
-    </script>
-    <script id="template-favorite-wrapper" type="text/x-handlebars-template">
-        <div class="container">
-            <h2 class="section-title">Favorite</h2>
-            <p class="section-subtitle"></p>
-            <div class="songs-wrapper"></div>
-        </div>
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
     <script src="./vendor/green-audio-player.js"></script>

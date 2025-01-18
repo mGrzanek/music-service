@@ -1,11 +1,11 @@
 /* eslint-disable no-empty */
-import { select , templates} from './../settings.js';
+import { select } from './../settings.js';
 import BaseSubpage from './BaseSubpage.js';
 import Song from './Song.js';
 
 class Search extends BaseSubpage {
-  constructor(element, data, favoriteSongs, userStatus, categories){
-    super(data, templates.search(categories));
+  constructor(element, data, favoriteSongs, userStatus, template){
+    super(data, template);
     const thisSearch = this;
 
     thisSearch.render(element);

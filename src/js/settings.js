@@ -1,7 +1,6 @@
 export const select = {
   templateOf: {
     songs: '#template-songs-wrapper',
-    search: '#template-search-wrapper',
     songCategories: '#template-checkboxes-song-categories',
     privacyCategories: '#template-radio-song-categories',
     songCategoryLink: '#template-song-category-link',
@@ -117,7 +116,6 @@ export const classNames = {
 
 export const templates = {
   songs: Handlebars.compile(document.querySelector(select.templateOf.songs).innerHTML),
-  search: Handlebars.compile(document.querySelector(select.templateOf.search).innerHTML),
   songCategories: Handlebars.compile(document.querySelector(select.templateOf.songCategories).innerHTML),
   privacyCategories: Handlebars.compile(document.querySelector(select.templateOf.privacyCategories).innerHTML),
   songCategoryLink: Handlebars.compile(document.querySelector(select.templateOf.songCategoryLink).innerHTML),

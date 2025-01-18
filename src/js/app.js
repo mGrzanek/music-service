@@ -199,6 +199,11 @@ const app = {
                 thisApp.data.songsCategories = parsedResponse;
             });
     },
+    initHbsTemplate(templateContent, templateData){
+        const template = Handlebars.compile(templateContent);
+        const html = template(templateData);
+        return html;
+    },
     initHome: function(){
         const thisApp = this;
 
@@ -214,7 +219,8 @@ const app = {
 
         thisApp.categories.unshift('');
         thisApp.searchWrapper = document.querySelector(select.containerOf.searchWrapper);
-        thisApp.search = new Search(thisApp.searchWrapper, thisApp.data.songs, thisApp.favoriteSongs, thisApp.userLogged, thisApp.categories, thisApp.data.templates.search);
+        const templateHtml = thisApp.initHbsTemplate(thisApp.data.templates.search, thisApp.categories);
+        thisApp.search = new Search(thisApp.searchWrapper, thisApp.data.songs, thisApp.favoriteSongs, thisApp.userLogged, templateHtml);
     },
     initDiscover: function(){
         const thisApp = this;
