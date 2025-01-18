@@ -208,6 +208,7 @@ const app = {
         thisApp.joinButton.addEventListener('click', function(event){
             thisApp.getPageId(event);
         });
+        thisApp.subscriptionArticle = thisApp.homeWrapper.querySelector(select.home.subscriptionArticle);
     },
     initSearch: function(){
         const thisApp = this;
@@ -275,6 +276,7 @@ const app = {
         thisApp.favoriteSongs = favoriteSongs;
         thisApp.userPlayedSongs = userPlayedSongs;
         thisApp.setHidden();
+        thisApp.subscriptionArticle.classList.add(classNames.section.hidden);
         thisApp.userWelcome = thisApp.loginLinks.querySelector(select.nav.userWelcome);
         thisApp.userWelcome.innerHTML = `Hello, ${userName}!`;
         thisApp.initAddSong();
@@ -305,6 +307,7 @@ const app = {
         thisApp.favoriteSongs = null;
         thisApp.userLogged = false;
         thisApp.setHidden();
+        thisApp.subscriptionArticle.classList.remove(classNames.section.hidden);
         thisApp.home.initSongs(thisApp.favoriteSongs, thisApp.userLogged, thisApp.data.templates.songs);
         thisApp.search.initActions(thisApp.favoriteSongs, thisApp.userLogged, thisApp.data.templates.songs);
     },

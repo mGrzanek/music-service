@@ -25,6 +25,7 @@ export const select = {
     joinButton: '[href="#join"]',
     songsWrapper: '.songs-wrapper',
     songCategoryLink: '.songs-categories a',
+    subscriptionArticle: '.subscription',
   },
   song: {
     categoryId: 'span[data-id',
@@ -105,5 +106,8 @@ export const classNames = {
   songs: {
     hidden: 'hidden',
     favorite: 'favorite',
+  },
+  section: {
+    hidden: 'hidden',
   },
 };
