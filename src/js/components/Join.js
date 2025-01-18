@@ -3,12 +3,11 @@ import BaseSubpage from './BaseSubpage.js';
 import Validator from './Validator.js';
 
 class Join extends BaseSubpage{
-  constructor(element, callback, userEmails, template){
+  constructor(element, userEmails, template){
     super(userEmails, template);
     const thisJoin = this;
     
     thisJoin.userEmails = userEmails;
-    thisJoin.convertText = callback;
     thisJoin.render(element);
     thisJoin.getElements();
     thisJoin.initValidator();

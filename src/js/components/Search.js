@@ -4,10 +4,11 @@ import BaseSubpage from './BaseSubpage.js';
 import Song from './Song.js';
 
 class Search extends BaseSubpage {
-  constructor(element, data, favoriteSongs, userStatus, template){
-    super(data, template);
+  constructor(element, data, favoriteSongs, userStatus, template, categories){
+    super(data, null);
     const thisSearch = this;
-
+    
+    thisSearch.generatedHtml = thisSearch.initHbsTemplate(template, categories);
     thisSearch.render(element);
     thisSearch.getElements();
     thisSearch.initActions(favoriteSongs, userStatus);

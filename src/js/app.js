@@ -199,16 +199,11 @@ const app = {
                 thisApp.data.songsCategories = parsedResponse;
             });
     },
-    initHbsTemplate(templateContent, templateData){
-        const template = Handlebars.compile(templateContent);
-        const html = template(templateData);
-        return html;
-    },
     initHome: function(){
         const thisApp = this;
 
         thisApp.homeWrapper = document.querySelector(select.containerOf.homeWrapper);
-        thisApp.home = new Home(thisApp.homeWrapper, thisApp.data.songs, thisApp.categories, thisApp.favoriteSongs, thisApp.userLogged, thisApp.data.templates.home, thisApp.initHbsTemplate, thisApp.data.templates.songCategoriesLinks);
+        thisApp.home = new Home(thisApp.homeWrapper, thisApp.data.songs, thisApp.categories, thisApp.favoriteSongs, thisApp.userLogged, thisApp.data.templates.home, thisApp.data.templates.songCategoriesLinks);
         thisApp.joinButton = thisApp.homeWrapper.querySelector(select.home.joinButton);
         thisApp.joinButton.addEventListener('click', function(event){
             thisApp.getPageId(event);
@@ -219,8 +214,7 @@ const app = {
 
         thisApp.categories.unshift('');
         thisApp.searchWrapper = document.querySelector(select.containerOf.searchWrapper);
-        const songCategoriesTemplateHtml = thisApp.initHbsTemplate(thisApp.data.templates.search, thisApp.categories);
-        thisApp.search = new Search(thisApp.searchWrapper, thisApp.data.songs, thisApp.favoriteSongs, thisApp.userLogged, songCategoriesTemplateHtml);
+        thisApp.search = new Search(thisApp.searchWrapper, thisApp.data.songs, thisApp.favoriteSongs, thisApp.userLogged, thisApp.data.templates.search, thisApp.categories);
     },
     initDiscover: function(){
         const thisApp = this;
@@ -232,7 +226,7 @@ const app = {
         const thisApp = this;
 
         thisApp.addSongWrapper = document.querySelector(select.containerOf.addSongWrapper);
-        thisApp.addSong = new AddSong(thisApp.addSongWrapper, thisApp.data.songsCategories, thisApp.convertText, thisApp.userLogged, thisApp.data.templates.addSong, thisApp.initHbsTemplate, thisApp.data.templates.songCategoriesCheckboxes, thisApp.data.templates.songCategoriesPrivacy);
+        thisApp.addSong = new AddSong(thisApp.addSongWrapper, thisApp.data.songsCategories, thisApp.userLogged, thisApp.data.templates.addSong, thisApp.data.templates.songCategoriesCheckboxes, thisApp.data.templates.songCategoriesPrivacy);
     },
     initFavorite: function(){
         const thisApp = this;
@@ -244,7 +238,7 @@ const app = {
         const thisApp = this;
 
         thisApp.joinWrapper = document.querySelector(select.containerOf.joinWrapper);
-        thisApp.join = new Join(thisApp.joinWrapper, thisApp.convertText, thisApp.userEmails, thisApp.data.templates.join);
+        thisApp.join = new Join(thisApp.joinWrapper, thisApp.userEmails, thisApp.data.templates.join);
     },
     initLogin: function(){
         const thisApp = this;
@@ -274,10 +268,6 @@ const app = {
             }
         }
     },
-    convertText: function(text){
-        let newText = text.charAt(0).toUpperCase() + text.substr(1).toLowerCase();
-        return newText;
-    },
     initUserLogged: function(userName, userPlayedSongs, favoriteSongs){
         const thisApp = this;
 
@@ -286,7 +276,6 @@ const app = {
         thisApp.userPlayedSongs = userPlayedSongs;
         thisApp.setHidden();
         thisApp.userWelcome = thisApp.loginLinks.querySelector(select.nav.userWelcome);
-        userName = thisApp.convertText(userName);
         thisApp.userWelcome.innerHTML = `Hello, ${userName}!`;
         thisApp.initAddSong();
         thisApp.initFavorite();

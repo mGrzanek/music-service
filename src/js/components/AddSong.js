@@ -3,7 +3,7 @@ import BaseSubpage from './BaseSubpage.js';
 import Validator from './Validator.js';
 
 class AddSong extends BaseSubpage{
-  constructor(element, data, TextConvertCb, userStatus, mainTemplate, initTemplateCb, categoriesTemplate, privacyTemplate){
+  constructor(element, data, userStatus, mainTemplate, categoriesTemplate, privacyTemplate){
     super(data, mainTemplate);
     const thisAddSong = this;
 
@@ -13,16 +13,16 @@ class AddSong extends BaseSubpage{
 
       for(let songCategories of thisAddSong.data){
         if(songCategories.categories){
-          thisAddSong.initCategories(songCategories.categories, thisAddSong.dom.songCategories, initTemplateCb, categoriesTemplate);
+          thisAddSong.initCategories(songCategories.categories, thisAddSong.dom.songCategories, categoriesTemplate);
         }
         if(songCategories.privacy){
-          thisAddSong.initCategories(songCategories.privacy, thisAddSong.dom.privacyCategories, initTemplateCb, privacyTemplate);
+          thisAddSong.initCategories(songCategories.privacy, thisAddSong.dom.privacyCategories, privacyTemplate);
         }
       }
       
       thisAddSong.initValidator();
       thisAddSong.checkedField = [];
-      thisAddSong.initActions(TextConvertCb);
+      thisAddSong.initActions();
     } else {
       element.innerHTML = 'Only for subscribers!';
     }
@@ -53,12 +53,12 @@ class AddSong extends BaseSubpage{
     thisAddSong.privacyCategoriesValidation = new Validator(thisAddSong.dom.privacyCategories);
   }
 
-  initActions(TextConvertCb){
+  initActions(){
     const thisAddSong = this;
 
     thisAddSong.dom.form.addEventListener('submit', function(event){
       event.preventDefault();
-      thisAddSong.addNewSong(TextConvertCb);
+      thisAddSong.addNewSong();
     });
 
     thisAddSong.dom.titleInput.addEventListener('input', function(){
@@ -90,7 +90,7 @@ class AddSong extends BaseSubpage{
     });
   }
 
-  addNewSong(TextConvertCb){
+  addNewSong(){
     const thisAddSong = this;
 
     thisAddSong.dom.songCategoryInput = thisAddSong.dom.songCategories.querySelectorAll(select.addSong.category);
@@ -112,8 +112,8 @@ class AddSong extends BaseSubpage{
     }
 
     const payload = {
-      title: TextConvertCb(thisAddSong.dom.titleInput.value),
-      author: TextConvertCb(thisAddSong.dom.authorInput.value),
+      title: thisAddSong.convertText(thisAddSong.dom.titleInput.value),
+      author: thisAddSong.convertText(thisAddSong.dom.authorInput.value),
       filename: thisAddSong.dom.filePathInput.value,
       ranking: thisAddSong.dom.rankingInput.value,
       categories: [],

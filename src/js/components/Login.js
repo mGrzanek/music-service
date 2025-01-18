@@ -41,7 +41,7 @@ class Login extends BaseSubpage{
           bubbles: true,
           detail: {
             userId: thisLogin.data[dataUser].id,
-            userName: thisLogin.data[dataUser].name, 
+            userName: thisLogin.convertText(thisLogin.data[dataUser].name), 
             userPlayedSongs: thisLogin.data[dataUser].playedSongs,
             favoriteSongs: thisLogin.data[dataUser].favoriteSongs
           }

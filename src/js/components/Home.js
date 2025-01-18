@@ -3,13 +3,13 @@ import Song from './Song.js';
 import BaseSubpage from './BaseSubpage.js';
 
 class Home extends BaseSubpage {
-  constructor(element, data, categories, favoriteSongs, userStatus, mainTemplate, initTemplateCb, categoriesTemplate){
+  constructor(element, data, categories, favoriteSongs, userStatus, mainTemplate, categoriesTemplate){
     super(data, mainTemplate);
     const thisHome = this;
     thisHome.activeCategoryLink = null;
     thisHome.render(element);
     thisHome.getElements();
-    thisHome.initCategories(categories, thisHome.dom.categoriesLinks, initTemplateCb, categoriesTemplate);
+    thisHome.initCategories(categories, thisHome.dom.categoriesLinks, categoriesTemplate);
     thisHome.initSongs(favoriteSongs, userStatus);
     thisHome.initActions();    
   }
