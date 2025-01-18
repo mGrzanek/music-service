@@ -219,8 +219,8 @@ const app = {
 
         thisApp.categories.unshift('');
         thisApp.searchWrapper = document.querySelector(select.containerOf.searchWrapper);
-        const templateHtml = thisApp.initHbsTemplate(thisApp.data.templates.search, thisApp.categories);
-        thisApp.search = new Search(thisApp.searchWrapper, thisApp.data.songs, thisApp.favoriteSongs, thisApp.userLogged, templateHtml);
+        const songCategoriesTemplateHtml = thisApp.initHbsTemplate(thisApp.data.templates.search, thisApp.categories);
+        thisApp.search = new Search(thisApp.searchWrapper, thisApp.data.songs, thisApp.favoriteSongs, thisApp.userLogged, songCategoriesTemplateHtml);
     },
     initDiscover: function(){
         const thisApp = this;
@@ -232,7 +232,7 @@ const app = {
         const thisApp = this;
 
         thisApp.addSongWrapper = document.querySelector(select.containerOf.addSongWrapper);
-        thisApp.addSong = new AddSong(thisApp.addSongWrapper, thisApp.data.songsCategories, thisApp.convertText, thisApp.userLogged, thisApp.data.templates.addSong);
+        thisApp.addSong = new AddSong(thisApp.addSongWrapper, thisApp.data.songsCategories, thisApp.convertText, thisApp.userLogged, thisApp.data.templates.addSong, thisApp.initHbsTemplate, thisApp.data.templates.songCategoriesCheckboxes, thisApp.data.templates.songCategoriesPrivacy);
     },
     initFavorite: function(){
         const thisApp = this;
