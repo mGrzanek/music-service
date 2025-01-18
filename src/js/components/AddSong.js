@@ -71,10 +71,6 @@ class AddSong extends BaseSubpage{
       thisAddSong.filenameValidation.songFilenameToggleClassValidate(thisAddSong.dom.filePathInput.value);
     });
 
-    thisAddSong.dom.rankingInput.addEventListener('input', function(){
-      thisAddSong.rankingValidtion.songRankingToggleClassValidate(thisAddSong.dom.rankingInput.value);
-    });
-    
     thisAddSong.dom.checkboxes.addEventListener('change', function(event){
       const clickedElement = event.target;
       clickedElement.nameAttribute = event.target.attributes.name.value;
@@ -113,7 +109,8 @@ class AddSong extends BaseSubpage{
       title: thisAddSong.convertText(thisAddSong.dom.titleInput.value),
       author: thisAddSong.convertText(thisAddSong.dom.authorInput.value),
       filename: thisAddSong.dom.filePathInput.value,
-      ranking: thisAddSong.dom.rankingInput.value,
+      ranking: 0,
+      played: 0,
       categories: [],
       onlyLogged: privacyValue
     };
@@ -135,7 +132,6 @@ class AddSong extends BaseSubpage{
     if(thisAddSong.titleValidation.validateSong(payload.title)
         && thisAddSong.authorValidation.validateSong(payload.author)
         && thisAddSong.filenameValidation.validateSongFilename(payload.filename)
-        && thisAddSong.rankingValidtion.validateSongRanking(payload.ranking)
         && thisAddSong.songCategoriesValidation.validateSongCategories(payload.categories)
         && thisAddSong.privacyCategoriesValidation.validateSongCategories(privacyCategory)){
       fetch(url, options);
