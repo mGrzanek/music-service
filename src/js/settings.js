@@ -1,7 +1,4 @@
 export const select = {
-  templateOf: {
-    songs: '#template-songs-wrapper',
-  },
   containerOf: {
     songsWrapper: '.songs-wrapper',
     homeWrapper: '.home-wrapper',
@@ -109,8 +106,4 @@ export const classNames = {
     hidden: 'hidden',
     favorite: 'favorite',
   },
-};
-
-export const templates = {
-  songs: Handlebars.compile(document.querySelector(select.templateOf.songs).innerHTML),
 };

@@ -25,7 +25,6 @@ class BaseSubpage {
 
     for(let category of categoriesData){
       const categoryHtml = thisBaseSubpage.initHbsTemplate(categoriesTemplate, category);
-      console.log('categoryHtml', categoryHtml);
       categoriesWrapper.insertAdjacentHTML('beforeend', categoryHtml);
     }
   }

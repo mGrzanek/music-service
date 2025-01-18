@@ -3,14 +3,14 @@ import Song from './Song.js';
 import BaseSubpage from './BaseSubpage.js';
 
 class Home extends BaseSubpage {
-  constructor(element, data, categories, favoriteSongs, userStatus, mainTemplate, categoriesTemplate){
+  constructor(element, data, categories, favoriteSongs, userStatus, mainTemplate, categoriesTemplate, songTemplate){
     super(data, mainTemplate);
     const thisHome = this;
     thisHome.activeCategoryLink = null;
     thisHome.render(element);
     thisHome.getElements();
     thisHome.initCategories(categories, thisHome.dom.categoriesLinks, categoriesTemplate);
-    thisHome.initSongs(favoriteSongs, userStatus);
+    thisHome.initSongs(favoriteSongs, userStatus, songTemplate);
     thisHome.initActions();    
   }
 
@@ -21,17 +21,17 @@ class Home extends BaseSubpage {
     thisHome.dom.songsWrapper = thisHome.dom.wrapper.querySelector(select.home.songsWrapper);
   }
 
-  initSongs(favoriteSongs, userStatus){
+  initSongs(favoriteSongs, userStatus, songTemplate){
     const thisHome = this;
 
     thisHome.dom.songsWrapper.innerHTML = '';
 
     for(let dataSong in thisHome.data){
       if(userStatus){
-        thisHome.song = new Song(thisHome.dom.wrapper, thisHome.data[dataSong], favoriteSongs, userStatus);
+        thisHome.song = new Song(thisHome.dom.wrapper, thisHome.data[dataSong], favoriteSongs, userStatus, songTemplate);
       } else {
         if(!thisHome.data[dataSong].onlyLogged){
-          thisHome.song = new Song(thisHome.dom.wrapper, thisHome.data[dataSong], favoriteSongs, userStatus);
+          thisHome.song = new Song(thisHome.dom.wrapper, thisHome.data[dataSong], favoriteSongs, userStatus, songTemplate);
         }
       } 
     }

@@ -1,17 +1,16 @@
-/* eslint-disable no-empty */
 import { select } from './../settings.js';
 import BaseSubpage from './BaseSubpage.js';
 import Song from './Song.js';
 
 class Search extends BaseSubpage {
-  constructor(element, data, favoriteSongs, userStatus, template, categories){
-    super(data, null);
+  constructor(element, data, favoriteSongs, userStatus, template, categories, songTemplate){
+    super(data);
     const thisSearch = this;
     
     thisSearch.generatedHtml = thisSearch.initHbsTemplate(template, categories);
     thisSearch.render(element);
     thisSearch.getElements();
-    thisSearch.initActions(favoriteSongs, userStatus);
+    thisSearch.initActions(favoriteSongs, userStatus, songTemplate);
   }
 
   getElements(){
@@ -25,11 +24,11 @@ class Search extends BaseSubpage {
     thisSearch.dom.form = thisSearch.dom.wrapper.querySelector(select.search.form);
   }
 
-  initActions(favoriteSongs, userStatus){
+  initActions(favoriteSongs, userStatus, songTemplate){
     const thisSearch = this;
 
     thisSearch.dom.formButton.addEventListener('click', function(){
-      thisSearch.addSearch(favoriteSongs, userStatus);
+      thisSearch.addSearch(favoriteSongs, userStatus, songTemplate);
     });
   }
 
@@ -45,7 +44,7 @@ class Search extends BaseSubpage {
     }
   }
 
-  addSearch(favoriteSongs, userStatus){
+  addSearch(favoriteSongs, userStatus, songTemplate){
     const thisSearch = this;
 
     thisSearch.dom.songsWrapper.innerHTML = '';
@@ -72,13 +71,13 @@ class Search extends BaseSubpage {
       
       if(toRender){
         if(categoryInput === '' && songFinder){
-          thisSearch.song = new Song(thisSearch.dom.wrapper, thisSearch.data[songData], favoriteSongs, userStatus);
+          thisSearch.song = new Song(thisSearch.dom.wrapper, thisSearch.data[songData], favoriteSongs, userStatus, songTemplate);
           songsAmount++;
           thisSearch.dom.subtitle.innerHTML = `We have found ${songsAmount} songs...`;
         } else {
           for(let category of songCategories){
             if(category === categoryInput && songFinder){
-              thisSearch.song = new Song(thisSearch.dom.wrapper, thisSearch.data[songData], favoriteSongs, userStatus);
+              thisSearch.song = new Song(thisSearch.dom.wrapper, thisSearch.data[songData], favoriteSongs, userStatus, songTemplate);
               songsAmount++;
               thisSearch.dom.subtitle.innerHTML = `We have found ${songsAmount} songs...`;
             } 

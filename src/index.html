@@ -69,26 +69,6 @@
     <footer>
         <p>All rights reserved</p>
     </footer>
-    <script id="template-songs-wrapper" type="text/x-handlebars-template">
-        <div class="song-wrapper">
-            <h3 class="song-title"><span>{{ author }}</span> - {{title}}</h3>
-            <i class="fas fa-heart"></i>
-            <div class="player">
-                <audio>
-                    <source src="./songs/{{ filename }}" type="audio/mpeg"/>
-                </audio>
-            </div>
-            <div class="song-attributes">
-                <p class="categories">
-                    Categories:        
-                    {{#each categories}}
-                    <span data-id="{{{ this }}}">{{{ this }}}</span>
-                    {{/each}}
-                </p>
-                <p class="ranking">#{{ ranking }} in ranking</p>
-            </div>
-        </div>
-    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
     <script src="./vendor/green-audio-player.js"></script>
     <script src="js/app.js" type="module"></script>

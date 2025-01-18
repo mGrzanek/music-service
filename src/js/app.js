@@ -96,21 +96,21 @@ const app = {
                     thisApp.favoriteSongs.push(songId);
                 } else if(!thisApp.favoriteSongs.includes(songId)){
                     thisApp.favoriteSongs.push(songId);
-                    thisApp.home.initSongs(thisApp.favoriteSongs, thisApp.userLogged);
-                    thisApp.favorite.showFavorites(thisApp.favoriteSongs, thisApp.userLogged);
-                    thisApp.discover.songRandom(thisApp.userLogged, thisApp.playedSongsCategories, thisApp.favoriteSongs, thisApp.publicSongs);
+                    thisApp.home.initSongs(thisApp.favoriteSongs, thisApp.userLogged, thisApp.data.templates.songs);
+                    thisApp.favorite.showFavorites(thisApp.favoriteSongs, thisApp.userLogged, thisApp.data.templates.songs);
+                    thisApp.discover.songRandom(thisApp.userLogged, thisApp.playedSongsCategories, thisApp.favoriteSongs, thisApp.publicSongs, thisApp.data.templates.songs);
                 } else {
                     const songToRemove = thisApp.favoriteSongs.indexOf(songId);
                     thisApp.favoriteSongs.splice(songToRemove, 1);
-                    thisApp.home.initSongs(thisApp.favoriteSongs, thisApp.userLogged);
-                    thisApp.favorite.showFavorites(thisApp.favoriteSongs, thisApp.userLogged);
-                    thisApp.discover.songRandom(thisApp.userLogged, thisApp.playedSongsCategories, thisApp.favoriteSongs, thisApp.publicSongs);
+                    thisApp.home.initSongs(thisApp.favoriteSongs, thisApp.userLogged, thisApp.data.templates.songs);
+                    thisApp.favorite.showFavorites(thisApp.favoriteSongs, thisApp.userLogged, thisApp.data.templates.songs);
+                    thisApp.discover.songRandom(thisApp.userLogged, thisApp.playedSongsCategories, thisApp.favoriteSongs, thisApp.publicSongs, thisApp.data.templates.songs);
                 }   
             }
         });
 
         thisApp.discoverLink.addEventListener('click', function(){
-            thisApp.discover.songRandom(thisApp.userLogged, thisApp.userPlayedSongs, thisApp.favoriteSongs, thisApp.publicSongs);
+            thisApp.discover.songRandom(thisApp.userLogged, thisApp.userPlayedSongs, thisApp.favoriteSongs, thisApp.publicSongs, thisApp.data.templates.songs);
         });
 
         thisApp.searchLink.addEventListener('click', function(){
@@ -203,7 +203,7 @@ const app = {
         const thisApp = this;
 
         thisApp.homeWrapper = document.querySelector(select.containerOf.homeWrapper);
-        thisApp.home = new Home(thisApp.homeWrapper, thisApp.data.songs, thisApp.categories, thisApp.favoriteSongs, thisApp.userLogged, thisApp.data.templates.home, thisApp.data.templates.songCategoriesLinks);
+        thisApp.home = new Home(thisApp.homeWrapper, thisApp.data.songs, thisApp.categories, thisApp.favoriteSongs, thisApp.userLogged, thisApp.data.templates.home, thisApp.data.templates.songCategoriesLinks, thisApp.data.templates.songs);
         thisApp.joinButton = thisApp.homeWrapper.querySelector(select.home.joinButton);
         thisApp.joinButton.addEventListener('click', function(event){
             thisApp.getPageId(event);
@@ -214,13 +214,13 @@ const app = {
 
         thisApp.categories.unshift('');
         thisApp.searchWrapper = document.querySelector(select.containerOf.searchWrapper);
-        thisApp.search = new Search(thisApp.searchWrapper, thisApp.data.songs, thisApp.favoriteSongs, thisApp.userLogged, thisApp.data.templates.search, thisApp.categories);
+        thisApp.search = new Search(thisApp.searchWrapper, thisApp.data.songs, thisApp.favoriteSongs, thisApp.userLogged, thisApp.data.templates.search, thisApp.categories, thisApp.data.templates.songs);
     },
     initDiscover: function(){
         const thisApp = this;
 
         thisApp.discoverWrapper = document.querySelector(select.containerOf.discoverWrapper);
-        thisApp.discover = new Discover(thisApp.discoverWrapper, thisApp.data.songs, thisApp.userPlayedSongs, thisApp.favoriteSongs, thisApp.userLogged, thisApp.publicSongs, thisApp.data.templates.discover);
+        thisApp.discover = new Discover(thisApp.discoverWrapper, thisApp.data.songs, thisApp.userPlayedSongs, thisApp.favoriteSongs, thisApp.userLogged, thisApp.publicSongs, thisApp.data.templates.discover, thisApp.data.templates.songs);
     },
     initAddSong: function(){
         const thisApp = this;
@@ -232,7 +232,7 @@ const app = {
         const thisApp = this;
 
         thisApp.favoriteWrapper = document.querySelector(select.containerOf.favoriteWrapper);
-        thisApp.favorite = new Favorite(thisApp.favoriteWrapper, thisApp.data.songs, thisApp.favoriteSongs, thisApp.userLogged, thisApp.data.templates.favorite);
+        thisApp.favorite = new Favorite(thisApp.favoriteWrapper, thisApp.data.songs, thisApp.favoriteSongs, thisApp.userLogged, thisApp.data.templates.favorite, thisApp.data.templates.songs);
     },
     initJoin: function(){
         const thisApp = this;
@@ -279,9 +279,9 @@ const app = {
         thisApp.userWelcome.innerHTML = `Hello, ${userName}!`;
         thisApp.initAddSong();
         thisApp.initFavorite();
-        thisApp.home.initSongs(thisApp.favoriteSongs, thisApp.userLogged);
-        thisApp.search.initActions(thisApp.favoriteSongs, thisApp.userLogged);
-        thisApp.discover.songRandom(thisApp.userLogged, thisApp.userPlayedSongs, thisApp.favoriteSongs, thisApp.publicSongs);
+        thisApp.home.initSongs(thisApp.favoriteSongs, thisApp.userLogged, thisApp.data.templates.songs);
+        thisApp.search.initActions(thisApp.favoriteSongs, thisApp.userLogged, thisApp.data.templates.songs);
+        thisApp.discover.songRandom(thisApp.userLogged, thisApp.userPlayedSongs, thisApp.favoriteSongs, thisApp.publicSongs, thisApp.data.templates.songs);
     },
     initUserUnlogged: function(){
         const thisApp = this;
@@ -305,8 +305,8 @@ const app = {
         thisApp.favoriteSongs = null;
         thisApp.userLogged = false;
         thisApp.setHidden();
-        thisApp.home.initSongs(thisApp.favoriteSongs, thisApp.userLogged);
-        thisApp.search.initActions(thisApp.favoriteSongs, thisApp.userLogged);
+        thisApp.home.initSongs(thisApp.favoriteSongs, thisApp.userLogged, thisApp.data.templates.songs);
+        thisApp.search.initActions(thisApp.favoriteSongs, thisApp.userLogged, thisApp.data.templates.songs);
     },
     songsCategoryCounter: function(categoriesArr){
         const thisApp = this;

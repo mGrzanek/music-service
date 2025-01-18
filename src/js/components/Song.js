@@ -1,13 +1,14 @@
 /* eslint-disable no-undef */
-import { classNames, select, templates } from './../settings.js';
+import { classNames, select } from './../settings.js';
 import utils from './../utils.js';
 import BaseSubpage from './BaseSubpage.js';
 
 class Song extends BaseSubpage {
-  constructor(mainWrapper, data, favoriteSongs, userStatus){
-    super(data, templates.songs(data));
+  constructor(mainWrapper, data, favoriteSongs, userStatus, template){
+    super(data);
     const thisSong = this;
     
+    thisSong.generatedHtml = thisSong.initHbsTemplate(template, thisSong.data);
     thisSong.render(mainWrapper);
     thisSong.initAudioPlayer();
     thisSong.updateFavorite(userStatus, favoriteSongs);
