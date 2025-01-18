@@ -41,9 +41,12 @@ class Song extends BaseSubpage {
     thisSong.dom.playBtn = thisSong.dom.audioPlayer.querySelector(select.song.playBtn);
 
     thisSong.dom.playBtn.addEventListener('click', function(){
+      thisSong.data.played++;
       const event = new CustomEvent('played-song', {
         bubbles: true,
-        detail: {songCategories: thisSong.data.categories}
+        detail: {
+          songCategories: thisSong.data.categories,
+        }
       });
       thisSong.element.dispatchEvent(event);
     });

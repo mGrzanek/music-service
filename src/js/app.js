@@ -85,6 +85,7 @@ const app = {
         document.addEventListener('played-song', function(event){
             if(thisApp.userLogged){
                 thisApp.songsCategoryCounter(event.detail.songCategories);
+                thisApp.udpateRanking();
             }
         });
 
@@ -288,8 +289,8 @@ const app = {
     initUserUnlogged: function(){
         const thisApp = this;
         
-        const url = `${settings.db.url}/${settings.db.users}/${thisApp.userId}`; 
-        const options = {
+        const urlUser = `${settings.db.url}/${settings.db.users}/${thisApp.userId}`; 
+        const optionsUser = {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -300,8 +301,27 @@ const app = {
             })
         };
 
-        fetch(url, options);
+        fetch(urlUser, optionsUser);
 
+        const urlSongs = `${settings.db.url}/${settings.db.songs}`;
+        const updatedSongs = thisApp.data.songs.map(song => {
+            return {
+                id: song.id,
+                played: song.played,
+                ranking: song.ranking
+            };
+        });
+
+        const optionSongs = {
+            method: 'PATCH',
+            headers: {
+               'Content-Type': 'application/json', 
+            },
+            body: JSON.stringify(updatedSongs),
+        };
+
+        fetch(urlSongs, optionSongs);
+        
         thisApp.userId = null;
         thisApp.userPlayedSongs = null;
         thisApp.favoriteSongs = null;
@@ -322,6 +342,18 @@ const app = {
                 thisApp.userPlayedSongs[category].amount++;
             }
         }
+    },
+    udpateRanking: function(){
+        const thisApp = this;
+
+        thisApp.data.songs = thisApp.data.songs.sort(function(a, b){
+            return b.played - a.played;
+        });
+        thisApp.data.songs.map((song, index) => {
+            song.ranking = index + 1;
+            console.log(song);
+            return song;
+        });
     },
     init: function(){
         const thisApp = this;
