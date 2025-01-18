@@ -1,16 +1,15 @@
-import { classNames, select, templates } from './../settings.js';
+import { classNames, select } from './../settings.js';
 import Song from './Song.js';
 import BaseSubpage from './BaseSubpage.js';
 
 class Home extends BaseSubpage {
-  constructor(element, data, categories, favoriteSongs, userStatus, template){
-    super(data, template);
+  constructor(element, data, categories, favoriteSongs, userStatus, mainTemplate, initTemplateCb, categoriesTemplate){
+    super(data, mainTemplate);
     const thisHome = this;
-    thisHome.categories = categories;
     thisHome.activeCategoryLink = null;
     thisHome.render(element);
     thisHome.getElements();
-    thisHome.initCategories();
+    thisHome.initCategories(categories, thisHome.dom.categoriesLinks, initTemplateCb, categoriesTemplate);
     thisHome.initSongs(favoriteSongs, userStatus);
     thisHome.initActions();    
   }
@@ -20,15 +19,6 @@ class Home extends BaseSubpage {
 
     thisHome.dom.categoriesLinks = thisHome.dom.wrapper.querySelector(select.containerOf.songsCategoriesLinks); 
     thisHome.dom.songsWrapper = thisHome.dom.wrapper.querySelector(select.home.songsWrapper);
-  }
-
-  initCategories(){
-    const thisHome = this;
-    
-    for(let category of thisHome.categories){
-      const linkHTML = templates.songCategoryLink(category);
-      thisHome.dom.categoriesLinks.insertAdjacentHTML('beforeend', linkHTML);
-    }
   }
 
   initSongs(favoriteSongs, userStatus){

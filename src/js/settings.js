@@ -1,7 +1,6 @@
 export const select = {
   templateOf: {
     songs: '#template-songs-wrapper',
-    songCategoryLink: '#template-song-category-link',
   },
   containerOf: {
     songsWrapper: '.songs-wrapper',
@@ -114,5 +113,4 @@ export const classNames = {
 
 export const templates = {
   songs: Handlebars.compile(document.querySelector(select.templateOf.songs).innerHTML),
-  songCategoryLink: Handlebars.compile(document.querySelector(select.templateOf.songCategoryLink).innerHTML),
 };

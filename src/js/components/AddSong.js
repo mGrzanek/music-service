@@ -10,7 +10,16 @@ class AddSong extends BaseSubpage{
     if(userStatus){
       thisAddSong.render(element);
       thisAddSong.getElements();
-      thisAddSong.initCategories(initTemplateCb, categoriesTemplate, privacyTemplate);
+
+      for(let songCategories of thisAddSong.data){
+        if(songCategories.categories){
+          thisAddSong.initCategories(songCategories.categories, thisAddSong.dom.songCategories, initTemplateCb, categoriesTemplate);
+        }
+        if(songCategories.privacy){
+          thisAddSong.initCategories(songCategories.privacy, thisAddSong.dom.privacyCategories, initTemplateCb, privacyTemplate);
+        }
+      }
+      
       thisAddSong.initValidator();
       thisAddSong.checkedField = [];
       thisAddSong.initActions(TextConvertCb);
@@ -31,24 +40,6 @@ class AddSong extends BaseSubpage{
     thisAddSong.dom.songCategories = thisAddSong.dom.checkboxes.querySelector(select.addSong.songCategories);
     thisAddSong.dom.privacyCategories = thisAddSong.dom.checkboxes.querySelector(select.addSong.privacyCategories);
     thisAddSong.dom.newSong = thisAddSong.dom.wrapper.querySelector(select.addSong.songAdded);
-  }
-
-  initCategories(initTemplateCb, categoriesTemplate, privacyTemplate){
-    const thisAddSong = this;
-
-    for(let songCategories of thisAddSong.data){
-      if(songCategories.categories){
-        for(let songCategory of songCategories.categories) {
-          const songCategoryHTML = initTemplateCb(categoriesTemplate, songCategory);
-          thisAddSong.dom.songCategories.insertAdjacentHTML('beforeend', songCategoryHTML);
-        }
-      } else if(songCategories.privacy){
-        for(let privacyCategory of songCategories.privacy){
-          const privacyCategoryHTML = initTemplateCb(privacyTemplate, privacyCategory);
-          thisAddSong.dom.privacyCategories.insertAdjacentHTML('beforeend', privacyCategoryHTML);
-        }
-      }
-    }
   }
 
   initValidator(){

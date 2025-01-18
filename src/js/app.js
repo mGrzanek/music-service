@@ -208,7 +208,7 @@ const app = {
         const thisApp = this;
 
         thisApp.homeWrapper = document.querySelector(select.containerOf.homeWrapper);
-        thisApp.home = new Home(thisApp.homeWrapper, thisApp.data.songs, thisApp.categories, thisApp.favoriteSongs, thisApp.userLogged, thisApp.data.templates.home);
+        thisApp.home = new Home(thisApp.homeWrapper, thisApp.data.songs, thisApp.categories, thisApp.favoriteSongs, thisApp.userLogged, thisApp.data.templates.home, thisApp.initHbsTemplate, thisApp.data.templates.songCategoriesLinks);
         thisApp.joinButton = thisApp.homeWrapper.querySelector(select.home.joinButton);
         thisApp.joinButton.addEventListener('click', function(event){
             thisApp.getPageId(event);
