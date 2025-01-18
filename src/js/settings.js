@@ -47,7 +47,6 @@ export const select = {
     title: '[name="title"]',
     author: '[name="author"]',
     filename: '[name="filename"]',
-    ranking: '[name="ranking"]',
     category: '[name="categories"]',
     privacy: '[name="privacy"]',
     checkboxes: '.checkboxes',

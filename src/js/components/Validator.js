@@ -92,21 +92,6 @@ class Validator {
     );
   }
 
-  songRankingToggleClassValidate(ranking){
-    const thisValidator = this;
-    const regex =  /^([1-9]|[1-9][0-9]|100)$/;
-
-    thisValidator.dom.wrapper.classList.toggle(
-      classNames.form.success,
-      ranking && regex.test(ranking)
-    );
-
-    thisValidator.dom.wrapper.classList.toggle(
-      classNames.form.error,
-      !ranking || !regex.test(ranking)
-    );
-  }
-
   songCategoriesToggleClassValidate(element, categoriesArr){
     const thisValidator = this;
 
@@ -149,16 +134,6 @@ class Validator {
       return true;
     } else {
       alert('Invalid filename! Must contain extension .mp3, .wav, .flac, .aac, .ogg or .wma');
-    }
-  }
-
-  validateSongRanking(ranking){
-    const regex = /^([1-9]|[1-9][0-9]|100)$/;
-
-    if(ranking && regex.test(ranking)){
-      return true;
-    } else {
-      alert('Invalid ranking number!');
     }
   }
 

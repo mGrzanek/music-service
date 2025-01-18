@@ -35,7 +35,6 @@ class AddSong extends BaseSubpage{
     thisAddSong.dom.titleInput = thisAddSong.dom.form.querySelector(select.addSong.title);
     thisAddSong.dom.authorInput = thisAddSong.dom.form.querySelector(select.addSong.author);
     thisAddSong.dom.filePathInput = thisAddSong.dom.form.querySelector(select.addSong.filename);
-    thisAddSong.dom.rankingInput = thisAddSong.dom.form.querySelector(select.addSong.ranking);
     thisAddSong.dom.checkboxes = thisAddSong.dom.form.querySelector(select.addSong.checkboxes);
     thisAddSong.dom.songCategories = thisAddSong.dom.checkboxes.querySelector(select.addSong.songCategories);
     thisAddSong.dom.privacyCategories = thisAddSong.dom.checkboxes.querySelector(select.addSong.privacyCategories);
@@ -48,7 +47,6 @@ class AddSong extends BaseSubpage{
     thisAddSong.titleValidation = new Validator(thisAddSong.dom.titleInput);
     thisAddSong.authorValidation = new Validator(thisAddSong.dom.authorInput);
     thisAddSong.filenameValidation = new Validator(thisAddSong.dom.filePathInput);
-    thisAddSong.rankingValidtion = new Validator(thisAddSong.dom.rankingInput);
     thisAddSong.songCategoriesValidation = new Validator(thisAddSong.dom.songCategories);
     thisAddSong.privacyCategoriesValidation = new Validator(thisAddSong.dom.privacyCategories);
   }
