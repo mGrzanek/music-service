@@ -321,7 +321,7 @@ const app = {
         };
 
         fetch(urlSongs, optionSongs);
-        
+
         thisApp.userId = null;
         thisApp.userPlayedSongs = null;
         thisApp.favoriteSongs = null;
@@ -351,7 +351,6 @@ const app = {
         });
         thisApp.data.songs.map((song, index) => {
             song.ranking = index + 1;
-            console.log(song);
             return song;
         });
     },
