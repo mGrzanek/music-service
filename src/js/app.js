@@ -152,6 +152,7 @@ const app = {
             })
             .then(function(parsedResponse){
                 thisApp.data.songs = parsedResponse;
+                thisApp.udpateRanking();
                 for(let dataSong in thisApp.data.songs){
                     for(let category of thisApp.data.songs[dataSong].categories){
                         if(!thisApp.categories.includes(category)){
@@ -167,6 +168,9 @@ const app = {
                 thisApp.initDiscover();
                 if(thisApp.userLogged){
                     thisApp.initFavorite();
+                    thisApp.subscriptionArticle.classList.add(classNames.section.hidden);
+                } else {
+                    thisApp.subscriptionArticle.classList.remove(classNames.section.hidden);
                 }
             });
     },
@@ -303,24 +307,22 @@ const app = {
 
         fetch(urlUser, optionsUser);
 
-        const urlSongs = `${settings.db.url}/${settings.db.songs}`;
-        const updatedSongs = thisApp.data.songs.map(song => {
-            return {
-                id: song.id,
-                played: song.played,
-                ranking: song.ranking
+        thisApp.udpateRanking();
+        
+        thisApp.data.songs.forEach(song => {
+            const urlSongs = `${settings.db.url}/${settings.db.songs}/${song.id}`;
+            const optionSongs = {
+                method: 'PATCH',
+                headers: {
+                   'Content-Type': 'application/json', 
+                },
+                body: JSON.stringify({
+                    played: song.played,
+                    ranking: song.ranking
+                }),
             };
+            fetch(urlSongs, optionSongs);
         });
-
-        const optionSongs = {
-            method: 'PATCH',
-            headers: {
-               'Content-Type': 'application/json', 
-            },
-            body: JSON.stringify(updatedSongs),
-        };
-
-        fetch(urlSongs, optionSongs);
 
         thisApp.userId = null;
         thisApp.userPlayedSongs = null;
