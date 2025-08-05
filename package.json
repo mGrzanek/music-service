@@ -15,7 +15,7 @@
         "test:scss": "stylelint --fix src/sass/",
         "build": "npm-run-all build:* test",
         "build:clean": "rimraf dist && mkdirp dist",
-        "build:copy": "copyfiles -a -u 1 -e \"**/sass/**/*\" -e \"**/.gitkeep\" \"src/**/*\" dist",
+        "build:copy": "copyfiles -a -u 1 -e \"**/sass/**/*\" -e \"**/.gitkeep\" \"src/**/*\" src/db/app.json dist",
         "build:sass": "sass --style=compressed --no-source-map src/sass:dist/css",
         "build:autoprefixer": "postcss dist/css/*.css --use autoprefixer -d dist/css",
         "build-dev": "npm-run-all build-dev:sass build:autoprefixer",
