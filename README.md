@@ -4,7 +4,7 @@
 This is music service app based on HTML, CSS and JS with Handlebars templates and plugin green-audio-player. AJAX/API technologies and json-server are used to connect with the server.
 The code has dynamic data fetching.
 
-Project: https://e0c1a24d-d7e5-4349-a2d7-4b087f6b8cf2-00-29o392xichk7s.janeway.replit.dev/
+Project: https://music-service-065t.onrender.com
 
 ## Description
 
